@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "3701ddfe-48e9-48a5-bd89-06143c68df18",
+		"name": "Auth Task Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth / Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b0d7e02-29d6-448d-878b-1ba829acf459",
+						"exec": [
+							"var response = JSON.parse(responseBody);",
+							"pm.globals.set(\"username\", response.username);",
+							"pm.globals.set(\"token\", response.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"carlos.angulo.mascarell@outlook.com\",\n\t\"password\":\"gochocatalan\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44374/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth / Logoff",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b0d7e02-29d6-448d-878b-1ba829acf459",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44374/api/auth/logoff",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44374",
+					"path": [
+						"api",
+						"auth",
+						"logoff"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
