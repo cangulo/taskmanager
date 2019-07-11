@@ -13,13 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{01E1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{35970BBF-DB2B-4470-AE2A-FFF7B3A79E83}"
 	ProjectSection(SolutionItems) = preProject
-		Testing\Postman\Auth Task Manager.postman_collection.json = Testing\Postman\Auth Task Manager.postman_collection.json
+		Testing\Postman\Auth.postman_collection.json = Testing\Postman\Auth.postman_collection.json
 		Testing\Postman\Tasks.postman_collection.json = Testing\Postman\Tasks.postman_collection.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.BL", "TaskManagerAPI.BL\TaskManagerAPI.BL.csproj", "{44984851-8198-46AE-8C7C-BDFFC8E7D50E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerAPI.Resources", "TaskManagerAPI.Resources\TaskManagerAPI.Resources.csproj", "{22E4A520-4DF8-466A-A0DB-0274DB230642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.Resources", "TaskManagerAPI.Resources\TaskManagerAPI.Resources.csproj", "{22E4A520-4DF8-466A-A0DB-0274DB230642}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
