@@ -22,6 +22,9 @@ namespace TaskManagerAPI.EF.Configurations
             builder.Property(x => x.PhoneNumber).HasMaxLength(20).IsRequired();
             builder.Property(x => x.LastLogintime).HasDefaultValue(DateTime.MinValue).IsRequired();
             builder.Property(x => x.Token);
+            // https://medium.com/agilix/entity-framework-core-enums-ee0f8f4063f2
+            builder.Property(x => x.Status).HasDefaultValue(UserStatus.Active).HasConversion<int>().IsRequired();  
+            // TODO: IMPROVEMEN - It will be better if we set status of pending verification for accounts created and wait until the user verify the account in an email link we send
         }
     }
 }

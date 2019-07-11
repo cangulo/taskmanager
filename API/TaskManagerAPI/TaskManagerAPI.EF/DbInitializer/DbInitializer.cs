@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using TaskManagerAPI.EF.Context;
 using TaskManagerAPI.EF.MigrationManager;
+using TaskManagerAPI.Models.BE;
 
 namespace TaskManagerAPI.EF.DbInitializer
 {
@@ -29,7 +30,7 @@ namespace TaskManagerAPI.EF.DbInitializer
             if (!_dbContext.Accounts.Any())
             {
                 _logger.LogInformation("creating basic users");
-                _dbContext.Accounts.Add(
+                _ = _dbContext.Accounts.Add(
                     new Models.BE.Account()
                     {
                         Email = "carlos.angulo.mascarell@outlook.com",
@@ -37,7 +38,8 @@ namespace TaskManagerAPI.EF.DbInitializer
                         Password = "gochocatalan",
                         FailedLoginAttempts = 0,
                         PhoneNumber = "+34670566831",
-                        LastLogintime = DateTime.MinValue
+                        LastLogintime = DateTime.MinValue,
+                        Status = UserStatus.Active
                     });
                 _dbContext.SaveChanges();
             }

@@ -16,8 +16,4 @@
     <ProjectReference Include="..\TaskManagerAPI.Resources\TaskManagerAPI.Resources.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="infrastructure\" />
-  </ItemGroup>
-
 </Project>

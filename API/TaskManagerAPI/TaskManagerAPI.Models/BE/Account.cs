@@ -12,5 +12,13 @@ namespace TaskManagerAPI.Models.BE
         public string PhoneNumber { get; set; }
         public DateTime LastLogintime { get; set; }
         public string Token { get; set; }
+        public UserStatus Status { get; set; }
+    }
+
+    public enum UserStatus
+    {
+        Active,
+        Disable,
+        Locked
     }
 }

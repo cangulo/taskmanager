@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Linq;
 using System.Security.Claims;
 using TaskManagerAPI.BL.AuthProcess;
+using TaskManagerAPI.Filters;
 using TaskManagerAPI.Models.APIRequests;
 using TaskManagerAPI.Models.FE;
-using TaskManagerAPI.ValidateAttributes;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,6 +41,7 @@ namespace TaskManagerAPI.Controllers
         }
 
         [HttpPost("logoff")]
+        [AuthenticationFilter]
         public ActionResult LogOff()
         {
             int userId = int.Parse(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);

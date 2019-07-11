@@ -1,18 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Text;
-using TaskManagerAPI.BL.AuthProcess;
-using TaskManagerAPI.EF.Context;
 using TaskManagerAPI.EF.DbInitializer;
-using TaskManagerAPI.EF.MigrationManager;
 using TaskManagerAPI.Resources.AppSettings;
+using TaskManagerAPI.Services.Configuration;
 
 namespace TaskManagerAPI
 {
@@ -34,72 +28,21 @@ namespace TaskManagerAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            #region LogggerFactory
-
             services.AddSingleton<ILogger>((ctx) =>
             {
                 return _loggerFactory.CreateLogger<object>();
             });
 
-            #endregion
-
-            #region EF Database
-
-            this._logger.LogInformation("Configuring BD EF");
-
-            services.
-                AddEntityFrameworkSqlServer().
-                AddDbContext<TaskManagerDbContext>(opt =>
-                    opt.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TaskManagerApi;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
-
-            services.AddTransient<IDBMigrationsManager, DBMigrationsManager>((ctx) =>
-            {
-                return new DBMigrationsManager(ctx.GetService<TaskManagerDbContext>(), ctx.GetService<ILogger<DBMigrationsManager>>());
-            });
-            services.AddTransient<IDbInitializer, DbInitializer>((ctx) =>
-            {
-                return new DbInitializer(ctx.GetService<TaskManagerDbContext>(), ctx.GetService<IDBMigrationsManager>(), ctx.GetService<ILogger<DbInitializer>>());
-            });
-            services.AddScoped<ITaskManagerDbContext, TaskManagerDbContext>();
-
-            #endregion
-
-            #region BL - Services 
-
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<ITokenCreator, TokenCreator>();
-
-            #endregion
-
-            #region App Settings
-
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
+            AppSettings appSettings = appSettingsSection.Get<AppSettings>();
 
-            #endregion
+            this._logger.LogInformation("Configuring BD EF");
+            services.AddEntityFrameworkDbConfiguration();
 
-            #region JWT Authentication
+            services.AddDefaultJwtAuthorization(appSettings);
 
-            var key = Encoding.ASCII.GetBytes(appSettingsSection.Get<AppSettings>().Secret);
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-
-            #endregion
+            services.AddBEServices();
 
             #region Basic MVC HTTP
 
