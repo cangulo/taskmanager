@@ -36,9 +36,8 @@ namespace TaskManagerAPI
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
             AppSettings appSettings = appSettingsSection.Get<AppSettings>();
-
             this._logger.LogInformation("Configuring BD EF");
-            services.AddEntityFrameworkDbConfiguration();
+            services.AddEntityFrameworkDbConfiguration(appSettings);
 
             services.AddDefaultJwtAuthorization(appSettings);
 

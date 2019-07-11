@@ -24,7 +24,10 @@ namespace TaskManagerAPI.EF.DbInitializer
         public void StartDbContext()
         {
             _logger.LogInformation("Starting DB");
-            _migrator.MigrateDB();
+            if (_dbContext.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+            {
+                _migrator.MigrateDB();
+            }
             _dbContext.Database.EnsureCreated();
             _logger.LogInformation("DB has been initializated properly");
             if (!_dbContext.Accounts.Any())

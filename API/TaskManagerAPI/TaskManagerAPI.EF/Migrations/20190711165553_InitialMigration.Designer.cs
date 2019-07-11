@@ -10,7 +10,7 @@ using TaskManagerAPI.EF.Context;
 namespace TaskManagerAPI.EF.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    [Migration("20190711163255_InitialMigration")]
+    [Migration("20190711165553_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

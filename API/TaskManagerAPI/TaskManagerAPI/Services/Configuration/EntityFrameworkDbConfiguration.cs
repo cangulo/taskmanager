@@ -4,23 +4,27 @@ using Microsoft.Extensions.Logging;
 using TaskManagerAPI.EF.Context;
 using TaskManagerAPI.EF.DbInitializer;
 using TaskManagerAPI.EF.MigrationManager;
-using TaskManagerAPI.Resources.AppSettings;
 
 namespace TaskManagerAPI.Services.Configuration
 {
     public static class EntityFrameworkDbConfiguration
     {
-        public static IServiceCollection AddEntityFrameworkDbConfiguration(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddEntityFrameworkDbConfiguration(this IServiceCollection serviceCollection, Resources.AppSettings.AppSettings appSettings)
         {
-            #region EF migrations commants
-            // Entity Framework create intial db migration
-            // add-migration InitialMigration
-            #endregion
-
-            serviceCollection.
-                AddEntityFrameworkSqlServer().
-                AddDbContext<TaskManagerDbContext>(opt =>
-                    opt.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TaskManagerApi;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            // EF add-migration command: If this parameter is true the execution of the add-migration will fail because it couldn't do any migration to in memory db provider
+            bool useInMemoryDB = appSettings.UseInMemoryDB;
+            if (useInMemoryDB)
+            {
+                serviceCollection.
+                    AddDbContext<TaskManagerDbContext>(opt => opt.UseInMemoryDatabase(databaseName: "TaskManagerApi"));
+            }
+            else
+            {
+                serviceCollection.
+                    AddEntityFrameworkSqlServer().
+                    AddDbContext<TaskManagerDbContext>(opt =>
+                        opt.UseSqlServer(appSettings.ConnectionString));
+            }
 
             serviceCollection.AddTransient<IDBMigrationsManager, DBMigrationsManager>((ctx) =>
             {

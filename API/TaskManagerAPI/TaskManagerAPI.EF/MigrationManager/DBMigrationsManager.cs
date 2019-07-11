@@ -11,9 +11,14 @@ namespace TaskManagerAPI.EF.MigrationManager
 {
     public class DBMigrationsManager : IDBMigrationsManager
     {
+        #region EF migrations commands
+        // Entity Framework create intial db migration command in the package manager console
+        // add-migration InitialMigration
+        /// IMPORTANT: before try any add-migration please ensure the context is been added to SQL provedir, not In memory in the method <see cref="AddEntityFrameworkDbConfiguration"/>  of the class <see cref="EntityFrameworkDbConfiguration"/>
+        #endregion
+
         private readonly TaskManagerDbContext _dbContext;
         private readonly ILogger _logger;
-
 
         public DBMigrationsManager(TaskManagerDbContext dbContext, ILogger<DBMigrationsManager> logger)
         {
