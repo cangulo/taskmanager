@@ -47,7 +47,9 @@ namespace TaskManagerAPI.Filters
             return Task.CompletedTask;
         }
     }
-
+    /// <summary>
+    /// Necessary for the constructor of <see cref="AuthorizeFilter"/> used in <see cref="AuthenticationFilter"/>
+    /// </summary>
     public class AuthorizeData : IAuthorizeData
     {
         public AuthorizeData() { }
