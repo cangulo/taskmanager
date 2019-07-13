@@ -4,12 +4,13 @@ using Microsoft.Extensions.Logging;
 using TaskManagerAPI.EF.Context;
 using TaskManagerAPI.EF.DbInitializer;
 using TaskManagerAPI.EF.MigrationManager;
+using TaskManagerAPI.Resources.AppSettings;
 
 namespace TaskManagerAPI.Services.Configuration
 {
     public static class EntityFrameworkDbConfiguration
     {
-        public static IServiceCollection AddEntityFrameworkDbConfiguration(this IServiceCollection serviceCollection, Resources.AppSettings.AppSettings appSettings)
+        public static IServiceCollection AddEntityFrameworkDbConfiguration(this IServiceCollection serviceCollection, AppSettings appSettings)
         {
             // EF add-migration command: If this parameter is true the execution of the add-migration will fail because it couldn't do any migration to in memory db provider
             bool useInMemoryDB = appSettings.UseInMemoryDB;
