@@ -26,7 +26,6 @@ namespace TaskManagerAPI.EF.Context
             _logger.LogInformation("Configuring DB models");
             modelBuilder.ApplyConfiguration(new AccountEFConfiguration());
         }
-
         public override int SaveChanges()
         {
             _logger.LogInformation("Saving change in the DB");
