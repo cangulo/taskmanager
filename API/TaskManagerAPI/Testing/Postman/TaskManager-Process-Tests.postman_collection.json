@@ -1,0 +1,1053 @@
+{
+	"info": {
+		"_postman_id": "4bf7b7ba-44cc-4e03-b301-fe4727dcc237",
+		"name": "TaskManager-Process-Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Process: Login and perform all task actions available",
+			"item": [
+				{
+					"name": "Login with John Doe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b0d7e02-29d6-448d-878b-1ba829acf459",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Username logged\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.username).to.eql(\"John Doe\");",
+									"});",
+									"",
+									"var response = JSON.parse(responseBody);",
+									"pm.globals.set(\"username\", response.username);",
+									"pm.globals.set(\"token\", response.token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"{{username}}\",\n\t\"password\":\"{{password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{basicurl}}/auth/login",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all the tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98824f78-b42a-4943-ac51-3f4d3a1137d2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Expected Task\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectedResult = [{",
+									"        \"id\": 1,",
+									"        \"title\": \"Remember to buy milk\",",
+									"        \"description\": \"We always forgot it right?\",",
+									"        \"dateToBeFinished\": \"0001-01-01T00:00:00\",",
+									"        \"dateToBeNotified\": \"0001-01-01T00:00:00\"",
+									"    }]",
+									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the first task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1683a07b-18d8-4647-9227-04344ec65365",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Expected Task\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectedResult = {",
+									"        \"id\": 1,",
+									"        \"title\": \"Remember to buy milk\",",
+									"        \"description\": \"We always forgot it right?\",",
+									"        \"dateToBeFinished\": \"0001-01-01T00:00:00\",",
+									"        \"dateToBeNotified\": \"0001-01-01T00:00:00\"",
+									"    }",
+									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks/1",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e92807d-6196-4ca0-85b7-8830d75f29a8",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Expected Task\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectedResult = {",
+									"        \"id\": 2,",
+									"        \"title\": \"Remember the Sunscreen for the beach\",",
+									"        \"description\": \"You don't want to be a Tomato right?\",",
+									"        \"dateToBeFinished\": \"2019-09-25T11:00:00\",",
+									"        \"dateToBeNotified\": \"2019-09-25T11:15:00\"",
+									"    }",
+									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Remember the Sunscreen for the beach\",\n    \"description\": \"You don't want to be a Tomato right?\",\n    \"dateToBeFinished\": \"2019-09-25T11:00:00\",\n    \"dateToBeNotified\": \"2019-09-25T11:15:00\"\n}"
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the tasks created",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0acf463-f511-41ce-82be-a5e489270653",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Expected Task\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectedResult = {",
+									"        \"id\": 2,",
+									"        \"title\": \"Remember the Sunscreen for the beach\",",
+									"        \"description\": \"You don't want to be a Tomato right?\",",
+									"        \"dateToBeFinished\": \"2019-09-25T11:00:00\",",
+									"        \"dateToBeNotified\": \"2019-09-25T11:15:00\"",
+									"    }",
+									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks/2",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partial update the new task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e71780b4-1c82-44d0-9748-276fa31bd95d",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  [\n  \t{ \n  \t\t\"op\": \"replace\", \n  \t\t\"path\": \"/title\", \n  \t\t\"value\": \"Remember to add water to the plants\" \n  \t},\n  \t{ \n  \t\t\"op\": \"replace\", \n  \t\t\"path\": \"/description\", \n  \t\t\"value\": \"You should have bought a cactus\" \n  \t}\n  ]"
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks/2",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the tasks modified",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74e5d738-fb68-483f-805c-1f794b24263b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Expected Task\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectedResult = {",
+									"        \"id\": 2,",
+									"        \"title\": \"Remember to add water to the plants\",",
+									"        \"description\": \"You should have bought a cactus\" ,",
+									"        \"dateToBeFinished\": \"2019-09-25T11:00:00\",",
+									"        \"dateToBeNotified\": \"2019-09-25T11:15:00\"",
+									"    }",
+									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks/2",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Full Update the new task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25f92786-c358-459d-8ad1-a8357a34884b",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Remember to prepare the meeting to talk about the global warming\",\n    \"description\": \"A Powerpoint for 10 minutes is needed\",\n    \"dateToBeFinished\": \"2019-10-25T11:22:30\",\n    \"dateToBeNotified\": \"2019-10-25T11:20:00\"\n}"
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks/2",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the task updated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f8c43c6-ce74-4499-8ffc-118138b887d6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Expected Task\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectedResult = {",
+									"        \"id\": 2,",
+									"        \"title\": \"Remember to prepare the meeting to talk about the global warming\",",
+									"        \"description\": \"A Powerpoint for 10 minutes is needed\",",
+									"        \"dateToBeFinished\": \"2019-10-25T11:22:30\",",
+									"        \"dateToBeNotified\": \"2019-10-25T11:20:00\"",
+									"    }",
+									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks/2",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Update Task Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34920fab-b494-475d-a5f3-cb082cdcfa4b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks/2",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all the tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "345ff143-1ed0-4ffc-8717-d03c4f5afbf7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Expected Task\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectedResult = [{",
+									"        \"id\": 1,",
+									"        \"title\": \"Remember to buy milk\",",
+									"        \"description\": \"We always forgot it right?\",",
+									"        \"dateToBeFinished\": \"0001-01-01T00:00:00\",",
+									"        \"dateToBeNotified\": \"0001-01-01T00:00:00\"",
+									"    }]",
+									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth / Logoff Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b0d7e02-29d6-448d-878b-1ba829acf459",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/auth/logoff",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"auth",
+								"logoff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all the tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "116dc93e-82c7-44fd-be6f-572f964c17d6",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "1. Login\n2. Get Tasks\n3. Get Task with id=1\n4. Create a task\n5. Get the task created\n6. Partial Update the new created\n6. Get the new task modified\n7. Full update the new task\n8. Get the new task updated\n9. Delete the new task\n10. Get all the task\n11. Log off\n12. Try to get all the task",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f89a6554-e65a-4245-8b86-350751663e6d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "39e78188-257b-4534-81a0-2476a9628064",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Process: Signup, Get Task and Logoff",
+			"item": [
+				{
+					"name": "Signup john smith",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b0d7e02-29d6-448d-878b-1ba829acf459",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "17ee7ae8-f838-4842-830d-80c486a0aaa2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fullName\":\"{{signup_fullName}}\",\n\t\"email\":\"{{signup_email}}\",\n\t\"password\":\"{{signup_password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{basicurl}}/auth/signup",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login with John Smith",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b0d7e02-29d6-448d-878b-1ba829acf459",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Username logged\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.username).to.eql(\"John Smith\");",
+									"});",
+									"var response = JSON.parse(responseBody);",
+									"pm.globals.set(\"username\", response.username);",
+									"pm.globals.set(\"token\", response.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"{{signup_email}}\",\n\t\"password\":\"{{signup_password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{basicurl}}/auth/login",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all the tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a01f789-67a5-4153-a60d-30ca2a4d3698",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Expected Task\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expectedResult = []",
+									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{basicurl}}/tasks",
+							"host": [
+								"{{basicurl}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "1. Login\n2. Get Tasks\n3. Get Task with id=1\n3. Create a tast\n4. Partial Update a task\n5. Full Update a task\n6. ",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "74e95db8-1f2c-4f7f-8da7-66d474ddefda",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3b84d3d3-e06f-40b0-a860-1cbbb58f342c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,16 @@
+{
+    "cSpell.ignoreWords": [
+        "api",
+        "cs",
+        "ef",
+        "manager",
+        "task"
+    ],
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex"
+    ]
+}

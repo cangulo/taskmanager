@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI", "TaskManagerAPI\TaskManagerAPI.csproj", "{7189DE6D-3D51-4C77-B496-EE1E6F416201}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.Models", "TaskManagerAPI.Models\TaskManagerAPI.Models.csproj", "{8E1541DB-45F1-4B2A-A56C-9AF6D87E7575}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.EF", "TaskManagerAPI.EF\TaskManagerAPI.EF.csproj", "{3CD8B85E-EE20-4C02-8F6D-53886F89C0A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{01E1C104-042E-4C11-93C8-F35387D63192}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{35970BBF-DB2B-4470-AE2A-FFF7B3A79E83}"
+	ProjectSection(SolutionItems) = preProject
+		Testing\Postman\TaskManager-Process-Tests.postman_collection.json = Testing\Postman\TaskManager-Process-Tests.postman_collection.json
+		Testing\Postman\TaskManager-Templates.postman_collection.json = Testing\Postman\TaskManager-Templates.postman_collection.json
+		Testing\Postman\TaskManager.postman_environment.json = Testing\Postman\TaskManager.postman_environment.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.BL", "TaskManagerAPI.BL\TaskManagerAPI.BL.csproj", "{44984851-8198-46AE-8C7C-BDFFC8E7D50E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.Resources", "TaskManagerAPI.Resources\TaskManagerAPI.Resources.csproj", "{22E4A520-4DF8-466A-A0DB-0274DB230642}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.Repositories", "TaskManagerAPI.Repositories\TaskManagerAPI.Repositories.csproj", "{0859FA40-8747-45D0-9070-AA176302D1FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7189DE6D-3D51-4C77-B496-EE1E6F416201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7189DE6D-3D51-4C77-B496-EE1E6F416201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7189DE6D-3D51-4C77-B496-EE1E6F416201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7189DE6D-3D51-4C77-B496-EE1E6F416201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E1541DB-45F1-4B2A-A56C-9AF6D87E7575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E1541DB-45F1-4B2A-A56C-9AF6D87E7575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E1541DB-45F1-4B2A-A56C-9AF6D87E7575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E1541DB-45F1-4B2A-A56C-9AF6D87E7575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CD8B85E-EE20-4C02-8F6D-53886F89C0A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CD8B85E-EE20-4C02-8F6D-53886F89C0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CD8B85E-EE20-4C02-8F6D-53886F89C0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CD8B85E-EE20-4C02-8F6D-53886F89C0A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44984851-8198-46AE-8C7C-BDFFC8E7D50E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44984851-8198-46AE-8C7C-BDFFC8E7D50E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44984851-8198-46AE-8C7C-BDFFC8E7D50E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44984851-8198-46AE-8C7C-BDFFC8E7D50E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E4A520-4DF8-466A-A0DB-0274DB230642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E4A520-4DF8-466A-A0DB-0274DB230642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E4A520-4DF8-466A-A0DB-0274DB230642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E4A520-4DF8-466A-A0DB-0274DB230642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0859FA40-8747-45D0-9070-AA176302D1FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0859FA40-8747-45D0-9070-AA176302D1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0859FA40-8747-45D0-9070-AA176302D1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0859FA40-8747-45D0-9070-AA176302D1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{35970BBF-DB2B-4470-AE2A-FFF7B3A79E83} = {01E1C104-042E-4C11-93C8-F35387D63192}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C45AD547-DEF8-4E68-8EF5-BAF6167CC2D8}
+	EndGlobalSection
+EndGlobal

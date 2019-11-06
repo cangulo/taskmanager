@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentResults" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.10.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManagerAPI.EF\TaskManagerAPI.EF.csproj" />
+    <ProjectReference Include="..\TaskManagerAPI.Models\TaskManagerAPI.Models.csproj" />
+    <ProjectReference Include="..\TaskManagerAPI.Repositories\TaskManagerAPI.Repositories.csproj" />
+    <ProjectReference Include="..\TaskManagerAPI.Resources\TaskManagerAPI.Resources.csproj" />
+  </ItemGroup>
+
+</Project>
