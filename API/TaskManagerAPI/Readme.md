@@ -59,7 +59,11 @@ Next are the folders and projects:
 
 ### Start BE
 
-Copy the repository folder, open the _.sln_ file and execute it using the _Debug_ release configuration. By default the project will create an _in-memory_ database with a default set of users and tasks listed in _[DummyDataHelper.cs](API\TaskManagerAPI\TaskManagerAPI.EF\DbInitializer\DummyDataHelper.cs)_ class.
+Copy the repository folder, open the _.sln_ file and execute it using the _Debug_ release and the TaskManagerApi (not IIS Express) configuration as next:
+
+![img](./TaskManagerAPI.docs/github/imgs/Main/DebugConfiguration.png)
+
+By default the project will create an _in-memory_ database with a default set of users and tasks listed in _[DummyDataHelper.cs](API\TaskManagerAPI\TaskManagerAPI.EF\DbInitializer\DummyDataHelper.cs)_ class.
 
 ### Test Endpoints using postman
 
