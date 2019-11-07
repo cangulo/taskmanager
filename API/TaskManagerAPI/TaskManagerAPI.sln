@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.Resources", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerAPI.Repositories", "TaskManagerAPI.Repositories\TaskManagerAPI.Repositories.csproj", "{0859FA40-8747-45D0-9070-AA176302D1FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerAPI.CQRS", "TaskManagerAPI.CQRS\TaskManagerAPI.CQRS.csproj", "{EA951388-E820-483E-947D-DDA93AC366F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{0859FA40-8747-45D0-9070-AA176302D1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0859FA40-8747-45D0-9070-AA176302D1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0859FA40-8747-45D0-9070-AA176302D1FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA951388-E820-483E-947D-DDA93AC366F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA951388-E820-483E-947D-DDA93AC366F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA951388-E820-483E-947D-DDA93AC366F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA951388-E820-483E-947D-DDA93AC366F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

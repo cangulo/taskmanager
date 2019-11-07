@@ -14,8 +14,9 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
-    <PackageReference Include="FluentResults" Version="1.2.0" />
+    <PackageReference Include="FluentResults" Version="1.3.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.4.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.10.0" />
@@ -25,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaskManagerAPI.BL\TaskManagerAPI.BL.csproj" />
+    <ProjectReference Include="..\TaskManagerAPI.CQRS\TaskManagerAPI.CQRS.csproj" />
     <ProjectReference Include="..\TaskManagerAPI.EF\TaskManagerAPI.EF.csproj" />
     <ProjectReference Include="..\TaskManagerAPI.Models\TaskManagerAPI.Models.csproj" />
     <ProjectReference Include="..\TaskManagerAPI.Resources\TaskManagerAPI.Resources.csproj" />

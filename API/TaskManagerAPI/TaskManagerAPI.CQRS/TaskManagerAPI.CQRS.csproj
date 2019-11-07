@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="AuthProcess\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentResults" Version="1.3.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManagerAPI.BL\TaskManagerAPI.BL.csproj" />
+    <ProjectReference Include="..\TaskManagerAPI.Models\TaskManagerAPI.Models.csproj" />
+    <ProjectReference Include="..\TaskManagerAPI.Repositories\TaskManagerAPI.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>

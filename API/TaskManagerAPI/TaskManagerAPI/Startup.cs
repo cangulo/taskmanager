@@ -13,6 +13,9 @@ using TaskManagerAPI.Resources.AppSettings;
 using TaskManagerAPI.Pipeline;
 using TaskManagerAPI.StartupConfiguration.Extensions;
 using TaskManagerAPI.Extensions;
+using MediatR;
+using TaskManagerAPI.CQRS.AuthProcess.Commands;
+using TaskManagerAPI.Mappers;
 
 namespace TaskManagerAPI
 {
@@ -53,9 +56,11 @@ namespace TaskManagerAPI
 
             services.AddSwaggerConfiguration();
 
+            services.AddMediatR(typeof(LoginCommand));
+            services.AddAutoMapper(typeof(DomainProfile), typeof(CQMapperProfile));
+
             #region Basic MVC HTTP
 
-            services.AddAutoMapper(typeof(DomainProfile));
             services.AddHttpContextAccessor();
             services.AddCors();
             services.AddMvc().AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());

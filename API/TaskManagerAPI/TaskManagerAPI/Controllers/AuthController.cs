@@ -1,8 +1,12 @@
-﻿using FluentResults;
+﻿using AutoMapper;
+using FluentResults;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 using TaskManagerAPI.BL.AuthProcess;
+using TaskManagerAPI.CQRS.AuthProcess.Commands;
 using TaskManagerAPI.Filters.Authentication;
 using TaskManagerAPI.Helpers;
 using TaskManagerAPI.Models.FE;
@@ -17,12 +21,16 @@ namespace TaskManagerAPI.Controllers
         private readonly IAuthService _authService;
         private readonly ILogger<AuthController> _logger;
         private readonly IErrorResponseCreator _errorResponseCreator;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthService authService, ILogger<AuthController> logger, IErrorResponseCreator errorResponseCreator)
+        public AuthController(IAuthService authService, ILogger<AuthController> logger, IErrorResponseCreator errorResponseCreator, IMediator mediator, IMapper mapper)
         {
             _authService = authService;
             _logger = logger;
             _errorResponseCreator = errorResponseCreator;
+            _mediator = mediator;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -33,10 +41,11 @@ namespace TaskManagerAPI.Controllers
         /// <response code="200">User Logged correctly</response>
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult Login([FromBody]LoginRequest request)
+        public async Task<IActionResult> Login([FromBody]LoginRequest request)
         {
             _logger.LogInformation($"{request.Email}");
-            Result<PortalAccount> result = this._authService.ValidateUser(request.Email, request.Password);
+
+            var result = await _mediator.Send(_mapper.Map<LoginCommand>(request));
             if (result.IsSuccess)
             {
                 return Ok(result.Value);
