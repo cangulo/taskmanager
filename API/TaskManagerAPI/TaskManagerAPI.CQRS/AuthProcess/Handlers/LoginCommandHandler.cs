@@ -6,6 +6,7 @@ using MediatR;
 using TaskManagerAPI.BL.AuthProcess;
 using TaskManagerAPI.BL.UserStatusVerification;
 using TaskManagerAPI.CQRS.AuthProcess.Commands;
+using TaskManagerAPI.CQRS.Exceptions;
 using TaskManagerAPI.Models.BE;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Models.FE;
@@ -29,6 +30,10 @@ namespace TaskManagerAPI.CQRS.AuthProcess.Handlers
 
         public Task<Result<PortalAccount>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
+            throw new ServiceException(new System.Collections.Generic.List<Error>
+            {
+
+            });
             if (_accountRepository.ExistsAccount(request.Email, request.Password))
             {
                 Account accountDB = _accountRepository.GetAccount(request.Email, request.Password);

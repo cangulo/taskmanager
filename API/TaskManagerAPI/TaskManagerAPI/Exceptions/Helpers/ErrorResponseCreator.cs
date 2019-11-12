@@ -5,7 +5,7 @@ using System.Linq;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Resources.Errors;
 
-namespace TaskManagerAPI.Helpers
+namespace TaskManagerAPI.Exceptions.Helpers
 {
     public class ErrorResponseCreator : IErrorResponseCreator
     {
@@ -41,7 +41,6 @@ namespace TaskManagerAPI.Helpers
                 actionResult = (new ObjectResult(unkownError));
                 actionResult.StatusCode = 500;
             }
-
             return actionResult;
         }
     }

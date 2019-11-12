@@ -27,7 +27,8 @@ namespace TaskManagerAPI.BL.TasksServices
             }
             else
             {
-                throw new CustomException(opGetId.Errors);
+                // TODO: Throw a Service Layer Exception
+                //throw new CustomException(opGetId.Errors);
             }
 
         }

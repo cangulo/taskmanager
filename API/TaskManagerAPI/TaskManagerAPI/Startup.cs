@@ -53,6 +53,8 @@ namespace TaskManagerAPI
             services.AddDefaultJwtAuthorization(appSettings);
 
             services.AddBeServices();
+            services.AddBeRepositories();
+            services.AddBeErrorsHelpers();
 
             services.AddSwaggerConfiguration();
 

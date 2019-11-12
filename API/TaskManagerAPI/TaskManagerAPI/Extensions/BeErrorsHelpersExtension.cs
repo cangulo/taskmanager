@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TaskManagerAPI.Helpers;
+using TaskManagerAPI.Exceptions;
+using TaskManagerAPI.Exceptions.Helpers;
 using TaskManagerAPI.Models.Errors;
 
 namespace TaskManagerAPI.StartupConfiguration.Extensions
@@ -15,6 +16,10 @@ namespace TaskManagerAPI.StartupConfiguration.Extensions
             #region Errors helpers
             serviceCollection.AddTransient<IErrorToHttpStatusCodeHelper, ErrorToHttpStatusCodeHelper>();
             serviceCollection.AddTransient<IErrorResponseCreator, ErrorResponseCreator>();
+            #endregion
+
+            #region ExceptionHelpers
+            serviceCollection.AddTransient<IExceptionHandlerFactory, ExceptionHandlerFactory>();
             #endregion
 
             return serviceCollection;

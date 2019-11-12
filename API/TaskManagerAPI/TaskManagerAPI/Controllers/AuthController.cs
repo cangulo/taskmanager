@@ -7,9 +7,8 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using TaskManagerAPI.BL.AuthProcess;
 using TaskManagerAPI.CQRS.AuthProcess.Commands;
+using TaskManagerAPI.Exceptions.Helpers;
 using TaskManagerAPI.Filters.Authentication;
-using TaskManagerAPI.Helpers;
-using TaskManagerAPI.Models.FE;
 using TaskManagerAPI.Models.FE.APIRequests;
 
 namespace TaskManagerAPI.Controllers
@@ -44,7 +43,7 @@ namespace TaskManagerAPI.Controllers
         public async Task<IActionResult> Login([FromBody]LoginRequest request)
         {
             _logger.LogInformation($"{request.Email}");
-
+            
             var result = await _mediator.Send(_mapper.Map<LoginCommand>(request));
             if (result.IsSuccess)
             {
