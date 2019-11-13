@@ -1,15 +1,15 @@
-﻿using FluentResults;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Models.Exceptions;
 
 namespace TaskManagerAPI.CQRS.Exceptions
 {
     public class ServiceException : Exception, ICustomException
     {
-        private readonly List<Error> _errors;
-        public ServiceException(List<Error> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
+        private readonly List<ErrorCodeAndMessage> _errors;
+        public ServiceException(List<ErrorCodeAndMessage> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
         {
             _errors = errors;
         }
@@ -27,7 +27,7 @@ namespace TaskManagerAPI.CQRS.Exceptions
 
         }
 
-        public List<Error> Errors()
+        public List<ErrorCodeAndMessage> Errors()
         {
             return this._errors;
         }

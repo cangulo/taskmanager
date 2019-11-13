@@ -30,10 +30,6 @@ namespace TaskManagerAPI.CQRS.AuthProcess.Handlers
 
         public Task<Result<PortalAccount>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            throw new ServiceException(new System.Collections.Generic.List<Error>
-            {
-
-            });
             if (_accountRepository.ExistsAccount(request.Email, request.Password))
             {
                 Account accountDB = _accountRepository.GetAccount(request.Email, request.Password);

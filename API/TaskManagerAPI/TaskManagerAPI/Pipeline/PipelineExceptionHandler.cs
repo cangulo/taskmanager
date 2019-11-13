@@ -48,9 +48,6 @@ namespace TaskManagerAPI.Pipeline
                         string result = JsonConvert.SerializeObject(exception);
                         await context.Response.WriteAsync(result);
                     }
-
-
-
                 });
             });
             return app;

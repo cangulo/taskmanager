@@ -1,15 +1,15 @@
-﻿using FluentResults;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Models.Exceptions;
 
 namespace TaskManagerAPI.Repositories.Exceptions
 {
     public class RepositoryException : Exception, ICustomException
     {
-        private readonly List<Error> _errors;
-        public RepositoryException(List<Error> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
+        private readonly List<ErrorCodeAndMessage> _errors;
+        public RepositoryException(List<ErrorCodeAndMessage> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
         {
             _errors = errors;
         }
@@ -27,7 +27,7 @@ namespace TaskManagerAPI.Repositories.Exceptions
 
         }
 
-        public List<Error> Errors()
+        public List<ErrorCodeAndMessage> Errors()
         {
             return this._errors;
         }

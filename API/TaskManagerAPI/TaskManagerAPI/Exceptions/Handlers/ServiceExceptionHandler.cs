@@ -25,9 +25,9 @@ namespace TaskManagerAPI.Exceptions.Handlers
             string responseContent = string.Empty;
             if (_serviceException.Errors().Count > 0)
             {
-                IEnumerable<string> errorCodes = _serviceException.Errors().Select(er => ((ErrorCodeAndMessage)er).Code);
+                IEnumerable<string> errorCodes = _serviceException.Errors().Select(er => er.Code);
                 httpResponse.StatusCode = _errorCodeMapper.ToHttpStatusCode(errorCodes);
-                List<ErrorCodeAndMessage> serviceErrors = _serviceException.Errors().Select(er => (ErrorCodeAndMessage)er).ToList();
+                List<ErrorCodeAndMessage> serviceErrors = _serviceException.Errors().Select(er => er).ToList();
                 responseContent = JsonConvert.SerializeObject(serviceErrors);
             }
             else

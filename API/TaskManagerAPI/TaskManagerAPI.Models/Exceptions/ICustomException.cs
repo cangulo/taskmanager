@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using System.Collections.Generic;
+using TaskManagerAPI.Models.Errors;
 
 namespace TaskManagerAPI.Models.Exceptions
 {
@@ -9,6 +10,6 @@ namespace TaskManagerAPI.Models.Exceptions
     /// </summary>
     public interface ICustomException
     {
-        List<Error> Errors();
+        List<ErrorCodeAndMessage> Errors();
     }
 }
