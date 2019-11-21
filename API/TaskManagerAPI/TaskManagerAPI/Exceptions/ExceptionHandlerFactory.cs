@@ -2,34 +2,29 @@
 using TaskManagerAPI.CQRS.Exceptions;
 using TaskManagerAPI.Exceptions.Handlers;
 using TaskManagerAPI.Models.Errors;
-using TaskManagerAPI.Repositories.Exceptions;
 
 namespace TaskManagerAPI.Exceptions
 {
     public class ExceptionHandlerFactory : IExceptionHandlerFactory
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IErrorToHttpStatusCodeHelper _errorCodeMapper;
 
-        public ExceptionHandlerFactory(IServiceProvider serviceProvider)
+        public ExceptionHandlerFactory(IErrorToHttpStatusCodeHelper errorCodeMapper)
         {
-            _serviceProvider = serviceProvider;
+            _errorCodeMapper = errorCodeMapper ?? throw new ArgumentNullException(nameof(errorCodeMapper));
         }
 
         public IExceptionHandler GetExceptionHandler(Exception ex)
         {
             if (ex is ServiceException)
             {
-                IErrorToHttpStatusCodeHelper errorHelpers = (IErrorToHttpStatusCodeHelper)_serviceProvider.GetService(typeof(IErrorToHttpStatusCodeHelper));
-                if (errorHelpers != null)
-                {
-                    return new ServiceExceptionHandler(errorHelpers, (ServiceException)ex);
-                }
+                return new ServiceExceptionHandler(_errorCodeMapper, (ServiceException)ex);
             }
-            else if (ex is RepositoryException)
+            else
             {
                 return new DefaultExceptionHandler();
             }
-            return new DefaultExceptionHandler();
+
         }
     }
 }

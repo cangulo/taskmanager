@@ -43,7 +43,7 @@ namespace TaskManagerAPI.Controllers
         public async Task<IActionResult> Login([FromBody]LoginRequest request)
         {
             _logger.LogInformation($"{request.Email}");
-            
+
             var result = await _mediator.Send(_mapper.Map<LoginCommand>(request));
             if (result.IsSuccess)
             {
@@ -63,10 +63,9 @@ namespace TaskManagerAPI.Controllers
         /// <response code="200">User Sign up correctly</response>
         [HttpPost("signup")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult SignUp([FromBody]SignUpRequest request)
+        public async Task<IActionResult> SignUp([FromBody]SignUpRequest request)
         {
-            _logger.LogInformation($"{request.Email}");
-            Result result = this._authService.SignUpUser(request.FullName, request.Email, request.Password);
+            var result = await _mediator.Send(_mapper.Map<SignUpCommand>(request));
             if (result.IsSuccess)
             {
                 return Ok();

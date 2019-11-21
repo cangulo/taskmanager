@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Resources.Errors;
 
@@ -8,14 +7,16 @@ namespace TaskManagerAPI.Exceptions.Handlers
 {
     public class DefaultExceptionHandler : IExceptionHandler
     {
-
-        public Task AddErrorResponse(HttpResponse httpResponse)
+        public string CreateResponseContent()
         {
-            httpResponse.StatusCode = StatusCodes.Status500InternalServerError;
             ErrorCodeAndMessage unkownError = new ErrorCodeAndMessage(
-                                ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API);
-            string responseContent = JsonConvert.SerializeObject(unkownError);
-            return httpResponse.WriteAsync(responseContent);
+                    ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API);
+            return JsonConvert.SerializeObject(unkownError);
+        }
+
+        public int GetHttpStatusCode()
+        {
+            return StatusCodes.Status500InternalServerError;
         }
     }
 }

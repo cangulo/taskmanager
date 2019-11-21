@@ -9,6 +9,7 @@ namespace TaskManagerAPI.Mappers
         public CQMapperProfile()
         {
             CreateMap<LoginRequest, LoginCommand>();
+            CreateMap<SignUpRequest, SignUpCommand>();
         }
     }
 }

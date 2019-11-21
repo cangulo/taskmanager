@@ -100,7 +100,6 @@ namespace TaskManagerAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCustomExceptionHandler(env, _logger);
 
             app.UseCors(x => x
                 .AllowAnyOrigin()
@@ -114,7 +113,7 @@ namespace TaskManagerAPI
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task Manager API V1");
                 c.RoutePrefix = string.Empty;
             });
-
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMvc();
         }
     }

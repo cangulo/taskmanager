@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using TaskManagerAPI.CQRS.Exceptions;
 using TaskManagerAPI.Models.Errors;
@@ -20,13 +18,11 @@ namespace TaskManagerAPI.Exceptions.Handlers
             _serviceException = serviceException;
         }
 
-        public Task AddErrorResponse(HttpResponse httpResponse)
+        public string CreateResponseContent()
         {
             string responseContent = string.Empty;
             if (_serviceException.Errors().Count > 0)
             {
-                IEnumerable<string> errorCodes = _serviceException.Errors().Select(er => er.Code);
-                httpResponse.StatusCode = _errorCodeMapper.ToHttpStatusCode(errorCodes);
                 List<ErrorCodeAndMessage> serviceErrors = _serviceException.Errors().Select(er => er).ToList();
                 responseContent = JsonConvert.SerializeObject(serviceErrors);
             }
@@ -35,9 +31,22 @@ namespace TaskManagerAPI.Exceptions.Handlers
                 ErrorCodeAndMessage unkownError = new ErrorCodeAndMessage(
                                     ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API);
                 responseContent = JsonConvert.SerializeObject(unkownError);
-                
+
             }
-            return httpResponse.WriteAsync(responseContent);
+            return responseContent;
+        }
+
+        public int GetHttpStatusCode()
+        {
+            if (_serviceException.Errors().Count > 0)
+            {
+                IEnumerable<string> errorCodes = _serviceException.Errors().Select(er => er.Code);
+                return _errorCodeMapper.ToHttpStatusCode(errorCodes);
+            }
+            else
+            {
+                return 500;
+            }
         }
     }
 }
