@@ -84,16 +84,16 @@ namespace TaskManagerAPI.Controllers
         [HttpPost("logoff")]
         [AuthenticationFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult LogOff()
+        public async Task<IActionResult> LogOff()
         {
-            Result opLoggOffresult = this._authService.LogOff();
-            if (opLoggOffresult.IsSuccess)
+            var result = await _mediator.Send(new LogOffCommand());
+            if (result.IsSuccess)
             {
                 return Ok();
             }
             else
             {
-                return _errorResponseCreator.CreateResponse(opLoggOffresult.Errors);
+                return _errorResponseCreator.CreateResponse(result.Errors);
 
             }
 

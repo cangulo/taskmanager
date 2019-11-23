@@ -1,31 +1,30 @@
-﻿using FluentResults;
-using System;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using FluentResults;
+using MediatR;
 using TaskManagerAPI.BL.CurrentUserService;
-using TaskManagerAPI.BL.UserStatusVerification;
+using TaskManagerAPI.CQRS.AuthProcess.Commands;
 using TaskManagerAPI.Models.BE;
 using TaskManagerAPI.Models.Errors;
-using TaskManagerAPI.Models.FE;
 using TaskManagerAPI.Repositories.AccountRepository;
 using TaskManagerAPI.Resources.Errors;
 
-namespace TaskManagerAPI.BL.AuthProcess
+namespace TaskManagerAPI.CQRS.AuthProcess.Handlers
 {
-    public class AuthService : IAuthService
+    public class LogOffCommandHandler : IRequestHandler<LogOffCommand, Result>
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly ITokenCreator _tokenCreator;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IUserStatusVerification _userStatusVerification;
-        public AuthService(IAccountRepository accountRepository, ITokenCreator tokenCreator, ICurrentUserService currentUserService, IUserStatusVerification userStatusVerification)
+
+        public LogOffCommandHandler(IAccountRepository accountRepository, ICurrentUserService currentUserService)
         {
             _accountRepository = accountRepository;
-            _tokenCreator = tokenCreator;
             _currentUserService = currentUserService;
-            _userStatusVerification = userStatusVerification;
         }
 
-        public Result LogOff()
+        public Task<Result> Handle(LogOffCommand request, CancellationToken cancellationToken)
         {
+
             Result<int> opGetUserIdResult = _currentUserService.GetIdCurrentUser();
             if (opGetUserIdResult.IsSuccess)
             {
@@ -34,19 +33,19 @@ namespace TaskManagerAPI.BL.AuthProcess
                 {
                     Account accountDB = this._accountRepository.GetAccount(userId);
                     accountDB.Token = null;
-                    return this._accountRepository.SaveModifications();
+                    return Task.FromResult(this._accountRepository.SaveModifications());
                 }
                 else
                 {
-                    return Results.Fail(
+                    return Task.FromResult(Results.Fail(
                         new ErrorCodeAndMessage(
                             ErrorsCodesContants.USER_ID_NOT_FOUND,
-                            ErrorsMessagesConstants.USER_ID_NOT_FOUND));
+                            ErrorsMessagesConstants.USER_ID_NOT_FOUND)));
                 }
             }
             else
             {
-                return opGetUserIdResult.ToResult();
+                return Task.FromResult(opGetUserIdResult.ToResult());
             }
         }
     }

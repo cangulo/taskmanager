@@ -46,7 +46,7 @@ namespace TaskManagerAPI.Controllers
         /// <summary>
         /// Get a task by its Id
         /// </summary>
-        /// <param name="id">Taks Id</param>
+        /// <param name="id">Task Id</param>
         /// <returns></returns>
         /// <response code="200">List of Task attached</response>
         /// <response code="404">Task not found</response>
@@ -93,7 +93,7 @@ namespace TaskManagerAPI.Controllers
         /// Update all the fields of one task
         /// </summary>
         /// <param name="id">Task id</param>
-        /// <param name="taskToBeUpdatedDto">Full new Task in dto model</param>
+        /// <param name="taskToBeUpdatedDto">Full new Task in DTO model</param>
         /// <returns></returns>
         /// <response code="204">Task Modified correctly</response>
         /// <response code="404">Task not found</response>
