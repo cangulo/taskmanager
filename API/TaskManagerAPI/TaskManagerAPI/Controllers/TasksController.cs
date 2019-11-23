@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using FluentResults;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagerAPI.BL.TasksServices;
+using TaskManagerAPI.CQRS.TasksCQ.Commands;
 using TaskManagerAPI.Exceptions.Helpers;
 using TaskManagerAPI.Filters.Authentication;
 using TaskManagerAPI.Models.BE.Tasks;
@@ -18,15 +20,18 @@ namespace TaskManagerAPI.Controllers
     {
         private readonly ICurrentUserTasksService _currentUserTasksServices;
         private readonly IErrorResponseCreator _errorResponseCreator;
+        private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
         public TasksController(
             ICurrentUserTasksService currentUserTasksServices,
             IErrorResponseCreator createErrorResponse,
+            IMediator mediator,
             IMapper mapper)
         {
             _currentUserTasksServices = currentUserTasksServices;
             _errorResponseCreator = createErrorResponse;
+            _mediator = mediator;
             _mapper = mapper;
         }
 
@@ -74,10 +79,16 @@ namespace TaskManagerAPI.Controllers
         /// <response code="201">Task Created correctly</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public IActionResult CreateTask([FromBody]TaskToBeCreatedDto taskDto)
+        public async System.Threading.Tasks.Task<IActionResult> CreateTask([FromBody]TaskToBeCreatedDto taskDto)
         {
             Task taskToBeCreated = _mapper.Map<Task>(taskDto);
-            Result opResult = _currentUserTasksServices.CreateTask(taskToBeCreated);
+
+            Result opResult = await _mediator.Send(
+                new CreateTaskCommand
+                {
+                    TaskToBeCreated = taskToBeCreated
+                });
+
             if (opResult.IsSuccess)
             {
                 var taskCreated = _mapper.Map<TaskToGetDto>(taskToBeCreated);

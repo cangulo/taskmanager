@@ -13,7 +13,6 @@ namespace TaskManagerAPI.StartupConfiguration.Extensions
     {
         public static IServiceCollection AddBeServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IAuthService, AuthService>();
             serviceCollection.AddTransient<ITokenCreator, TokenCreator>();
             serviceCollection.AddScoped<ITokenVerificator, TokenVerificator>();
             serviceCollection.AddScoped<IUserStatusVerification, UserStatusVerification>();

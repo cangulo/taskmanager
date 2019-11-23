@@ -19,12 +19,9 @@ namespace TaskManagerAPI.BL.CurrentUserService
         public Result<int> GetIdCurrentUser()
         {
             string claimValue = _httpContextAccessor.HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            if (!string.IsNullOrEmpty(claimValue))
+            if (!string.IsNullOrEmpty(claimValue) && int.TryParse(claimValue, out int userId))
             {
-                if (int.TryParse(claimValue, out int userId))
-                {
-                    return Results.Ok<int>(userId);
-                }
+                return Results.Ok(userId);
             }
             return Results.Fail<int>(
                 new ErrorCodeAndMessage(

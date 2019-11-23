@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4bf7b7ba-44cc-4e03-b301-fe4727dcc237",
+		"_postman_id": "29009b92-90be-4578-a9fd-bcbcdedaa245",
 		"name": "TaskManager-Process-Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -227,6 +227,12 @@
 									"        \"dateToBeNotified\": \"2019-09-25T11:15:00\"",
 									"    }",
 									"    pm.expect(jsonData).to.eql(expectedResult);",
+									"});",
+									"",
+									"pm.test(\"Expected Header Location with the id of the task created\", function () {",
+									"    const baseUrl = pm.environment.get(\"basicurl\");",
+									"    locationUrlExpected = baseUrl+'/tasks/2';",
+									"    pm.response.to.have.header('Location',locationUrlExpected);",
 									"});"
 								],
 								"type": "text/javascript"

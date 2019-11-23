@@ -17,15 +17,13 @@ namespace TaskManagerAPI.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-        private readonly IAuthService _authService;
         private readonly ILogger<AuthController> _logger;
         private readonly IErrorResponseCreator _errorResponseCreator;
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
-        public AuthController(IAuthService authService, ILogger<AuthController> logger, IErrorResponseCreator errorResponseCreator, IMediator mediator, IMapper mapper)
+        public AuthController(ILogger<AuthController> logger, IErrorResponseCreator errorResponseCreator, IMediator mediator, IMapper mapper)
         {
-            _authService = authService;
             _logger = logger;
             _errorResponseCreator = errorResponseCreator;
             _mediator = mediator;
