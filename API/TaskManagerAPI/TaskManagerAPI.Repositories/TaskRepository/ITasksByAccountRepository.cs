@@ -9,7 +9,7 @@ namespace TaskManagerAPI.Repositories.TaskRepository
     /// </summary>
     public interface ITasksByAccountRepository
     {
-        IEnumerable<Task> GetTasks(int accountId);
+        IReadOnlyCollection<Task> GetTasks(int accountId);
         bool TaskExists(int accountId, int taskId);
         Task GetTask(int accountId, int taskId);
         void DeleteTask(int accountId, int taskId);

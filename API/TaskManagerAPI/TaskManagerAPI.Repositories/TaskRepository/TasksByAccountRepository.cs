@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using TaskManagerAPI.EF.Context;
 using TaskManagerAPI.Models.BE;
@@ -25,9 +26,9 @@ namespace TaskManagerAPI.Repositories.TaskRepository
         {
             return _dbContext.Tasks.Any(a => a.Id == taskId && a.AccountId == accountId);
         }
-        public IEnumerable<Task> GetTasks(int accountId)
+        public IReadOnlyCollection<Task> GetTasks(int accountId)
         {
-            return _dbContext.Tasks.Where(a => a.AccountId == accountId).ToList();
+            return new ReadOnlyCollection<Task>(_dbContext.Tasks.Where(a => a.AccountId == accountId).ToList());
         }
         public void DeleteTask(int accountId, int taskId)
         {

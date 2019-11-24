@@ -4,8 +4,9 @@ using TaskManagerAPI.Models.BE.Tasks;
 
 namespace TaskManagerAPI.CQRS.TasksCQ.Commands
 {
-    public class CreateTaskCommand : IRequest<Result>
+    public class UpdateTaskCommand : IRequest<Result>
     {
-        public Task Task { get; set; }
+        public int Id { get; set; }
+        public TaskForUpdated Task { get; set; }
     }
 }

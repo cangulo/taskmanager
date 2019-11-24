@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using FluentResults;
 using MediatR;
 using TaskManagerAPI.BL.CurrentUserService;
@@ -8,9 +7,9 @@ using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
 using TaskManagerAPI.Repositories.TaskRepository;
 
-namespace TaskManagerAPI.CQRS.TasksCQ.Queries
+namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
 {
-    public class CreateTaskCommandHandler : BaseCommandQuery, IRequestHandler<CreateTaskCommand, Result>
+    public partial class CreateTaskCommandHandler : BaseCommandQuery, IRequestHandler<CreateTaskCommand, Result>
     {
         private readonly ITasksByAccountRepository _tasksRepoByAccount;
 
@@ -22,7 +21,7 @@ namespace TaskManagerAPI.CQRS.TasksCQ.Queries
 
         public Task<Result> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            _tasksRepoByAccount.CreateTask(this.GetCurrentUserId(), request.TaskToBeCreated);
+            _tasksRepoByAccount.CreateTask(this.GetCurrentUserId(), request.Task);
             return Task.FromResult(_tasksRepoByAccount.SaveModifications());
         }
     }
