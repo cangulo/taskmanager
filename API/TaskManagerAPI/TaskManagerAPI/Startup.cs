@@ -16,15 +16,18 @@ using TaskManagerAPI.Extensions;
 using MediatR;
 using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Mappers;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using TaskManagerAPI.CQRS.HandlerDecorator;
 
 namespace TaskManagerAPI
 {
     public class Startup
     {
+        public readonly IConfiguration _configuration;
+        public IContainer ApplicationContainer { get; private set; }
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger _logger;
-        public readonly IConfiguration _configuration;
-
         public Startup(ILoggerFactory loggerFactory, IConfiguration configuration)
         {
             _loggerFactory = loggerFactory;
@@ -37,7 +40,7 @@ namespace TaskManagerAPI
         /// Configured Entity Framework Core, DB, JWT Token, BE Services and FluentValidations for the input
         /// </summary>
         /// <param name="services"></param>
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ILogger>((ctx) =>
             {
@@ -68,6 +71,17 @@ namespace TaskManagerAPI
             services.AddMvc().AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             #endregion
+
+
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+
+            builder.RegisterGenericDecorator(typeof(RequestHandlerLogDecorator<,>), typeof(IRequestHandler<,>));
+
+            this.ApplicationContainer = builder.Build();
+
+            // Create the IServiceProvider based on the container.
+            return new AutofacServiceProvider(this.ApplicationContainer);
 
         }
 
