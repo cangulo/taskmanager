@@ -5,7 +5,7 @@ using FluentResults;
 using MediatR;
 using TaskManagerAPI.BL.AuthProcess;
 using TaskManagerAPI.BL.UserStatusVerification;
-using TaskManagerAPI.CQRS.AuthProcess.Commands;
+using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.CQRS.Exceptions;
 using TaskManagerAPI.Models.BE;
 using TaskManagerAPI.Models.Errors;
@@ -13,7 +13,7 @@ using TaskManagerAPI.Models.FE;
 using TaskManagerAPI.Repositories.AccountRepository;
 using TaskManagerAPI.Resources.Errors;
 
-namespace TaskManagerAPI.CQRS.AuthProcess.Handlers
+namespace TaskManagerAPI.CQRS.Authorization.Handlers
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<PortalAccount>>
     {

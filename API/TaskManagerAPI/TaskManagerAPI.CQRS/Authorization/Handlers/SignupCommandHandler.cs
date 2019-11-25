@@ -2,13 +2,13 @@
 using System.Threading.Tasks;
 using FluentResults;
 using MediatR;
-using TaskManagerAPI.CQRS.AuthProcess.Commands;
+using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Models.BE;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Repositories.AccountRepository;
 using TaskManagerAPI.Resources.Errors;
 
-namespace TaskManagerAPI.CQRS.AuthProcess.Handlers
+namespace TaskManagerAPI.CQRS.Authorization.Handlers
 {
     public class SignupCommandHandler : IRequestHandler<SignUpCommand, Result>
     {

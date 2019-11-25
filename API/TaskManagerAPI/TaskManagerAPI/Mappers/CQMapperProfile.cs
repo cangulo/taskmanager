@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TaskManagerAPI.CQRS.AuthProcess.Commands;
+using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Models.FE.APIRequests;
 
 namespace TaskManagerAPI.Mappers

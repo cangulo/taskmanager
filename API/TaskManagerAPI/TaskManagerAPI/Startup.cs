@@ -14,7 +14,7 @@ using TaskManagerAPI.Pipeline;
 using TaskManagerAPI.StartupConfiguration.Extensions;
 using TaskManagerAPI.Extensions;
 using MediatR;
-using TaskManagerAPI.CQRS.AuthProcess.Commands;
+using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Mappers;
 
 namespace TaskManagerAPI

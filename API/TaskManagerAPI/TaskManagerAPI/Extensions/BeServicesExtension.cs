@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TaskManagerAPI.BL.AuthProcess;
 using TaskManagerAPI.BL.CurrentUserService;
-using TaskManagerAPI.BL.TasksServices;
 using TaskManagerAPI.BL.UserStatusVerification;
 
 namespace TaskManagerAPI.StartupConfiguration.Extensions
@@ -16,7 +15,6 @@ namespace TaskManagerAPI.StartupConfiguration.Extensions
             serviceCollection.AddTransient<ITokenCreator, TokenCreator>();
             serviceCollection.AddScoped<ITokenVerificator, TokenVerificator>();
             serviceCollection.AddScoped<IUserStatusVerification, UserStatusVerification>();
-            serviceCollection.AddTransient<ICurrentUserTasksService, CurrentUserTasksService>();
             serviceCollection.AddTransient<ICurrentUserService, CurrentUserService>();
 
             return serviceCollection;

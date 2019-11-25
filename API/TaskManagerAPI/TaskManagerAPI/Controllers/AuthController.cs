@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using TaskManagerAPI.BL.AuthProcess;
-using TaskManagerAPI.CQRS.AuthProcess.Commands;
+using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Exceptions.Helpers;
 using TaskManagerAPI.Filters.Authentication;
 using TaskManagerAPI.Models.FE.APIRequests;
@@ -17,14 +17,12 @@ namespace TaskManagerAPI.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-        private readonly ILogger<AuthController> _logger;
         private readonly IErrorResponseCreator _errorResponseCreator;
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
-        public AuthController(ILogger<AuthController> logger, IErrorResponseCreator errorResponseCreator, IMediator mediator, IMapper mapper)
+        public AuthController(IErrorResponseCreator errorResponseCreator, IMediator mediator, IMapper mapper)
         {
-            _logger = logger;
             _errorResponseCreator = errorResponseCreator;
             _mediator = mediator;
             _mapper = mapper;
@@ -40,8 +38,6 @@ namespace TaskManagerAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Login([FromBody]LoginRequest request)
         {
-            _logger.LogInformation($"{request.Email}");
-
             var result = await _mediator.Send(_mapper.Map<LoginCommand>(request));
             if (result.IsSuccess)
             {
