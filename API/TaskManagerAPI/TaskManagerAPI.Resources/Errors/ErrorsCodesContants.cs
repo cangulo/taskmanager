@@ -6,7 +6,7 @@
     /// </summary>
     public static class ErrorsCodesContants
     {
-        // XYZZY
+        // XYZZZ
         // X LAYER
         // Y ERROR Type
         //// Y=4 Bad input data
