@@ -18,7 +18,7 @@ namespace TaskManagerAPI.Repositories.TaskRepository
         {
             _dbContext = dbContext;
         }
-        public Task GetTask(int accountId, int taskId)
+        public TaskDomain GetTask(int accountId, int taskId)
         {
             return _dbContext.Tasks.FirstOrDefault(a => a.Id == taskId && a.AccountId == accountId);
         }
@@ -26,16 +26,16 @@ namespace TaskManagerAPI.Repositories.TaskRepository
         {
             return _dbContext.Tasks.Any(a => a.Id == taskId && a.AccountId == accountId);
         }
-        public IReadOnlyCollection<Task> GetTasks(int accountId)
+        public IReadOnlyCollection<TaskDomain> GetTasks(int accountId)
         {
-            return new ReadOnlyCollection<Task>(_dbContext.Tasks.Where(a => a.AccountId == accountId).ToList());
+            return new ReadOnlyCollection<TaskDomain>(_dbContext.Tasks.Where(a => a.AccountId == accountId).ToList());
         }
         public void DeleteTask(int accountId, int taskId)
         {
-            Task taskToBeDeleted = _dbContext.Tasks.FirstOrDefault(t => t.AccountId == accountId && t.Id == taskId);
+            TaskDomain taskToBeDeleted = _dbContext.Tasks.FirstOrDefault(t => t.AccountId == accountId && t.Id == taskId);
             _dbContext.Tasks.Remove(taskToBeDeleted);
         }
-        public void CreateTask(int accountId, Task task)
+        public void CreateTask(int accountId, TaskDomain task)
         {
             Account account = _dbContext.Accounts.FirstOrDefault(a => a.Id == accountId);
             if (account != null)

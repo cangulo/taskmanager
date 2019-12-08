@@ -6,6 +6,7 @@ using MediatR;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
+using TaskManagerAPI.Models.BE.Tasks;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Repositories.TaskRepository;
 using TaskManagerAPI.Resources.Errors;
@@ -27,7 +28,8 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
         {
             if (this._tasksRepoByAccount.TaskExists(this.GetCurrentUserId(), request.Id))
             {
-                Models.BE.Tasks.Task taskInDb = _tasksRepoByAccount.GetTask(this.GetCurrentUserId(), request.Id);
+                
+                TaskDomain taskInDb = _tasksRepoByAccount.GetTask(this.GetCurrentUserId(), request.Id);
                 _mapper.Map(request.Task, taskInDb);
                 return Task.FromResult(_tasksRepoByAccount.SaveModifications());
             }

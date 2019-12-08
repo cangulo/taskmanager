@@ -6,6 +6,6 @@ namespace TaskManagerAPI.CQRS.TasksCQ.Commands
 {
     public class CreateTaskCommand : IRequest<Result>
     {
-        public Task Task { get; set; }
+        public TaskDomain Task { get; set; }
     }
 }

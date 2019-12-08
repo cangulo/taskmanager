@@ -1,16 +1,18 @@
 ﻿using FluentResults;
 using MediatR;
 using System.Threading;
+using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Queries;
+using TaskManagerAPI.Models.BE.Tasks;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Repositories.TaskRepository;
 using TaskManagerAPI.Resources.Errors;
 
 namespace TaskManagerAPI.CQRS.TasksCQ.QueryHandlers
 {
-    public class TaskQueryHandler : BaseCommandQuery, IRequestHandler<TaskQuery, Result<Models.BE.Tasks.Task>>
+    public class TaskQueryHandler : BaseCommandQuery, IRequestHandler<TaskQuery, Result<TaskDomain>>
     {
         private readonly ITasksByAccountRepository _tasksRepoByAccount;
 
@@ -19,17 +21,17 @@ namespace TaskManagerAPI.CQRS.TasksCQ.QueryHandlers
             _tasksRepoByAccount = tasksRepoByAccount;
         }
 
-        public System.Threading.Tasks.Task<Result<Models.BE.Tasks.Task>> Handle(TaskQuery request, CancellationToken cancellationToken)
+        public Task<Result<TaskDomain>> Handle(TaskQuery request, CancellationToken cancellationToken)
         {
             if (this._tasksRepoByAccount.TaskExists(this.GetCurrentUserId(), request.Id))
             {
-                Models.BE.Tasks.Task task = this._tasksRepoByAccount.GetTask(this.GetCurrentUserId(), request.Id);
-                Result<Models.BE.Tasks.Task> okResult = Results.Ok<Models.BE.Tasks.Task>(task);
-                return System.Threading.Tasks.Task.FromResult(okResult);
+                TaskDomain task = this._tasksRepoByAccount.GetTask(this.GetCurrentUserId(), request.Id);
+                Result<TaskDomain> okResult = Results.Ok<TaskDomain>(task);
+                return Task.FromResult(okResult);
             }
             else
             {
-                return System.Threading.Tasks.Task.FromResult(Results.Fail<Models.BE.Tasks.Task>(
+                return Task.FromResult(Results.Fail<TaskDomain>(
                     new ErrorCodeAndMessage(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND)));
             }
         }

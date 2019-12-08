@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using FluentResults;
 using MediatR;
@@ -39,9 +40,9 @@ namespace TaskManagerAPI.Controllers
         /// <response code="200">List of Task attached</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async System.Threading.Tasks.Task<IActionResult> Get()
+        public async Task<IActionResult> Get()
         {
-            Result<IReadOnlyCollection<Models.BE.Tasks.Task>> result = await _mediator.Send(new TaskCollectionQuery());
+            Result<IReadOnlyCollection<TaskDomain>> result = await _mediator.Send(new TaskCollectionQuery());
             var taskDtos = _mapper.Map<IEnumerable<TaskToGetDto>>(result.Value);
             return Ok(taskDtos);
         }
@@ -56,9 +57,9 @@ namespace TaskManagerAPI.Controllers
         [HttpGet("{id}", Name = "GetTask")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async System.Threading.Tasks.Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            Result<Models.BE.Tasks.Task> result = await _mediator.Send(new TaskQuery { Id = id });
+            Result<TaskDomain> result = await _mediator.Send(new TaskQuery { Id = id });
             if (result.IsSuccess)
             {
                 return Ok(_mapper.Map<TaskToGetDto>(result.Value));
@@ -77,9 +78,9 @@ namespace TaskManagerAPI.Controllers
         /// <response code="201">Task Created correctly</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async System.Threading.Tasks.Task<IActionResult> CreateTask([FromBody]TaskToBeCreatedDto taskDto)
+        public async Task<IActionResult> CreateTask([FromBody]TaskToBeCreatedDto taskDto)
         {
-            Task taskToBeCreated = _mapper.Map<Task>(taskDto);
+            TaskDomain taskToBeCreated = _mapper.Map<TaskDomain>(taskDto);
 
             Result opResult = await _mediator.Send(
                 new CreateTaskCommand
@@ -109,7 +110,7 @@ namespace TaskManagerAPI.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async System.Threading.Tasks.Task<IActionResult> Put(int id, [FromBody]TaskForFullUpdatedDto taskToBeUpdatedDto)
+        public async Task<IActionResult> Put(int id, [FromBody]TaskForFullUpdatedDto taskToBeUpdatedDto)
         {
             var taskToBeFullUpdated = _mapper.Map<TaskForUpdated>(taskToBeUpdatedDto);
             Result opResult = await _mediator.Send(new UpdateTaskCommand
@@ -140,9 +141,9 @@ namespace TaskManagerAPI.Controllers
         [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async System.Threading.Tasks.Task<IActionResult> Patch(int id, [FromBody]JsonPatchDocument<TaskForFullUpdatedDto> patchDocTask)
+        public async Task<IActionResult> Patch(int id, [FromBody]JsonPatchDocument<TaskForFullUpdatedDto> patchDocTask)
         {
-            Result<Task> taskResult = await _mediator.Send(new TaskQuery { Id = id });
+            Result<TaskDomain> taskResult = await _mediator.Send(new TaskQuery { Id = id });
             if (taskResult.IsSuccess)
             {
                 var taskForPartialUpdateDto = _mapper.Map<TaskForFullUpdatedDto>(taskResult.Value);
@@ -180,7 +181,7 @@ namespace TaskManagerAPI.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async System.Threading.Tasks.Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             Result opResult = await _mediator.Send(new DeleteTaskCommand
             {

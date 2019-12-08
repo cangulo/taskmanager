@@ -8,11 +8,11 @@ namespace TaskManagerAPI.Models.Mappers
     {
         public DomainProfile()
         {
-            CreateMap<Task, TaskToGetDto>();
-            CreateMap<TaskToBeCreatedDto, Task>();
-            CreateMap<TaskForFullUpdatedDto, Task>().ReverseMap();
+            CreateMap<TaskDomain, TaskToGetDto>();
+            CreateMap<TaskToBeCreatedDto, TaskDomain>();
+            CreateMap<TaskForFullUpdatedDto, TaskDomain>().ReverseMap();
             CreateMap<TaskForFullUpdatedDto, TaskForUpdated>();
-            CreateMap<TaskForUpdated, Task>();
+            CreateMap<TaskForUpdated, TaskDomain>();
         }
     }
 }

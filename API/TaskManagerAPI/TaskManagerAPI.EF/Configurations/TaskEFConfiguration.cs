@@ -6,9 +6,9 @@ using TaskManagerAPI.Models.BE.Tasks;
 
 namespace TaskManagerAPI.EF.Configurations
 {
-    public class TaskEFConfiguration : IEntityTypeConfiguration<Task>
+    public class TaskEFConfiguration : IEntityTypeConfiguration<TaskDomain>
     {
-        public void Configure(EntityTypeBuilder<Task> builder)
+        public void Configure(EntityTypeBuilder<TaskDomain> builder)
         {
             builder.ToTable("Tasks");
             builder.HasKey(x => x.Id);

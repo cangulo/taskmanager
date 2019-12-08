@@ -19,7 +19,7 @@ namespace TaskManagerAPI.EF.DbInitializer
             Status = UserStatus.Active
         };
 
-        public static Task Task = new Task()
+        public static TaskDomain Task = new TaskDomain()
         {
             Title = "Remember to buy milk",
             Description = "We always forgot it right?",

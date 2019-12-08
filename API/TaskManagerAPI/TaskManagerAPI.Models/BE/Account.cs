@@ -15,7 +15,7 @@ namespace TaskManagerAPI.Models.BE
         public DateTime LastLogintime { get; set; }
         public string Token { get; set; }
         public UserStatus Status { get; set; }
-        public ICollection<Task> Tasks { get; set; }
+        public ICollection<TaskDomain> Tasks { get; set; }
     }
 
     public enum UserStatus

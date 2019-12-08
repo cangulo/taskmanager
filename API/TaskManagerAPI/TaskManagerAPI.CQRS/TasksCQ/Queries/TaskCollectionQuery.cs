@@ -5,7 +5,7 @@ using TaskManagerAPI.Models.BE.Tasks;
 
 namespace TaskManagerAPI.CQRS.TasksCQ.Queries
 {
-    public class TaskCollectionQuery : IRequest<Result<IReadOnlyCollection<Task>>>
+    public class TaskCollectionQuery : IRequest<Result<IReadOnlyCollection<TaskDomain>>>
     {
         public int Id { get; set; }
     }

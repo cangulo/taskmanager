@@ -2,7 +2,7 @@
 
 namespace TaskManagerAPI.Models.BE.Tasks
 {
-    public class Task
+    public class TaskDomain
     {
         public int Id { get; set; }
         public string Title { get; set; }

@@ -9,7 +9,7 @@ namespace TaskManagerAPI.EF.Context
     public class TaskManagerDbContext : DbContext, ITaskManagerDbContext
     {
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<TaskDomain> Tasks { get; set; }
         private readonly ILogger _logger;
         public TaskManagerDbContext(DbContextOptions<TaskManagerDbContext> options, ILogger logger) : base(options)
         {

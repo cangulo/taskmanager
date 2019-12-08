@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using TaskManagerAPI.BL.AuthProcess;
 using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Exceptions.Helpers;
 using TaskManagerAPI.Filters.Authentication;

@@ -7,7 +7,7 @@ namespace TaskManagerAPI.EF.Context
     public interface ITaskManagerDbContext
     {
         DbSet<Account> Accounts { get; set; }
-        DbSet<Task> Tasks{ get; set; }
+        DbSet<TaskDomain> Tasks{ get; set; }
         int SaveChanges();
     }
 }
