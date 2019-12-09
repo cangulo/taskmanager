@@ -16,6 +16,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TaskManagerAPI.Models\TaskManagerAPI.Models.csproj" />
+    <ProjectReference Include="..\TaskManagerAPI.Test.Common\TaskManagerAPI.Test.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Errors\Resources\errorHttpCodes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
