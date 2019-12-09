@@ -7,23 +7,23 @@ using TaskManagerAPI.Resources.Errors;
 
 namespace TaskManagerAPI.Exceptions.Handlers
 {
-    public class ServiceExceptionHandler : IExceptionHandler
+    public class CQExceptionHandler : IExceptionHandler
     {
         private readonly IErrorToHttpStatusCodeHelper _errorCodeMapper;
-        private readonly ServiceException _serviceException;
+        private readonly CQException _handlerException;
 
-        public ServiceExceptionHandler(IErrorToHttpStatusCodeHelper errorCodeMapper, ServiceException serviceException)
+        public CQExceptionHandler(IErrorToHttpStatusCodeHelper errorCodeMapper, CQException handlerException)
         {
             _errorCodeMapper = errorCodeMapper;
-            _serviceException = serviceException;
+            _handlerException = handlerException;
         }
 
         public string CreateResponseContent()
         {
             string responseContent = string.Empty;
-            if (_serviceException.Errors().Count > 0)
+            if (_handlerException.Errors().Any())
             {
-                List<ErrorCodeAndMessage> serviceErrors = _serviceException.Errors().Select(er => er).ToList();
+                List<ErrorCodeAndMessage> serviceErrors = _handlerException.Errors().Select(er => er).ToList();
                 responseContent = JsonConvert.SerializeObject(serviceErrors);
             }
             else
@@ -38,9 +38,9 @@ namespace TaskManagerAPI.Exceptions.Handlers
 
         public int GetHttpStatusCode()
         {
-            if (_serviceException.Errors().Count > 0)
+            if (_handlerException.Errors().Any())
             {
-                IEnumerable<string> errorCodes = _serviceException.Errors().Select(er => er.Code);
+                IEnumerable<string> errorCodes = _handlerException.Errors().Select(er => er.Code);
                 return _errorCodeMapper.ToHttpStatusCode(errorCodes);
             }
             else

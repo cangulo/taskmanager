@@ -10,6 +10,6 @@ namespace TaskManagerAPI.Models.Exceptions
     /// </summary>
     public interface ICustomException
     {
-        List<ErrorCodeAndMessage> Errors();
+        IEnumerable<ErrorCodeAndMessage> Errors();
     }
 }

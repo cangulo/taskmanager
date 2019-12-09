@@ -16,9 +16,9 @@ namespace TaskManagerAPI.Exceptions
 
         public IExceptionHandler GetExceptionHandler(Exception ex)
         {
-            if (ex is ServiceException)
+            if (ex is CQException)
             {
-                return new ServiceExceptionHandler(_errorCodeMapper, (ServiceException)ex);
+                return new CQExceptionHandler(_errorCodeMapper, (CQException)ex);
             }
             else
             {

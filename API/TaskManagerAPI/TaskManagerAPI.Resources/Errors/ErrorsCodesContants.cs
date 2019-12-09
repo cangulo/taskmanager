@@ -15,6 +15,7 @@
         #region API Layer
         public const string UNKNOWN_ERROR_API = "05001";
         #endregion
+
         #region BL Layer
 
         public const string INVALID_EMAIL_OR_PASSWORD = "14001";

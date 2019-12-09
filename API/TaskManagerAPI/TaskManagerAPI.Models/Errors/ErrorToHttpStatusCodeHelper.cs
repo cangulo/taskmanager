@@ -15,24 +15,30 @@ namespace TaskManagerAPI.Models.Errors
         {
             if (!string.IsNullOrEmpty(errorCode) && errorCode.Length >= 5)
             {
-                if (int.TryParse(errorCode[1].ToString(), out int typeOfError))
+                if (int.TryParse(errorCode[0].ToString(), out int layer))
                 {
-                    switch (typeOfError)
+                    switch (layer)
                     {
-                        case 4:
-                            switch (errorCode)
+                        case 0:
+                            return 500;
+                        case 1:
+                            if (int.TryParse(errorCode[1].ToString(), out int typeOfError))
                             {
-                                case ErrorsCodesContants.INVALID_EMAIL_OR_PASSWORD:
-                                    return 401; // Unauthorized
-                                case ErrorsCodesContants.TASK_ID_NOT_FOUND:
-                                    return 404; // Not Found
-                                default:
-                                    return 400; // Bad Request
+                                switch (typeOfError)
+                                {
+                                    case 4:
+                                        switch (errorCode)
+                                        {
+                                            case ErrorsCodesContants.INVALID_EMAIL_OR_PASSWORD:
+                                                return 401; // Unauthorized
+                                            case ErrorsCodesContants.TASK_ID_NOT_FOUND:
+                                                return 404; // Not Found
+                                            default:
+                                                return 400; // Bad Request
+                                        }
+                                }
                             }
-                        case 5:
-                            return 500; // Internal Server Error
-                        default:
-                            return 500; // Internal Server Error
+                            return 500;
                     }
                 }
             }
