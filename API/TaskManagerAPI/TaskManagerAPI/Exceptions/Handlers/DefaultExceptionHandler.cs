@@ -9,8 +9,7 @@ namespace TaskManagerAPI.Exceptions.Handlers
     {
         public string CreateResponseContent()
         {
-            ErrorCodeAndMessage unkownError = new ErrorCodeAndMessage(
-                    ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API);
+            CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
             return JsonConvert.SerializeObject(unkownError);
         }
 

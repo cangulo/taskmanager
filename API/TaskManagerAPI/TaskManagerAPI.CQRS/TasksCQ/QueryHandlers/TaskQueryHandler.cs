@@ -32,7 +32,7 @@ namespace TaskManagerAPI.CQRS.TasksCQ.QueryHandlers
             else
             {
                 return Task.FromResult(Results.Fail<TaskDomain>(
-                    new ErrorCodeAndMessage(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND)));
+                    new CustomError(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND, 404)));
             }
         }
     }

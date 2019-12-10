@@ -50,9 +50,9 @@ namespace TaskManagerAPI.Repositories.AccountRepository
             }
             else
             {
-                return Results.Fail(new ErrorCodeAndMessage(
+                return Results.Fail(new CustomError(
                     ErrorsCodesContants.UNABLE_TO_SAVE_CHANGES_IN_ACCOUNT_TABLE,
-                    ErrorsMessagesConstants.UNABLE_TO_SAVE_CHANGES_IN_ACCOUNT_TABLE));
+                    ErrorsMessagesConstants.UNABLE_TO_SAVE_CHANGES_IN_ACCOUNT_TABLE, 500));
             }
         }
     }

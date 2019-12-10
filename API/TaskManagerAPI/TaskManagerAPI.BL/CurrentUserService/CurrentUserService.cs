@@ -24,9 +24,7 @@ namespace TaskManagerAPI.BL.CurrentUserService
                 return Results.Ok(userId);
             }
             return Results.Fail<int>(
-                new ErrorCodeAndMessage(
-                    ErrorsCodesContants.CURRENT_USER_ID_NOT_FOUND, 
-                    ErrorsMessagesConstants.CURRENT_USER_ID_NOT_FOUND));
+                new CustomError(ErrorsCodesContants.CURRENT_USER_ID_NOT_FOUND, ErrorsMessagesConstants.CURRENT_USER_ID_NOT_FOUND, 404));
         }
     }
 }

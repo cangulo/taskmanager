@@ -28,7 +28,7 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
         {
             if (this._tasksRepoByAccount.TaskExists(this.GetCurrentUserId(), request.Id))
             {
-                
+
                 TaskDomain taskInDb = _tasksRepoByAccount.GetTask(this.GetCurrentUserId(), request.Id);
                 _mapper.Map(request.Task, taskInDb);
                 return Task.FromResult(_tasksRepoByAccount.SaveModifications());
@@ -36,7 +36,7 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
             else
             {
                 return Task.FromResult(Results.Fail(
-                    new ErrorCodeAndMessage(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND)));
+                    new CustomError(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND, 404)));
             }
         }
     }

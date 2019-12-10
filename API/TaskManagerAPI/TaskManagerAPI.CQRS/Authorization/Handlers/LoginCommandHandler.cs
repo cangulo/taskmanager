@@ -63,9 +63,7 @@ namespace TaskManagerAPI.CQRS.Authorization.Handlers
                 }
             }
             return Task.FromResult(Results.Fail<PortalAccount>(
-                    new ErrorCodeAndMessage(
-                        ErrorsCodesContants.INVALID_EMAIL_OR_PASSWORD,
-                        ErrorsMessagesConstants.INVALID_EMAIL_OR_PASSWORD)));
+                    new CustomError(ErrorsCodesContants.INVALID_EMAIL_OR_PASSWORD, ErrorsMessagesConstants.INVALID_EMAIL_OR_PASSWORD, 401)));
         }
     }
 }

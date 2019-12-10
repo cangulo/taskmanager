@@ -28,31 +28,23 @@ namespace TaskManagerAPI.BL.UserStatusVerification
                 else if (status == UserStatus.Disable)
                 {
                     return Results.Fail<bool>(
-                        new ErrorCodeAndMessage(
-                                ErrorsCodesContants.USER_DISABLED,
-                                ErrorsMessagesConstants.USER_DISABLED));
+                        new CustomError(ErrorsCodesContants.USER_DISABLED, ErrorsMessagesConstants.USER_DISABLED, 401));
                 }
                 else if (status == UserStatus.Locked)
                 {
                     return Results.Fail<bool>(
-                        new ErrorCodeAndMessage(
-                                ErrorsCodesContants.USER_LOCKED,
-                                ErrorsMessagesConstants.USER_LOCKED));
+                        new CustomError(ErrorsCodesContants.USER_LOCKED, ErrorsMessagesConstants.USER_LOCKED, 401));
                 }
                 else
                 {
                     return Results.Fail<bool>(
-                        new ErrorCodeAndMessage(
-                                ErrorsCodesContants.UNKNOWN_ERROR_API,
-                                ErrorsMessagesConstants.UNKNOWN_ERROR_API));
+                        new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500));
                 }
             }
             else
             {
                 return Results.Fail<bool>(
-                    new ErrorCodeAndMessage(
-                            ErrorsCodesContants.USER_ID_NOT_FOUND,
-                            ErrorsMessagesConstants.USER_ID_NOT_FOUND));
+                    new CustomError(ErrorsCodesContants.USER_ID_NOT_FOUND, ErrorsMessagesConstants.USER_ID_NOT_FOUND, 401));
             }
         }
     }

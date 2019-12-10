@@ -19,9 +19,9 @@ namespace TaskManagerAPI.Exceptions.Helpers
             ObjectResult actionResult;
             if (errors.Count > 0)
             {
-                if (errors is List<Error> && errors.TrueForAll(er => er.GetType() == typeof(ErrorCodeAndMessage)))
+                if (errors is List<Error> && errors.TrueForAll(er => er.GetType() == typeof(CustomError)))
                 {
-                    List<ErrorCodeAndMessage> appErrors = errors.Select(er => (ErrorCodeAndMessage)er).ToList();
+                    List<CustomError> appErrors = errors.Select(er => (CustomError)er).ToList();
                     actionResult = (new ObjectResult(appErrors));
                     int statusCode = this.errorCodeMapper.ToHttpStatusCode(appErrors.Select(er => er.Code));
                     actionResult.StatusCode = statusCode;
@@ -36,8 +36,7 @@ namespace TaskManagerAPI.Exceptions.Helpers
             }
             else
             {
-                ErrorCodeAndMessage unkownError = new ErrorCodeAndMessage(
-                                    ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API);
+                CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
                 actionResult = (new ObjectResult(unkownError));
                 actionResult.StatusCode = 500;
             }

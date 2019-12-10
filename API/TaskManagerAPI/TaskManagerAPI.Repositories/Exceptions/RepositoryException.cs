@@ -8,8 +8,8 @@ namespace TaskManagerAPI.Repositories.Exceptions
 {
     public class RepositoryException : Exception, ICustomException
     {
-        private readonly IEnumerable<ErrorCodeAndMessage> _errors;
-        public RepositoryException(List<ErrorCodeAndMessage> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
+        private readonly IEnumerable<CustomError> _errors;
+        public RepositoryException(List<CustomError> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
         {
             _errors = errors;
         }
@@ -27,7 +27,7 @@ namespace TaskManagerAPI.Repositories.Exceptions
 
         }
 
-        public IEnumerable<ErrorCodeAndMessage> Errors()
+        public IEnumerable<CustomError> Errors()
         {
             return this._errors;
         }

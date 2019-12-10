@@ -8,8 +8,8 @@ namespace TaskManagerAPI.CQRS.Exceptions
 {
     public class CQException : Exception, ICustomException
     {
-        private readonly IEnumerable<ErrorCodeAndMessage> _errors;
-        public CQException(IEnumerable<ErrorCodeAndMessage> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
+        private readonly IEnumerable<CustomError> _errors;
+        public CQException(IEnumerable<CustomError> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
         {
             _errors = errors;
         }
@@ -27,7 +27,7 @@ namespace TaskManagerAPI.CQRS.Exceptions
 
         }
 
-        public IEnumerable<ErrorCodeAndMessage> Errors()
+        public IEnumerable<CustomError> Errors()
         {
             return this._errors;
         }

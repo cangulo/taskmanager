@@ -45,9 +45,7 @@ namespace TaskManagerAPI.CQRS.Authorization.Handlers
             else
             {
                 return Task.FromResult(Results.Fail(
-                    new ErrorCodeAndMessage(
-                        ErrorsCodesContants.EMAIL_ALREADY_USED,
-                        ErrorsMessagesConstants.EMAIL_ALREADY_USED)));
+                    new CustomError(ErrorsCodesContants.EMAIL_ALREADY_USED, ErrorsMessagesConstants.EMAIL_ALREADY_USED, 400)));
             }
         }
     }

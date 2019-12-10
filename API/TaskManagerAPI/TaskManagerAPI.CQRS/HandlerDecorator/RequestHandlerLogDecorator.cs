@@ -34,7 +34,7 @@ namespace TaskManagerAPI.CQRS.HandlerDecorator
                 this._logger.LogError($"Handler;{handlerName};{stopwatch.ElapsedMilliseconds}");
                 var listError = (response as ResultBase).Errors;
                 this._logger.LogError($"Handler;{handlerName};Errors:{string.Join(";", listError.Select(er => er.ToString()))}");
-                throw new CQException(listError.Select(error => error as ErrorCodeAndMessage));
+                throw new CQException(listError.Select(error => error as CustomError));
             }
             else
             {

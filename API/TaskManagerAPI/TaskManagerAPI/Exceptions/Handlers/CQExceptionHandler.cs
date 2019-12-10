@@ -23,13 +23,12 @@ namespace TaskManagerAPI.Exceptions.Handlers
             string responseContent = string.Empty;
             if (_handlerException.Errors().Any())
             {
-                List<ErrorCodeAndMessage> serviceErrors = _handlerException.Errors().Select(er => er).ToList();
+                List<CustomError> serviceErrors = _handlerException.Errors().Select(er => er).ToList();
                 responseContent = JsonConvert.SerializeObject(serviceErrors);
             }
             else
             {
-                ErrorCodeAndMessage unkownError = new ErrorCodeAndMessage(
-                                    ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API);
+                CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
                 responseContent = JsonConvert.SerializeObject(unkownError);
 
             }

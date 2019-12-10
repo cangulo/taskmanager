@@ -38,9 +38,7 @@ namespace TaskManagerAPI.CQRS.Authorization.Handlers
                 else
                 {
                     return Task.FromResult(Results.Fail(
-                        new ErrorCodeAndMessage(
-                            ErrorsCodesContants.USER_ID_NOT_FOUND,
-                            ErrorsMessagesConstants.USER_ID_NOT_FOUND)));
+                        new CustomError(ErrorsCodesContants.USER_ID_NOT_FOUND, ErrorsMessagesConstants.USER_ID_NOT_FOUND, 401)));
                 }
             }
             else
