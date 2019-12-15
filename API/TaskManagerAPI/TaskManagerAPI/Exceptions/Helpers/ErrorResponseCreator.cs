@@ -9,15 +9,16 @@ namespace TaskManagerAPI.Exceptions.Helpers
 {
     public class ErrorResponseCreator : IErrorResponseCreator
     {
-        private readonly IErrorToHttpStatusCodeHelper errorCodeMapper;
-        public ErrorResponseCreator(IErrorToHttpStatusCodeHelper errorCodeMapper)
-        {
-            this.errorCodeMapper = errorCodeMapper;
-        }
         public IActionResult CreateResponse(List<Error> errors)
         {
             ObjectResult actionResult;
-            if (errors.Count > 0)
+            if (errors.Count == 0 || errors.Any(err => err.Metadata.TryGetValue(ErrorKeyPropsConstants.ERROR_HTTP_CODE, out object httpErroCode) && (int)err.Metadata[ErrorKeyPropsConstants.ERROR_HTTP_CODE] == 500))
+            {
+                CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
+                actionResult = (new ObjectResult(unkownError));
+                actionResult.StatusCode = 500;
+            }
+            else
             {
                 if (errors is List<Error> && errors.TrueForAll(er => er.GetType() == typeof(CustomError)))
                 {
@@ -34,14 +35,6 @@ namespace TaskManagerAPI.Exceptions.Helpers
                     actionResult = (new ObjectResult(errors));
                     actionResult.StatusCode = 500;
                 }
-
-
-            }
-            else
-            {
-                CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
-                actionResult = (new ObjectResult(unkownError));
-                actionResult.StatusCode = 500;
             }
             return actionResult;
         }
