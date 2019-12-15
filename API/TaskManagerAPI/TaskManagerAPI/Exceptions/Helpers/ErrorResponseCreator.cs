@@ -23,8 +23,11 @@ namespace TaskManagerAPI.Exceptions.Helpers
                 {
                     List<CustomError> appErrors = errors.Select(er => (CustomError)er).ToList();
                     actionResult = (new ObjectResult(appErrors));
-                    int statusCode = this.errorCodeMapper.ToHttpStatusCode(appErrors.Select(er => er.Code));
-                    actionResult.StatusCode = statusCode;
+                    // TODO: Solve 
+                    //int statusCode = this.errorCodeMapper.ToHttpStatusCode(appErrors.Select(er => er.Code));
+                    //actionResult.StatusCode = statusCode;
+                    actionResult.StatusCode = 500;
+
                 }
                 else
                 {

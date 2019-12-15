@@ -39,8 +39,10 @@ namespace TaskManagerAPI.Exceptions.Handlers
         {
             if (_handlerException.Errors().Any())
             {
-                IEnumerable<string> errorCodes = _handlerException.Errors().Select(er => er.Code);
-                return _errorCodeMapper.ToHttpStatusCode(errorCodes);
+                // TODO: Solve 
+                //IEnumerable<string> errorCodes = _handlerException.Errors().Select(er => er.Code);
+                //return _errorCodeMapper.ToHttpStatusCode(errorCodes);
+                return 500;
             }
             else
             {
