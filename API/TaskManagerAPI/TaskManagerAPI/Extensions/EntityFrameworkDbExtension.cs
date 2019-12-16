@@ -18,6 +18,7 @@ namespace TaskManagerAPI.StartupConfiguration.Extensions
     /// If this parameter is true the execution of the add-migration will fail because it couldn't do any migration to in memory db provider
     /// </remarks>
     /// </summary>
+    /// TODO: Migrate to Autofac
     public static class EntityFrameworkDbExtension
     {
         public static IServiceCollection AddEntityFrameworkDbConfiguration(this IServiceCollection serviceCollection, AppSettings appSettings, IConfiguration configuration)
@@ -42,7 +43,7 @@ namespace TaskManagerAPI.StartupConfiguration.Extensions
             });
             serviceCollection.AddTransient<IDbInitializer, DbInitializer>((ctx) =>
             {
-                return new DbInitializer(ctx.GetService<TaskManagerDbContext>(), ctx.GetService<IDBMigrationsManager>(), ctx.GetService<ILogger<DbInitializer>>());
+                return new DbInitializer(ctx.GetService<TaskManagerDbContext>(), ctx.GetService<IDBMigrationsManager>(), ctx.GetRequiredService<ILogger<DbInitializer>>());
             });
             serviceCollection.AddScoped<ITaskManagerDbContext, TaskManagerDbContext>();
 

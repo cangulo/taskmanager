@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
 using TaskManagerAPI.EF.DbInitializer;
 using TaskManagerAPI.Models.FE.Validators.APIRequests;
 using TaskManagerAPI.Models.Mappers;
@@ -16,22 +13,16 @@ using TaskManagerAPI.Extensions;
 using MediatR;
 using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Mappers;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using TaskManagerAPI.CQRS.HandlerDecorator;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
 namespace TaskManagerAPI
 {
     public class Startup
     {
         public readonly IConfiguration _configuration;
-        public IContainer ApplicationContainer { get; private set; }
-        private readonly ILoggerFactory _loggerFactory;
-        private readonly ILogger _logger;
-        public Startup(ILoggerFactory loggerFactory, IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
-            _loggerFactory = loggerFactory;
-            _logger = loggerFactory.CreateLogger<Startup>();
             _configuration = configuration;
         }
 
@@ -40,17 +31,25 @@ namespace TaskManagerAPI
         /// Configured Entity Framework Core, DB, JWT Token, BE Services and FluentValidations for the input
         /// </summary>
         /// <param name="services"></param>
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ILogger>((ctx) =>
+
+            services.AddLogging(builder =>
             {
-                return _loggerFactory.CreateLogger<object>();
+                builder.ClearProviders();
+                builder.AddConfiguration(_configuration.GetSection("Logging"));
+                builder.AddDebug();
+                builder.AddConsole();
+                builder.AddEventSourceLogger();
+                builder.AddApplicationInsights();
+                builder.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information);
             });
+
+
 
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
             AppSettings appSettings = appSettingsSection.Get<AppSettings>();
-            this._logger.LogInformation("Configuring BD EF");
             services.AddEntityFrameworkDbConfiguration(appSettings, _configuration);
 
             services.AddDefaultJwtAuthorization(appSettings);
@@ -71,18 +70,6 @@ namespace TaskManagerAPI
             services.AddMvc().AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             #endregion
-
-
-            var builder = new ContainerBuilder();
-            builder.Populate(services);
-
-            builder.RegisterGenericDecorator(typeof(RequestHandlerLogDecorator<,>), typeof(IRequestHandler<,>));
-
-            this.ApplicationContainer = builder.Build();
-
-            // Create the IServiceProvider based on the container.
-            return new AutofacServiceProvider(this.ApplicationContainer);
-
         }
 
         /// <summary>
@@ -90,30 +77,17 @@ namespace TaskManagerAPI
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             #region EF Database
 
-            try
-            {
-                this._logger.LogInformation("Starting DB EF");
-                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
                     .CreateScope())
-                {
-                    serviceScope.ServiceProvider.GetService<IDbInitializer>().StartDbContext();
-                }
-            }
-            catch (Exception ex)
             {
-                this._logger.LogError(ex, "Failed to migrate or seed database");
+                serviceScope.ServiceProvider.GetService<IDbInitializer>().StartDbContext();
             }
 
             #endregion
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
 
             app.UseCors(x => x
                 .AllowAnyOrigin()

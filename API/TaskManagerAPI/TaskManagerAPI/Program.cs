@@ -18,16 +18,8 @@ namespace TaskManagerAPI
             ConfigureAppConfiguration((hostingContext, config) =>
             {
 
-            }).
-            ConfigureLogging((hostingContext, logging) =>
-            {
-                logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                logging.AddDebug();
-                logging.AddEventSourceLogger();
-                logging.AddApplicationInsights();
-                logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information);
-            }).
-            UseUrls("https://localhost:44374/").
-            UseStartup<Startup>();
+            })
+            .UseUrls("https://localhost:44374/")
+            .UseStartup<Startup>();
     }
 }
