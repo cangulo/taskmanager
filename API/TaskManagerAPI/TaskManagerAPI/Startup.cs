@@ -16,7 +16,8 @@ using TaskManagerAPI.Mappers;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging.ApplicationInsights;
+using Autofac;
+using TaskManagerAPI.Extensions.AutofacModules;
 
 namespace TaskManagerAPI
 {
@@ -50,13 +51,8 @@ namespace TaskManagerAPI
             services.Configure<AppSettings>(appSettingsSection);
             AppSettings appSettings = appSettingsSection.Get<AppSettings>();
             services.AddEFDBContext(appSettings, _configuration);
-            services.AddEFServices();
 
             services.AddDefaultJwtAuthorization(appSettings);
-
-            services.AddBeServices();
-            services.AddBeRepositories();
-            services.AddBeErrorsHelpers();
 
             services.AddSwaggerConfiguration();
 
@@ -74,6 +70,19 @@ namespace TaskManagerAPI
 
             #endregion
         }
+
+
+        // Register services directly with Autofac. This runs after ConfigureServices so the things
+        // here will override registrations made in ConfigureServices.
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new EntityFrameworkModule());
+            builder.RegisterModule(new BeServicesModule());
+            builder.RegisterModule(new RepositoriesModule());
+            builder.RegisterModule(new ErrorsHelpersModule());
+            builder.RegisterModule(new CQRSModule());
+        }
+
 
         /// <summary>
         /// DB Initialized and Custom Exception Handler configured
