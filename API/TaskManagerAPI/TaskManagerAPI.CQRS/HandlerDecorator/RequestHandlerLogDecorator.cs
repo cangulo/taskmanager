@@ -31,15 +31,15 @@ namespace TaskManagerAPI.CQRS.HandlerDecorator
             if ((response as ResultBase).IsFailed)
             {
                 // TODO: The responsability of log the errors should be at the top level of the application, at the Exception middleware
-                this._logger.LogError($"Handler;{handlerName};{stopwatch.ElapsedMilliseconds}");
+                this._logger.LogError($"Handler; {handlerName} ; {stopwatch.ElapsedMilliseconds}");
                 var listError = (response as ResultBase).Errors;
-                this._logger.LogError($"Handler;{handlerName};Errors:{string.Join(";", listError.Select(er => er.ToString()))}");
+                this._logger.LogError($"Handler; {handlerName} ; Errors: {string.Join(";", listError.Select(er => er.ToString()))}");
                 throw new CQException(listError.Select(error => error as CustomError));
             }
             else
             {
                 // TODO: We should trace using the Azure App Insights telemetry
-                this._logger.LogInformation($"Handler;{handlerName};{stopwatch.ElapsedMilliseconds}");
+                this._logger.LogInformation($"Handler; {handlerName} ; TimeRequired: {stopwatch.ElapsedMilliseconds}ms");
             }
             return response;
         }

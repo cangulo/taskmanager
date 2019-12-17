@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore;
+﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging.ApplicationInsights;
+using Microsoft.Extensions.Hosting;
 
 namespace TaskManagerAPI
 {
@@ -9,25 +8,16 @@ namespace TaskManagerAPI
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).
-            UseApplicationInsights().
-            ConfigureAppConfiguration((hostingContext, config) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+            .ConfigureWebHostDefaults(webBuilder =>
             {
-
-            }).
-            ConfigureLogging((hostingContext, logging) =>
-            {
-                logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                logging.AddDebug();
-                logging.AddEventSourceLogger();
-                logging.AddApplicationInsights();
-                logging.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information);
-            }).
-            UseUrls("https://localhost:44374/").
-            UseStartup<Startup>();
+                webBuilder.UseUrls("https://localhost:44374/");
+                webBuilder.UseStartup<Startup>();
+            });
     }
 }

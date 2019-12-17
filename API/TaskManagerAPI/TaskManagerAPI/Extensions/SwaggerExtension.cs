@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
@@ -12,15 +13,15 @@ namespace TaskManagerAPI.Extensions
         {
             serviceCollection.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Task Manager API",
                     Version = "v1",
-                    Contact = new Contact
+                    Contact = new OpenApiContact
                     {
                         Name = "Carlos Angulo",
                         Email = "c.angulo.mascarell@outlook.com",
-                        Url = "https://www.linkedin.com/in/angulomascarell"
+                        Url = new Uri("https://www.linkedin.com/in/angulomascarell")
                     }
 
                 });
