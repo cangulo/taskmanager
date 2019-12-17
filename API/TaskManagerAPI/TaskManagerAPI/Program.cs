@@ -17,7 +17,5 @@ namespace TaskManagerAPI
                 webBuilder.UseUrls("https://localhost:44374/");
                 webBuilder.UseStartup<Startup>();
             });
-
-
     }
 }

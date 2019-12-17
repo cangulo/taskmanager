@@ -14,6 +14,8 @@ using MediatR;
 using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Mappers;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging.ApplicationInsights;
 
 namespace TaskManagerAPI
@@ -42,10 +44,7 @@ namespace TaskManagerAPI
                 builder.AddConsole();
                 builder.AddEventSourceLogger();
                 builder.AddApplicationInsights();
-                builder.AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.Information);
             });
-
-
 
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -80,7 +79,8 @@ namespace TaskManagerAPI
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
-        public void Configure(IApplicationBuilder app)
+        /// <param name="logger"></param>
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             #region EF Database
 
@@ -91,6 +91,12 @@ namespace TaskManagerAPI
             }
 
             #endregion
+
+            if (env.IsDevelopment())
+            {
+                logger.LogInformation("In Development environment");
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
