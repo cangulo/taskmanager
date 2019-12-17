@@ -38,20 +38,5 @@ namespace TaskManagerAPI.StartupConfiguration.Extensions
             }
             return serviceCollection;
         }
-
-        public static IServiceCollection AddEFServices(this IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddTransient<IDBMigrationsManager, DBMigrationsManager>((ctx) =>
-            {
-                return new DBMigrationsManager(ctx.GetService<TaskManagerDbContext>(), ctx.GetService<ILogger<DBMigrationsManager>>());
-            });
-            serviceCollection.AddTransient<IDbInitializer, DbInitializer>((ctx) =>
-            {
-                return new DbInitializer(ctx.GetService<TaskManagerDbContext>(), ctx.GetService<IDBMigrationsManager>(), ctx.GetRequiredService<ILogger<DbInitializer>>());
-            });
-            serviceCollection.AddScoped<ITaskManagerDbContext, TaskManagerDbContext>();
-
-            return serviceCollection;
-        }
     }
 }
