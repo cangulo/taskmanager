@@ -33,7 +33,7 @@ namespace TaskManagerAPI
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddApplicationInsightsTelemetry();
             services.AddLogging(builder =>
             {
                 builder.ClearProviders();
@@ -67,7 +67,10 @@ namespace TaskManagerAPI
 
             services.AddHttpContextAccessor();
             services.AddCors();
-            services.AddMvc().AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+            services
+                .AddControllers()
+                .AddNewtonsoftJson()
+                .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             #endregion
         }
@@ -89,20 +92,28 @@ namespace TaskManagerAPI
 
             #endregion
 
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-            app.UseAuthentication();
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task Manager API V1");
                 c.RoutePrefix = string.Empty;
             });
+
+            app.UseRouting();
+            app.UseCors(x =>
+                x.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+
+            app.UseAuthentication();
+
             app.UseMiddleware<ExceptionHandlerMiddleware>();
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+
         }
     }
 }

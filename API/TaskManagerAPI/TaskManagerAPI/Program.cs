@@ -1,7 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging.ApplicationInsights;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace TaskManagerAPI
 {
@@ -9,17 +7,17 @@ namespace TaskManagerAPI
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args).
-            UseApplicationInsights().
-            ConfigureAppConfiguration((hostingContext, config) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
             {
+                webBuilder.UseUrls("https://localhost:44374/");
+                webBuilder.UseStartup<Startup>();
+            });
 
-            })
-            .UseUrls("https://localhost:44374/")
-            .UseStartup<Startup>();
+
     }
 }
