@@ -7,6 +7,7 @@ namespace TaskManagerAPI.StartupConfiguration.Extensions
     /// <summary>
     /// Extended method of IServiceCollection to configure the BE repositories of the Repository Layer. This aims to be a simple and minimum configuration. 
     /// </summary>
+    /// TODO: Migrate to Autofac
     public static class BeRepositoriesExtension
     {
         public static IServiceCollection AddBeRepositories(this IServiceCollection serviceCollection)

@@ -11,7 +11,7 @@ namespace TaskManagerAPI.EF.Context
         public DbSet<Account> Accounts { get; set; }
         public DbSet<TaskDomain> Tasks { get; set; }
         private readonly ILogger _logger;
-        public TaskManagerDbContext(DbContextOptions<TaskManagerDbContext> options, ILogger logger) : base(options)
+        public TaskManagerDbContext(DbContextOptions<TaskManagerDbContext> options, ILogger<TaskManagerDbContext> logger) : base(options)
         {
             _logger = logger;
         }
