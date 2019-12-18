@@ -1,7 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using FluentResults;
+﻿using FluentResults;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Models.BE;
@@ -24,7 +24,6 @@ namespace TaskManagerAPI.CQRS.Authorization.Handlers
 
         public Task<Result> Handle(LogOffCommand request, CancellationToken cancellationToken)
         {
-
             Result<int> opGetUserIdResult = _currentUserService.GetIdCurrentUser();
             if (opGetUserIdResult.IsSuccess)
             {

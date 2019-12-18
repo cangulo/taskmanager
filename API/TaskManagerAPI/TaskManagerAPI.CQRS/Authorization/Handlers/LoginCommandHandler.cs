@@ -1,12 +1,11 @@
-﻿using System;
+﻿using FluentResults;
+using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentResults;
-using MediatR;
 using TaskManagerAPI.BL.AuthProcess;
 using TaskManagerAPI.BL.UserStatusVerification;
 using TaskManagerAPI.CQRS.Authorization.Commands;
-using TaskManagerAPI.CQRS.Exceptions;
 using TaskManagerAPI.Models.BE;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Models.FE;

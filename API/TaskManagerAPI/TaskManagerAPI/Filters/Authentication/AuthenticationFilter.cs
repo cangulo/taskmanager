@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using FluentResults;
+﻿using FluentResults;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using TaskManagerAPI.BL.AuthProcess;
 using TaskManagerAPI.BL.UserStatusVerification;
 using TaskManagerAPI.Resources.Constants;
@@ -16,6 +16,7 @@ namespace TaskManagerAPI.Filters.Authentication
     {
         private readonly ITokenVerificator _tokenVerificator;
         private readonly IUserStatusVerification _userVerification;
+
         public AuthenticationFilter(IAuthorizationPolicyProvider provider, ITokenVerificator tokenVerificator, IUserStatusVerification userVerification) : base(provider, new[] { new AuthorizeData(ConfigurationConstants.JwtDefaultPolicy) })
         {
             this._tokenVerificator = tokenVerificator;
@@ -32,7 +33,6 @@ namespace TaskManagerAPI.Filters.Authentication
                 string token = ((string)context.HttpContext.Request.Headers["Authorization"]).Replace("Bearer ", "");
 
                 int userId = int.Parse(context.HttpContext.User.Claims.First(cl => cl.Type == ClaimTypes.NameIdentifier).Value);
-
 
                 // TODO: Return 401 and include the custom error object we use in the project with the error message and error code
 
@@ -55,4 +55,3 @@ namespace TaskManagerAPI.Filters.Authentication
         }
     }
 }
-

@@ -15,14 +15,17 @@ namespace TaskManagerAPI.Repositories.AccountRepository
         {
             _dbContext = taskManagerDbContext;
         }
+
         public bool ExistsAccount(int id)
         {
             return this._dbContext.Accounts.Any(a => a.Id == id);
         }
+
         public Account GetAccount(int id)
         {
             return this._dbContext.Accounts.FirstOrDefault(a => a.Id == id);
         }
+
         public bool ExistsAccount(string email, string password)
         {
             return this._dbContext.Accounts.Any(a => a.Email.Trim().ToLower() == email && a.Password == password);
@@ -42,6 +45,7 @@ namespace TaskManagerAPI.Repositories.AccountRepository
         {
             _dbContext.Accounts.Add(account);
         }
+
         public Result SaveModifications()
         {
             if (_dbContext.SaveChanges() >= 0)

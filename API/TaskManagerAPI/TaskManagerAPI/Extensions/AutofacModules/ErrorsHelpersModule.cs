@@ -12,7 +12,6 @@ namespace TaskManagerAPI.Extensions.AutofacModules
             containerBuilder.RegisterType<ErrorToHttpStatusCodeHelper>().As<IErrorToHttpStatusCodeHelper>();
             containerBuilder.RegisterType<ErrorResponseCreator>().As<IErrorResponseCreator>();
             containerBuilder.RegisterType<ExceptionHandlerFactory>().As<IExceptionHandlerFactory>();
-            
         }
     }
 }

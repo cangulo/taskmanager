@@ -7,8 +7,8 @@ namespace TaskManagerAPI.Models.FE.APIRequests
     {
         [JsonConverter(typeof(TrimAndLowerCase))]
         public string Email { get; set; }
+
         [JsonConverter(typeof(Trim))]
         public string Password { get; set; }
     }
-
 }

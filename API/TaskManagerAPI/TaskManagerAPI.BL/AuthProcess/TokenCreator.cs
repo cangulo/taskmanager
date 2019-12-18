@@ -4,8 +4,8 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using TaskManagerAPI.Resources.AppSettings;
 using TaskManagerAPI.Models.BE;
+using TaskManagerAPI.Resources.AppSettings;
 
 namespace TaskManagerAPI.BL.AuthProcess
 {

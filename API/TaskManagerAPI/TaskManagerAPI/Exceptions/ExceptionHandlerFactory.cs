@@ -24,7 +24,6 @@ namespace TaskManagerAPI.Exceptions
             {
                 return new DefaultExceptionHandler();
             }
-
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using TaskManagerAPI.CQRS.Exceptions;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Resources.Errors;
@@ -30,7 +30,6 @@ namespace TaskManagerAPI.Exceptions.Handlers
             {
                 CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
                 responseContent = JsonConvert.SerializeObject(unkownError);
-
             }
             return responseContent;
         }
@@ -39,7 +38,7 @@ namespace TaskManagerAPI.Exceptions.Handlers
         {
             if (_handlerException.Errors().Any())
             {
-                // TODO: Solve 
+                // TODO: Solve
                 //IEnumerable<string> errorCodes = _handlerException.Errors().Select(er => er.Code);
                 //return _errorCodeMapper.ToHttpStatusCode(errorCodes);
                 return 500;

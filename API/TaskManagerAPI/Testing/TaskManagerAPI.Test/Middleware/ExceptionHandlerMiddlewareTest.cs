@@ -13,7 +13,6 @@ namespace TaskManagerAPI.Test.Middleware
 {
     public class ExceptionHandlerMiddlewareTest
     {
-
         [Fact]
         public async Task ExceptionHandlerMiddleware_CatchException()
         {
@@ -36,7 +35,6 @@ namespace TaskManagerAPI.Test.Middleware
 
             var context = new DefaultHttpContext();
             context.Response.Body = new MemoryStream();
-
 
             // Act
             await middleware.Invoke(context);

@@ -10,10 +10,15 @@ namespace TaskManagerAPI.Repositories.TaskRepository
     public interface ITasksByAccountRepository
     {
         IReadOnlyCollection<TaskDomain> GetTasks(int accountId);
+
         bool TaskExists(int accountId, int taskId);
+
         TaskDomain GetTask(int accountId, int taskId);
+
         void DeleteTask(int accountId, int taskId);
+
         void CreateTask(int accountId, TaskDomain task);
+
         Result SaveModifications();
     }
 }

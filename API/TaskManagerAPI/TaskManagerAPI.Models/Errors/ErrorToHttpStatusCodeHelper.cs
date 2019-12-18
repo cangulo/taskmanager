@@ -21,6 +21,7 @@ namespace TaskManagerAPI.Models.Errors
                     {
                         case 0:
                             return 500;
+
                         case 1:
                             if (int.TryParse(errorCode[1].ToString(), out int typeOfError))
                             {
@@ -44,6 +45,7 @@ namespace TaskManagerAPI.Models.Errors
             }
             return 500; // Internal Server Error
         }
+
         /// <summary>
         /// 500 status codes has priority over other error response
         /// </summary>

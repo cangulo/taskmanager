@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
 using TaskManagerAPI.CQRS.TasksCQ.Queries;
 using TaskManagerAPI.Exceptions.Helpers;
@@ -125,12 +125,11 @@ namespace TaskManagerAPI.Controllers
             else
             {
                 return _errorResponseCreator.CreateResponse(opResult.Errors);
-
             }
         }
 
         /// <summary>
-        /// Update the fields specified in the request of one task specified by its id. 
+        /// Update the fields specified in the request of one task specified by its id.
         /// The request must follow JsonPatchDocument model to specify what fields must be modified.
         /// </summary>
         /// <param name="id">Task Id</param>
@@ -162,7 +161,6 @@ namespace TaskManagerAPI.Controllers
                 else
                 {
                     return _errorResponseCreator.CreateResponse(opResult.Errors);
-
                 }
             }
             else

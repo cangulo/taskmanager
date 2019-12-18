@@ -8,12 +8,13 @@ namespace TaskManagerAPI.CQRS.TasksCQ.BaseClasses
     {
         int GetCurrentUserId();
     }
+
     public abstract class BaseCommandQuery : IBaseCommandQuery
     {
         private readonly int _currentUserId;
+
         protected BaseCommandQuery(ICurrentUserService currentUserService)
         {
-
             if (currentUserService == null)
             {
                 throw new ArgumentNullException(nameof(currentUserService));

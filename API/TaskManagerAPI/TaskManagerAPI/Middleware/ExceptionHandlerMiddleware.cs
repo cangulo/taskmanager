@@ -29,7 +29,6 @@ namespace TaskManagerAPI.Pipeline
                 context.Response.StatusCode = exceptionHandler.GetHttpStatusCode();
                 string responseContent = exceptionHandler.CreateResponseContent();
                 await context.Response.WriteAsync(responseContent);
-
             }
         }
     }

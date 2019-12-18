@@ -36,7 +36,6 @@ namespace TaskManagerAPI.EF.DbInitializer
                 DummyDataHelper.AddTaskAccount(_dbContext);
                 _dbContext.SaveChanges();
             }
-
         }
     }
 }

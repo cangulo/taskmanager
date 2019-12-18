@@ -1,6 +1,5 @@
 ﻿using FluentResults;
 using MediatR;
-using TaskManagerAPI.Models.FE;
 
 namespace TaskManagerAPI.CQRS.Authorization.Commands
 {

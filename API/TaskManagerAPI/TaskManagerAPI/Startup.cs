@@ -1,34 +1,34 @@
-﻿using AutoMapper;
+﻿using Autofac;
+using AutoMapper;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.EF.DbInitializer;
+using TaskManagerAPI.Extensions;
+using TaskManagerAPI.Extensions.AutofacModules;
+using TaskManagerAPI.Mappers;
 using TaskManagerAPI.Models.FE.Validators.APIRequests;
 using TaskManagerAPI.Models.Mappers;
-using TaskManagerAPI.Resources.AppSettings;
 using TaskManagerAPI.Pipeline;
+using TaskManagerAPI.Resources.AppSettings;
 using TaskManagerAPI.StartupConfiguration.Extensions;
-using TaskManagerAPI.Extensions;
-using MediatR;
-using TaskManagerAPI.CQRS.Authorization.Commands;
-using TaskManagerAPI.Mappers;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Hosting;
-using Autofac;
-using TaskManagerAPI.Extensions.AutofacModules;
 
 namespace TaskManagerAPI
 {
     public class Startup
     {
         public readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
 
         /// <summary>
         /// Configured Entity Framework Core, DB, JWT Token, BE Services and FluentValidations for the input
@@ -68,9 +68,8 @@ namespace TaskManagerAPI
                 .AddNewtonsoftJson()
                 .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
-            #endregion
+            #endregion Basic MVC HTTP
         }
-
 
         // Register services directly with Autofac. This runs after ConfigureServices so the things
         // here will override registrations made in ConfigureServices.
@@ -82,7 +81,6 @@ namespace TaskManagerAPI
             builder.RegisterModule(new ErrorsHelpersModule());
             builder.RegisterModule(new CQRSModule());
         }
-
 
         /// <summary>
         /// DB Initialized and Custom Exception Handler configured
@@ -100,7 +98,7 @@ namespace TaskManagerAPI
                 serviceScope.ServiceProvider.GetService<IDbInitializer>().StartDbContext();
             }
 
-            #endregion
+            #endregion EF Database
 
             if (env.IsDevelopment())
             {
@@ -128,8 +126,6 @@ namespace TaskManagerAPI
             {
                 endpoints.MapControllers();
             });
-
-
         }
     }
 }

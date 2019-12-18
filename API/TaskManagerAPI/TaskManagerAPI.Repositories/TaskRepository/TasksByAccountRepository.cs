@@ -18,23 +18,28 @@ namespace TaskManagerAPI.Repositories.TaskRepository
         {
             _dbContext = dbContext;
         }
+
         public TaskDomain GetTask(int accountId, int taskId)
         {
             return _dbContext.Tasks.FirstOrDefault(a => a.Id == taskId && a.AccountId == accountId);
         }
+
         public bool TaskExists(int accountId, int taskId)
         {
             return _dbContext.Tasks.Any(a => a.Id == taskId && a.AccountId == accountId);
         }
+
         public IReadOnlyCollection<TaskDomain> GetTasks(int accountId)
         {
             return new ReadOnlyCollection<TaskDomain>(_dbContext.Tasks.Where(a => a.AccountId == accountId).ToList());
         }
+
         public void DeleteTask(int accountId, int taskId)
         {
             TaskDomain taskToBeDeleted = _dbContext.Tasks.FirstOrDefault(t => t.AccountId == accountId && t.Id == taskId);
             _dbContext.Tasks.Remove(taskToBeDeleted);
         }
+
         public void CreateTask(int accountId, TaskDomain task)
         {
             Account account = _dbContext.Accounts.FirstOrDefault(a => a.Id == accountId);
@@ -45,6 +50,7 @@ namespace TaskManagerAPI.Repositories.TaskRepository
                 _dbContext.Tasks.Add(task);
             }
         }
+
         public Result SaveModifications()
         {
             if (_dbContext.SaveChanges() >= 0)

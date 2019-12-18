@@ -30,13 +30,12 @@ namespace TaskManagerAPI.EF.DbInitializer
         public static void AddDummyAccount(TaskManagerDbContext dbContext)
         {
             dbContext.Accounts.Add(DummyDataHelper.Account);
-
         }
+
         public static void AddTaskAccount(TaskManagerDbContext dbContext)
         {
             DummyDataHelper.Task.AccountId = dbContext.Accounts.FirstOrDefault(a => a.Email == DummyDataHelper.Account.Email).Id;
             dbContext.Tasks.Add(DummyDataHelper.Task);
-
         }
     }
 }

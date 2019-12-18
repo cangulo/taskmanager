@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
@@ -23,13 +22,11 @@ namespace TaskManagerAPI.Extensions
                         Email = "c.angulo.mascarell@outlook.com",
                         Url = new Uri("https://www.linkedin.com/in/angulomascarell")
                     }
-
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
-
             });
             return serviceCollection;
         }

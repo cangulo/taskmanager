@@ -14,5 +14,4 @@ namespace TaskManagerAPI.Models.FE.APIRequests
         [JsonConverter(typeof(Trim))]
         public string Password { get; set; }
     }
-
 }

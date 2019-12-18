@@ -9,7 +9,7 @@ using TaskManagerAPI.Resources.Constants;
 namespace TaskManagerAPI.StartupConfiguration.Extensions
 {
     /// <summary>
-    /// Extended method of IServiceCollection to configure the JWT Token. This aims to be a simple and minimum configuration. 
+    /// Extended method of IServiceCollection to configure the JWT Token. This aims to be a simple and minimum configuration.
     /// </summary>
     public static class JwtAuthenticationExtension
     {

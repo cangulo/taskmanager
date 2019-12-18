@@ -1,5 +1,4 @@
-﻿
-namespace TaskManagerAPI.EF.DbInitializer
+﻿namespace TaskManagerAPI.EF.DbInitializer
 {
     public interface IDbInitializer
     {

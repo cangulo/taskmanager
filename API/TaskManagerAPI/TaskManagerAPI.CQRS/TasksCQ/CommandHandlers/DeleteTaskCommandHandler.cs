@@ -1,7 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using FluentResults;
+﻿using FluentResults;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
@@ -11,14 +11,12 @@ using TaskManagerAPI.Resources.Errors;
 
 namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
 {
-
     public class DeleteTaskCommandHandler : BaseCommandQuery, IRequestHandler<DeleteTaskCommand, Result>
     {
         private readonly ITasksByAccountRepository _tasksRepoByAccount;
 
         public DeleteTaskCommandHandler(ITasksByAccountRepository tasksRepoByAccount, ICurrentUserService currentUserService) : base(currentUserService)
         {
-
             _tasksRepoByAccount = tasksRepoByAccount;
         }
 

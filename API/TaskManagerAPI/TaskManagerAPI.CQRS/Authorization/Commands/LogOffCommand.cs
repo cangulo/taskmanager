@@ -3,5 +3,5 @@ using MediatR;
 
 namespace TaskManagerAPI.CQRS.Authorization.Commands
 {
-    public class LogOffCommand : IRequest<Result> {}
+    public class LogOffCommand : IRequest<Result> { }
 }

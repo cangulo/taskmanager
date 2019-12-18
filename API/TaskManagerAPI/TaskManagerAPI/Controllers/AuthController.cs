@@ -26,7 +26,7 @@ namespace TaskManagerAPI.Controllers
         }
 
         /// <summary>
-        /// Log in the user 
+        /// Log in the user
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -85,9 +85,7 @@ namespace TaskManagerAPI.Controllers
             else
             {
                 return _errorResponseCreator.CreateResponse(result.Errors);
-
             }
-
         }
     }
 }

@@ -9,6 +9,7 @@ namespace TaskManagerAPI.CQRS.Exceptions
     public class CQException : Exception, ICustomException
     {
         private readonly IEnumerable<CustomError> _errors;
+
         public CQException(IEnumerable<CustomError> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
         {
             _errors = errors;
@@ -24,7 +25,6 @@ namespace TaskManagerAPI.CQRS.Exceptions
             {
                 return $"ServiceException: No Errors Associated";
             }
-
         }
 
         public IEnumerable<CustomError> Errors()

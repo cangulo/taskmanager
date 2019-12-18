@@ -3,6 +3,7 @@
     public interface IExceptionHandler
     {
         string CreateResponseContent();
+
         int GetHttpStatusCode();
     }
 }

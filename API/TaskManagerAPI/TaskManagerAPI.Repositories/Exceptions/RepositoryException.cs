@@ -9,6 +9,7 @@ namespace TaskManagerAPI.Repositories.Exceptions
     public class RepositoryException : Exception, ICustomException
     {
         private readonly IEnumerable<CustomError> _errors;
+
         public RepositoryException(List<CustomError> errors) : base(string.Join(",", errors.Select(er => er.ToString())))
         {
             _errors = errors;
@@ -24,7 +25,6 @@ namespace TaskManagerAPI.Repositories.Exceptions
             {
                 return $"RepositoryException: No Errors Associated";
             }
-
         }
 
         public IEnumerable<CustomError> Errors()

@@ -11,21 +11,25 @@ namespace TaskManagerAPI.EF.Context
         public DbSet<Account> Accounts { get; set; }
         public DbSet<TaskDomain> Tasks { get; set; }
         private readonly ILogger _logger;
+
         public TaskManagerDbContext(DbContextOptions<TaskManagerDbContext> options, ILogger<TaskManagerDbContext> logger) : base(options)
         {
             _logger = logger;
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             _logger.LogInformation("Configuring DB Context");
             base.OnConfiguring(optionsBuilder);
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             _logger.LogInformation("Configuring DB models");
             modelBuilder.ApplyConfiguration(new AccountEFConfiguration());
             modelBuilder.ApplyConfiguration(new TaskEFConfiguration());
         }
+
         public override int SaveChanges()
         {
             _logger.LogInformation("Saving change in the DB");

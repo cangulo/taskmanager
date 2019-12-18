@@ -1,7 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using FluentResults;
+﻿using FluentResults;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 using TaskManagerAPI.CQRS.Authorization.Commands;
 using TaskManagerAPI.Models.BE;
 using TaskManagerAPI.Models.Errors;
@@ -28,7 +28,6 @@ namespace TaskManagerAPI.CQRS.Authorization.Handlers
                     Email = request.Email.ToLower(),
                     Username = request.FullName,
                     Password = request.Password
-
                 };
                 this._accountRepository.CreateAccount(newAccount);
 

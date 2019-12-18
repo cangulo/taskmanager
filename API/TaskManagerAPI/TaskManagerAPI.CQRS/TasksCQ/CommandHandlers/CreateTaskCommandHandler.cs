@@ -1,7 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using FluentResults;
+﻿using FluentResults;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
@@ -15,7 +15,6 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
 
         public CreateTaskCommandHandler(ITasksByAccountRepository tasksRepoByAccount, ICurrentUserService currentUserService) : base(currentUserService)
         {
-
             _tasksRepoByAccount = tasksRepoByAccount;
         }
 

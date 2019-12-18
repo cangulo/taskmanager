@@ -4,7 +4,8 @@ namespace TaskManagerAPI.Filters.Authentication
 {
     public class AuthenticationFilterAttribute : TypeFilterAttribute
     {
-        public AuthenticationFilterAttribute() : base(typeof(AuthenticationFilter)) { }
+        public AuthenticationFilterAttribute() : base(typeof(AuthenticationFilter))
+        {
+        }
     }
 }
-

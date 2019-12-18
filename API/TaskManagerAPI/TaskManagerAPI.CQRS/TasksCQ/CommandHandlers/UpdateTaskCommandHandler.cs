@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentResults;
 using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
@@ -28,7 +28,6 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
         {
             if (this._tasksRepoByAccount.TaskExists(this.GetCurrentUserId(), request.Id))
             {
-
                 TaskDomain taskInDb = _tasksRepoByAccount.GetTask(this.GetCurrentUserId(), request.Id);
                 _mapper.Map(request.Task, taskInDb);
                 return Task.FromResult(_tasksRepoByAccount.SaveModifications());

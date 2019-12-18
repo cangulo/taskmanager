@@ -12,9 +12,12 @@
         //// Y=4 Bad input data
         //// Y=5 Internal Error
         // ZZZ Specific Error Code
+
         #region API Layer
+
         public const string UNKNOWN_ERROR_API = "05001";
-        #endregion
+
+        #endregion API Layer
 
         #region BL Layer
 
@@ -26,13 +29,13 @@
         public const string USER_DISABLED = "14006";
         public const string USER_LOCKED = "14007";
 
-        #endregion
+        #endregion BL Layer
 
         #region Repository Layer
 
         public const string UNABLE_TO_SAVE_CHANGES_IN_TASK_TABLE = "25001";
         public const string UNABLE_TO_SAVE_CHANGES_IN_ACCOUNT_TABLE = "25002";
 
-        #endregion
+        #endregion Repository Layer
     }
 }
