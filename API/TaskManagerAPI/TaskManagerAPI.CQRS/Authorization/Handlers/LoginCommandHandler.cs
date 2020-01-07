@@ -33,9 +33,9 @@ namespace TaskManagerAPI.CQRS.Authorization.Handlers
             {
                 Account accountDB = _accountRepository.GetAccount(request.Email, request.Password);
 
-                Result<bool> userIsActiveQuery = _userStatusVerification.UserIsActive(accountDB.Id);
+                Result userIsActiveQuery = _userStatusVerification.UserIsActive(accountDB.Id);
 
-                if (userIsActiveQuery.IsSuccess && userIsActiveQuery.Value)
+                if (userIsActiveQuery.IsSuccess)
                 {
                     string token = _tokenCreator.CreateToken(accountDB);
                     accountDB.Token = token;

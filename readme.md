@@ -4,9 +4,16 @@ This is the main page for all the FE and BE projects related to a task manager a
 
 ## Projects
 
-| Name                     | Area | Description                                 | Status                                                   |
-| ------------------------ | ---- | ------------------------------------------- | -------------------------------------------------------- |
-| [API](./API)             | BE   | Back-end projects in different technologies | In progress                                              |
+| Name         | Area | Description                                 | Status      |
+| ------------ | ---- | ------------------------------------------- | ----------- |
+| [API](./API) | BE   | Back-end projects in different technologies | In progress |
+
+## Brances
+
+| Name              | Description                      | Status      |
+| ----------------- | -------------------------------- | ----------- |
+| [CQH](./tree/CQH) | Project developed following CQRS | In progress |
+
 
 ## Author Info
 

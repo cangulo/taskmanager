@@ -40,7 +40,7 @@ namespace TaskManagerAPI.Repositories.TaskRepository
             _dbContext.Tasks.Remove(taskToBeDeleted);
         }
 
-        public void CreateTask(int accountId, TaskDomain task)
+        public Result CreateTask(int accountId, TaskDomain task)
         {
             Account account = _dbContext.Accounts.FirstOrDefault(a => a.Id == accountId);
             if (account != null)
@@ -48,6 +48,13 @@ namespace TaskManagerAPI.Repositories.TaskRepository
                 task.Account = account;
                 task.AccountId = accountId;
                 _dbContext.Tasks.Add(task);
+                return Results.Ok();
+            }
+            else
+            {
+                return Results.Fail(new CustomError(
+                    ErrorsCodesContants.USER_ID_NOT_FOUND,
+                    ErrorsMessagesConstants.USER_ID_NOT_FOUND, 404));
             }
         }
 

@@ -9,44 +9,36 @@ namespace TaskManagerAPI.Exceptions.Handlers
 {
     public class CQExceptionHandler : IExceptionHandler
     {
-        private readonly IErrorToHttpStatusCodeHelper _errorCodeMapper;
         private readonly CQException _handlerException;
 
-        public CQExceptionHandler(IErrorToHttpStatusCodeHelper errorCodeMapper, CQException handlerException)
+        public CQExceptionHandler(CQException handlerException)
         {
-            _errorCodeMapper = errorCodeMapper;
-            _handlerException = handlerException;
+            // TODO: Test null input value
+            if (handlerException == null || !handlerException.Errors().Any())
+            {
+                CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
+                _handlerException = new CQException(new List<CustomError> { unkownError });
+
+            }
+            else
+            {
+                _handlerException = handlerException;
+            }
         }
 
         public string CreateResponseContent()
         {
-            string responseContent = string.Empty;
-            if (_handlerException.Errors().Any())
-            {
-                List<CustomError> serviceErrors = _handlerException.Errors().Select(er => er).ToList();
-                responseContent = JsonConvert.SerializeObject(serviceErrors);
-            }
-            else
-            {
-                CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
-                responseContent = JsonConvert.SerializeObject(unkownError);
-            }
+            List<CustomError> serviceErrors = _handlerException.Errors().Select(er => er).ToList();
+            string responseContent = JsonConvert.SerializeObject(serviceErrors);
             return responseContent;
         }
 
         public int GetHttpStatusCode()
         {
-            if (_handlerException.Errors().Any())
-            {
-                // TODO: Solve
-                //IEnumerable<string> errorCodes = _handlerException.Errors().Select(er => er.Code);
-                //return _errorCodeMapper.ToHttpStatusCode(errorCodes);
-                return 500;
-            }
-            else
-            {
-                return 500;
-            }
+            IEnumerable<int> errorCodes = _handlerException
+                .Errors()
+                .Select(er => er.Metadata.TryGetValue(ErrorKeyPropsConstants.ERROR_HTTP_CODE, out object erhttpCode) ? (int)erhttpCode : 500).OrderByDescending(value => value);
+            return errorCodes.FirstOrDefault();
         }
     }
 }

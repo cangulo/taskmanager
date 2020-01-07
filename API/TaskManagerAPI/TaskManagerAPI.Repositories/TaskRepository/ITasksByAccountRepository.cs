@@ -17,7 +17,7 @@ namespace TaskManagerAPI.Repositories.TaskRepository
 
         void DeleteTask(int accountId, int taskId);
 
-        void CreateTask(int accountId, TaskDomain task);
+        Result CreateTask(int accountId, TaskDomain task);
 
         Result SaveModifications();
     }

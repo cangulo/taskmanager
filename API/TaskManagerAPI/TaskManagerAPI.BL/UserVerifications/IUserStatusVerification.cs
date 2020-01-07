@@ -9,6 +9,6 @@ namespace TaskManagerAPI.BL.UserStatusVerification
     /// </summary>
     public interface IUserStatusVerification
     {
-        Result<bool> UserIsActive(int userId);
+        Result UserIsActive(int userId);
     }
 }

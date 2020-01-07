@@ -31,7 +31,7 @@ namespace TaskManagerAPI.CQRS.Authorization.Handlers
                 if (this._accountRepository.ExistsAccount(userId))
                 {
                     Account accountDB = this._accountRepository.GetAccount(userId);
-                    accountDB.Token = null;
+                    accountDB.Token = string.Empty;
                     return Task.FromResult(this._accountRepository.SaveModifications());
                 }
                 else

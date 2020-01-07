@@ -16,34 +16,34 @@ namespace TaskManagerAPI.BL.UserStatusVerification
             _taskManagerDbContext = taskManagerDbContext;
         }
 
-        public Result<bool> UserIsActive(int userId)
+        public Result UserIsActive(int userId)
         {
             if (this._taskManagerDbContext.Accounts.Any(x => x.Id == userId))
             {
                 UserStatus status = this._taskManagerDbContext.Accounts.First(x => x.Id == userId).Status;
                 if (status == UserStatus.Active)
                 {
-                    return Results.Ok<bool>(true);
+                    return Results.Ok();
                 }
                 else if (status == UserStatus.Disable)
                 {
-                    return Results.Fail<bool>(
+                    return Results.Fail(
                         new CustomError(ErrorsCodesContants.USER_DISABLED, ErrorsMessagesConstants.USER_DISABLED, 401));
                 }
                 else if (status == UserStatus.Locked)
                 {
-                    return Results.Fail<bool>(
+                    return Results.Fail(
                         new CustomError(ErrorsCodesContants.USER_LOCKED, ErrorsMessagesConstants.USER_LOCKED, 401));
                 }
                 else
                 {
-                    return Results.Fail<bool>(
+                    return Results.Fail(
                         new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500));
                 }
             }
             else
             {
-                return Results.Fail<bool>(
+                return Results.Fail(
                     new CustomError(ErrorsCodesContants.USER_ID_NOT_FOUND, ErrorsMessagesConstants.USER_ID_NOT_FOUND, 401));
             }
         }

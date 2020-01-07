@@ -20,8 +20,15 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
 
         public Task<Result> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            _tasksRepoByAccount.CreateTask(this.GetCurrentUserId(), request.Task);
-            return Task.FromResult(_tasksRepoByAccount.SaveModifications());
+            Result resultCreating = _tasksRepoByAccount.CreateTask(this.GetCurrentUserId(), request.Task);
+            if (resultCreating.IsSuccess)
+            {
+                return Task.FromResult(_tasksRepoByAccount.SaveModifications());
+            }
+            else
+            {
+                return Task.FromResult(resultCreating);
+            }
         }
     }
 }

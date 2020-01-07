@@ -40,8 +40,8 @@ namespace TaskManagerAPI.Filters.Authentication
                 {
                     context.Result = new UnauthorizedResult();
                 }
-                Result<bool> userIsActiveQuery = _userVerification.UserIsActive(userId);
-                if (!userIsActiveQuery.IsSuccess || !userIsActiveQuery.Value)
+                Result userIsActiveQuery = _userVerification.UserIsActive(userId);
+                if (!userIsActiveQuery.IsSuccess)
                 {
                     context.Result = new UnauthorizedResult();
                 }

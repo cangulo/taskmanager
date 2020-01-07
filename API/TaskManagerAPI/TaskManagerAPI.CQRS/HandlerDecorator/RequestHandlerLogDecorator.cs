@@ -30,7 +30,7 @@ namespace TaskManagerAPI.CQRS.HandlerDecorator
             string handlerName = this._decorated.GetType().Name;
             if ((response as ResultBase).IsFailed)
             {
-                // TODO: The responsability of log the errors should be at the top level of the application, at the Exception middleware
+                // TODO: The responsibility of log the errors should be at the top level of the application, at the Exception middleware
                 this._logger.LogError($"Handler; {handlerName} ; {stopwatch.ElapsedMilliseconds}");
                 var listError = (response as ResultBase).Errors;
                 this._logger.LogError($"Handler; {handlerName} ; Errors: {string.Join(";", listError.Select(er => er.ToString()))}");
