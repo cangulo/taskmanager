@@ -58,6 +58,7 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
                             x.Email == newAccount.Email.ToLower() &&
                             x.Username == newAccount.Username)), Times.Once);
         }
+
         [Fact]
         public async Task Handle_UserAlreadyExists_SpecificError()
         {

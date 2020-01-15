@@ -18,7 +18,6 @@ namespace TaskManagerAPI.Exceptions.Handlers
             {
                 CustomError unkownError = new CustomError(ErrorsCodesContants.UNKNOWN_ERROR_API, ErrorsMessagesConstants.UNKNOWN_ERROR_API, 500);
                 _handlerException = new CQException(new List<CustomError> { unkownError });
-
             }
             else
             {

@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace TaskManagerAPI.Repositories.Test
@@ -8,7 +7,6 @@ namespace TaskManagerAPI.Repositories.Test
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

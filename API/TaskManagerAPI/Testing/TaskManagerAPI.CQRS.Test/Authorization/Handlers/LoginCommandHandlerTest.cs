@@ -22,6 +22,7 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
         private readonly Mock<ITokenCreator> _tokenCreatorMock = new Mock<ITokenCreator>();
         private readonly Mock<IUserStatusVerification> _userStatusVerificationMock = new Mock<IUserStatusVerification>();
         private LoginCommandHandler _handler;
+
         public LoginCommandHandlerTest()
         {
             _handler = new LoginCommandHandler(_accountRepositoryMock.Object, _tokenCreatorMock.Object, _userStatusVerificationMock.Object);
@@ -35,7 +36,6 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
         [Fact]
         public async Task Handle_ValidAccount_HappyFlow()
         {
-
             // Arrange
 
             LoginCommand request = new LoginCommand
@@ -66,7 +66,6 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
         [Fact]
         public async Task Handle_AccountDoesntExist_SpecificErrorAnd401()
         {
-
             // Arrange
 
             LoginCommand request = new LoginCommand
@@ -91,7 +90,6 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
         [Fact]
         public async Task Handle_AccountIsNotActive_SpecificErrorAnd401()
         {
-
             // Arrange
 
             LoginCommand request = new LoginCommand
@@ -119,7 +117,6 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
         [Fact]
         public async Task Handle_ErrorSavingChanges_SpecificError500()
         {
-
             // Arrange
 
             LoginCommand request = new LoginCommand

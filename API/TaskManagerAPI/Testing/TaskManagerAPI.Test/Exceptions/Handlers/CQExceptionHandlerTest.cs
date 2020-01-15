@@ -27,17 +27,14 @@ namespace TaskManagerAPI.Test.Exceptions.Handlers
             handlerResult.GetHttpStatusCode().Should().Be(handlerExpected.GetHttpStatusCode());
         }
 
-
         [Fact]
         public void CreateResponseContent_ErrorAttached()
         {
-
         }
 
         [Fact]
         public void CreateResponseContent_DefaultErrorAttached()
         {
-
         }
 
         [Fact]
@@ -56,7 +53,6 @@ namespace TaskManagerAPI.Test.Exceptions.Handlers
         [Fact]
         public void GetHttpStatusCode_DefaultErrorAttached()
         {
-
         }
     }
 }

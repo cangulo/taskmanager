@@ -1,39 +1,42 @@
-﻿using FluentAssertions;
-using FluentResults;
+﻿using FluentResults;
 using Moq;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.TasksCQ.CommandHandlers;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
 using TaskManagerAPI.Repositories.TaskRepository;
 using Xunit;
+using FluentAssertions;
+using TaskManagerAPI.Models.Errors;
+using TaskManagerAPI.Resources.Errors;
 
 namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 {
-    public class CreateTaskCommandHandlerTest
+    public class DeleteTaskCommandHandlerTest
     {
         private readonly Mock<ITasksByAccountRepository> _tasksRepoByAccountMock = new Mock<ITasksByAccountRepository>();
         private readonly Mock<ICurrentUserService> _currentUserService = new Mock<ICurrentUserService>();
-        private CreateTaskCommandHandler _handler;
+        private DeleteTaskCommandHandler _handler;
 
-        private readonly CreateTaskCommand _request = new CreateTaskCommand
+        private readonly DeleteTaskCommand _request = new DeleteTaskCommand
         {
-            Task = new Models.BE.Tasks.TaskDomain()
+            Id = 1
         };
 
-        public CreateTaskCommandHandlerTest()
+        public DeleteTaskCommandHandlerTest()
         {
             _currentUserService.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsCQTest.Id));
-            _handler = new CreateTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserService.Object);
+            _handler = new DeleteTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserService.Object);
         }
 
         [Fact]
-        public async Task Handle_CorrectUserCreationg_HappyFlow()
+        public async Task Handle_DeleteExistingTask_HappyFlow()
         {
             // Arrange
+            _tasksRepoByAccountMock.Setup(x => x.TaskExists(ConstantsCQTest.Id, _request.Id)).Returns(true);
+            _tasksRepoByAccountMock.Setup(X => X.DeleteTask(ConstantsCQTest.Id, _request.Id));
 
-            _tasksRepoByAccountMock.Setup(X => X.CreateTask(ConstantsCQTest.Id, _request.Task)).Returns(Results.Ok());
             Result succesSaveModifications = Results.Ok();
             _tasksRepoByAccountMock.Setup(x => x.SaveModifications()).Returns(succesSaveModifications);
 
@@ -47,19 +50,20 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 
 
         [Fact]
-        public async Task Handle_ErrorCreatingTask_ReturningRepoError()
+        public async Task Handle_TaskDoesntExist_ReturningRepoError()
         {
             // Arrange
-            string errorMsg = string.Empty;
-            Result failedResult = Results.Fail(new Error(errorMsg));
-            _tasksRepoByAccountMock.Setup(x => x.CreateTask(ConstantsCQTest.Id, _request.Task)).Returns(failedResult);
-            
+            _tasksRepoByAccountMock.Setup(x => x.TaskExists(ConstantsCQTest.Id, _request.Id)).Returns(false);
+
             // Act
             Result result = await _handler.Handle(_request, CancellationToken.None);
 
             // Assert
             result.IsSuccess.Should().BeFalse();
-            result.Should().Be(failedResult);
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].Message.Should().Be(ErrorsMessagesConstants.TASK_ID_NOT_FOUND);
+            result.Errors[0].Metadata[ErrorKeyPropsConstants.ERROR_CODE].Should().Be(ErrorsCodesContants.TASK_ID_NOT_FOUND);
+            result.Errors[0].Metadata[ErrorKeyPropsConstants.ERROR_HTTP_CODE].Should().Be(404);
         }
     }
 }
