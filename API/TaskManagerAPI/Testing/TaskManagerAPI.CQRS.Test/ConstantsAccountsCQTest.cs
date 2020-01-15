@@ -5,8 +5,7 @@ using TaskManagerAPI.Models.BE.Tasks;
 
 namespace TaskManagerAPI.CQRS.Test
 {
-    // TODO: Rename to ConstantsAccountsCQTest
-    public class ConstantsCQTest
+    public class ConstantsAccountsCQTest
     {
         public const int Id = 1;
         public const string Email = "test@test.com";

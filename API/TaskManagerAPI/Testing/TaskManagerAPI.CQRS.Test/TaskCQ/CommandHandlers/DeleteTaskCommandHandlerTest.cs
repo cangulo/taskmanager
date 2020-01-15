@@ -26,7 +26,7 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 
         public DeleteTaskCommandHandlerTest()
         {
-            _currentUserService.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsCQTest.Id));
+            _currentUserService.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsAccountsCQTest.Id));
             _handler = new DeleteTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserService.Object);
         }
 
@@ -34,8 +34,8 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
         public async Task Handle_DeleteExistingTask_HappyFlow()
         {
             // Arrange
-            _tasksRepoByAccountMock.Setup(x => x.TaskExists(ConstantsCQTest.Id, _request.Id)).Returns(true);
-            _tasksRepoByAccountMock.Setup(X => X.DeleteTask(ConstantsCQTest.Id, _request.Id));
+            _tasksRepoByAccountMock.Setup(x => x.TaskExists(ConstantsAccountsCQTest.Id, _request.Id)).Returns(true);
+            _tasksRepoByAccountMock.Setup(X => X.DeleteTask(ConstantsAccountsCQTest.Id, _request.Id));
 
             Result succesSaveModifications = Results.Ok();
             _tasksRepoByAccountMock.Setup(x => x.SaveModifications()).Returns(succesSaveModifications);
@@ -53,7 +53,7 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
         public async Task Handle_TaskDoesntExist_ReturningRepoError()
         {
             // Arrange
-            _tasksRepoByAccountMock.Setup(x => x.TaskExists(ConstantsCQTest.Id, _request.Id)).Returns(false);
+            _tasksRepoByAccountMock.Setup(x => x.TaskExists(ConstantsAccountsCQTest.Id, _request.Id)).Returns(false);
 
             // Act
             Result result = await _handler.Handle(_request, CancellationToken.None);

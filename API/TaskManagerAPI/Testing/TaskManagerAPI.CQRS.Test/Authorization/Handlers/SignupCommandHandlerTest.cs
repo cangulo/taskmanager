@@ -29,9 +29,9 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
             // Arrange
             SignUpCommand request = new SignUpCommand
             {
-                FullName = ConstantsCQTest.Username,
-                Email = ConstantsCQTest.Email,
-                Password = ConstantsCQTest.Password
+                FullName = ConstantsAccountsCQTest.Username,
+                Email = ConstantsAccountsCQTest.Email,
+                Password = ConstantsAccountsCQTest.Password
             };
             _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email)).Returns(false);
             _accountRepositoryMock.Setup(x => x.SaveModifications()).Returns(Results.Ok());
@@ -65,9 +65,9 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
             // Arrange
             SignUpCommand request = new SignUpCommand
             {
-                FullName = ConstantsCQTest.Username,
-                Email = ConstantsCQTest.Email,
-                Password = ConstantsCQTest.Password
+                FullName = ConstantsAccountsCQTest.Username,
+                Email = ConstantsAccountsCQTest.Email,
+                Password = ConstantsAccountsCQTest.Password
             };
             _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email)).Returns(true);
 
@@ -88,9 +88,9 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
             // Arrange
             SignUpCommand request = new SignUpCommand
             {
-                FullName = ConstantsCQTest.Username,
-                Email = ConstantsCQTest.Email,
-                Password = ConstantsCQTest.Password
+                FullName = ConstantsAccountsCQTest.Username,
+                Email = ConstantsAccountsCQTest.Email,
+                Password = ConstantsAccountsCQTest.Password
             };
             _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email)).Returns(false);
             Result failedResult = Results.Fail(new Error());

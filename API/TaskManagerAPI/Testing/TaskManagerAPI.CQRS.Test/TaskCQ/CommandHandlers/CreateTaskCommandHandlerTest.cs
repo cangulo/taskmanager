@@ -24,7 +24,7 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 
         public CreateTaskCommandHandlerTest()
         {
-            _currentUserService.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsCQTest.Id));
+            _currentUserService.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsAccountsCQTest.Id));
             _handler = new CreateTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserService.Object);
         }
 
@@ -33,7 +33,7 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
         {
             // Arrange
 
-            _tasksRepoByAccountMock.Setup(X => X.CreateTask(ConstantsCQTest.Id, _request.Task)).Returns(Results.Ok());
+            _tasksRepoByAccountMock.Setup(X => X.CreateTask(ConstantsAccountsCQTest.Id, _request.Task)).Returns(Results.Ok());
             Result succesSaveModifications = Results.Ok();
             _tasksRepoByAccountMock.Setup(x => x.SaveModifications()).Returns(succesSaveModifications);
 
@@ -52,7 +52,7 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
             // Arrange
             string errorMsg = string.Empty;
             Result failedResult = Results.Fail(new Error(errorMsg));
-            _tasksRepoByAccountMock.Setup(x => x.CreateTask(ConstantsCQTest.Id, _request.Task)).Returns(failedResult);
+            _tasksRepoByAccountMock.Setup(x => x.CreateTask(ConstantsAccountsCQTest.Id, _request.Task)).Returns(failedResult);
             
             // Act
             Result result = await _handler.Handle(_request, CancellationToken.None);

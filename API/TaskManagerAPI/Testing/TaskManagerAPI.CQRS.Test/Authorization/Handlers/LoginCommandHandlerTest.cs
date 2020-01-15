@@ -40,13 +40,13 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
 
             LoginCommand request = new LoginCommand
             {
-                Email = ConstantsCQTest.Email,
-                Password = ConstantsCQTest.Password
+                Email = ConstantsAccountsCQTest.Email,
+                Password = ConstantsAccountsCQTest.Password
             };
             _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email, request.Password)).Returns(true);
-            _accountRepositoryMock.Setup(x => x.GetAccount(request.Email, request.Password)).Returns(ConstantsCQTest.AccountTest);
-            _userStatusVerificationMock.Setup(x => x.UserIsActive(ConstantsCQTest.AccountTest.Id)).Returns(Results.Ok());
-            _tokenCreatorMock.Setup(x => x.CreateToken(ConstantsCQTest.AccountTest)).Returns(ConstantsCQTest.Token2);
+            _accountRepositoryMock.Setup(x => x.GetAccount(request.Email, request.Password)).Returns(ConstantsAccountsCQTest.AccountTest);
+            _userStatusVerificationMock.Setup(x => x.UserIsActive(ConstantsAccountsCQTest.AccountTest.Id)).Returns(Results.Ok());
+            _tokenCreatorMock.Setup(x => x.CreateToken(ConstantsAccountsCQTest.AccountTest)).Returns(ConstantsAccountsCQTest.Token2);
             _accountRepositoryMock.Setup(x => x.SaveModifications()).Returns(Results.Ok());
 
             // Act
@@ -55,12 +55,12 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
 
             // Assert
             result.IsSuccess.Should().BeTrue();
-            result.Value.Should().BeEquivalentTo(new PortalAccount { Token = ConstantsCQTest.Token2, Username = ConstantsCQTest.AccountTest.Username });
+            result.Value.Should().BeEquivalentTo(new PortalAccount { Token = ConstantsAccountsCQTest.Token2, Username = ConstantsAccountsCQTest.AccountTest.Username });
             _accountRepositoryMock.Verify(x => x.SaveModifications(), Times.Once());
-            ConstantsCQTest.AccountTest.Token.Should().Be(ConstantsCQTest.Token2);
-            ConstantsCQTest.AccountTest.LastLogintime.Should().BeAfter(DateTime.MinValue);
-            ConstantsCQTest.AccountTest.LastLogintime.Should().BeAfter(DateTime.UtcNow.AddMinutes(-1));
-            ConstantsCQTest.AccountTest.LastLogintime.Should().BeBefore(DateTime.UtcNow);
+            ConstantsAccountsCQTest.AccountTest.Token.Should().Be(ConstantsAccountsCQTest.Token2);
+            ConstantsAccountsCQTest.AccountTest.LastLogintime.Should().BeAfter(DateTime.MinValue);
+            ConstantsAccountsCQTest.AccountTest.LastLogintime.Should().BeAfter(DateTime.UtcNow.AddMinutes(-1));
+            ConstantsAccountsCQTest.AccountTest.LastLogintime.Should().BeBefore(DateTime.UtcNow);
         }
 
         [Fact]
@@ -70,8 +70,8 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
 
             LoginCommand request = new LoginCommand
             {
-                Email = ConstantsCQTest.Email,
-                Password = ConstantsCQTest.Password
+                Email = ConstantsAccountsCQTest.Email,
+                Password = ConstantsAccountsCQTest.Password
             };
             _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email, request.Password)).Returns(false);
 
@@ -94,13 +94,13 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
 
             LoginCommand request = new LoginCommand
             {
-                Email = ConstantsCQTest.Email,
-                Password = ConstantsCQTest.Password
+                Email = ConstantsAccountsCQTest.Email,
+                Password = ConstantsAccountsCQTest.Password
             };
             _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email, request.Password)).Returns(true);
-            _accountRepositoryMock.Setup(x => x.GetAccount(request.Email, request.Password)).Returns(ConstantsCQTest.AccountTest);
+            _accountRepositoryMock.Setup(x => x.GetAccount(request.Email, request.Password)).Returns(ConstantsAccountsCQTest.AccountTest);
             CustomError errorUserDisabled = new CustomError(ErrorsCodesContants.USER_DISABLED, ErrorsMessagesConstants.USER_DISABLED, 401);
-            _userStatusVerificationMock.Setup(x => x.UserIsActive(ConstantsCQTest.AccountTest.Id)).Returns(Results.Fail(errorUserDisabled));
+            _userStatusVerificationMock.Setup(x => x.UserIsActive(ConstantsAccountsCQTest.AccountTest.Id)).Returns(Results.Fail(errorUserDisabled));
 
             // Act
 
@@ -121,13 +121,13 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
 
             LoginCommand request = new LoginCommand
             {
-                Email = ConstantsCQTest.Email,
-                Password = ConstantsCQTest.Password
+                Email = ConstantsAccountsCQTest.Email,
+                Password = ConstantsAccountsCQTest.Password
             };
             _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email, request.Password)).Returns(true);
-            _accountRepositoryMock.Setup(x => x.GetAccount(request.Email, request.Password)).Returns(ConstantsCQTest.AccountTest);
-            _userStatusVerificationMock.Setup(x => x.UserIsActive(ConstantsCQTest.AccountTest.Id)).Returns(Results.Ok());
-            _tokenCreatorMock.Setup(x => x.CreateToken(ConstantsCQTest.AccountTest)).Returns(ConstantsCQTest.Token2);
+            _accountRepositoryMock.Setup(x => x.GetAccount(request.Email, request.Password)).Returns(ConstantsAccountsCQTest.AccountTest);
+            _userStatusVerificationMock.Setup(x => x.UserIsActive(ConstantsAccountsCQTest.AccountTest.Id)).Returns(Results.Ok());
+            _tokenCreatorMock.Setup(x => x.CreateToken(ConstantsAccountsCQTest.AccountTest)).Returns(ConstantsAccountsCQTest.Token2);
             CustomError errorSavingModifications = new CustomError(
                     ErrorsCodesContants.UNABLE_TO_SAVE_CHANGES_IN_ACCOUNT_TABLE,
                     ErrorsMessagesConstants.UNABLE_TO_SAVE_CHANGES_IN_ACCOUNT_TABLE, 500);

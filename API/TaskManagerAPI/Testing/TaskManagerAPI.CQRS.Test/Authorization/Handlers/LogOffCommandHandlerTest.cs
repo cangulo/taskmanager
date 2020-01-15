@@ -30,10 +30,10 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
             // Arrange
 
             LogOffCommand request = new LogOffCommand();
-            int accountId = ConstantsCQTest.Id;
+            int accountId = ConstantsAccountsCQTest.Id;
             _currentUserService.Setup(x => x.GetIdCurrentUser()).Returns(Results.Ok<int>(accountId));
             _accountRepository.Setup(x => x.ExistsAccount(accountId)).Returns(true);
-            _accountRepository.Setup(x => x.GetAccount(accountId)).Returns(ConstantsCQTest.AccountTest);
+            _accountRepository.Setup(x => x.GetAccount(accountId)).Returns(ConstantsAccountsCQTest.AccountTest);
             Result successResult = Results.Ok();
             _accountRepository.Setup(x => x.SaveModifications()).Returns(successResult);
 
@@ -44,7 +44,7 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
             // Assert
             result.IsSuccess.Should().BeTrue();
             result.Should().Be(successResult);
-            ConstantsCQTest.AccountTest.Token.Should().Be(string.Empty);
+            ConstantsAccountsCQTest.AccountTest.Token.Should().Be(string.Empty);
         }
 
         [Fact]
@@ -70,7 +70,7 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
             // Arrange
 
             LogOffCommand request = new LogOffCommand();
-            int accountId = ConstantsCQTest.Id;
+            int accountId = ConstantsAccountsCQTest.Id;
             _currentUserService.Setup(x => x.GetIdCurrentUser()).Returns(Results.Ok<int>(accountId));
             _accountRepository.Setup(x => x.ExistsAccount(accountId)).Returns(false);
 
