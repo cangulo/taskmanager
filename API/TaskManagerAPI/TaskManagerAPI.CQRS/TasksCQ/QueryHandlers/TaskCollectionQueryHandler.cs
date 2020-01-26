@@ -22,8 +22,8 @@ namespace TaskManagerAPI.CQRS.TasksCQ.QueryHandlers
 
         public Task<Result<IReadOnlyCollection<TaskDomain>>> Handle(TaskCollectionQuery request, CancellationToken cancellationToken)
         {
-            var task = _tasksRepoByAccount.GetTasks(this.GetCurrentUserId());
-            Result<IReadOnlyCollection<TaskDomain>> okResult = Results.Ok<IReadOnlyCollection<TaskDomain>>(task);
+            var tasks = _tasksRepoByAccount.GetTasks(this.GetCurrentUserId());
+            Result<IReadOnlyCollection<TaskDomain>> okResult = Results.Ok<IReadOnlyCollection<TaskDomain>>(tasks);
             return Task.FromResult(okResult);
         }
     }

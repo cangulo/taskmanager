@@ -4,10 +4,6 @@ using TaskManagerAPI.BL.CurrentUserService;
 
 namespace TaskManagerAPI.CQRS.TasksCQ.BaseClasses
 {
-    public interface IBaseCommandQuery
-    {
-        int GetCurrentUserId();
-    }
 
     public abstract class BaseCommandQuery : IBaseCommandQuery
     {

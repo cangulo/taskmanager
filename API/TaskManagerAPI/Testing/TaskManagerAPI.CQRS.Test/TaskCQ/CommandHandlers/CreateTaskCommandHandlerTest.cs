@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.TasksCQ.CommandHandlers;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
+using TaskManagerAPI.CQRS.Test.Contants;
 using TaskManagerAPI.Repositories.TaskRepository;
 using Xunit;
 
 namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 {
+    // TODO: Rename attribute _currentUserService to _currentUserServiceMock
     public class CreateTaskCommandHandlerTest
     {
         private readonly Mock<ITasksByAccountRepository> _tasksRepoByAccountMock = new Mock<ITasksByAccountRepository>();

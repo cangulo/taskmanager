@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TaskManagerAPI.Models.BE;
 using TaskManagerAPI.Models.BE.Tasks;
 
-namespace TaskManagerAPI.CQRS.Test
+namespace TaskManagerAPI.CQRS.Test.Contants
 {
     public class ConstantsAccountsCQTest
     {

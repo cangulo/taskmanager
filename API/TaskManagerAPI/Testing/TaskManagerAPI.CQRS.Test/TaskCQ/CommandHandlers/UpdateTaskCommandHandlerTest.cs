@@ -1,43 +1,48 @@
-﻿using FluentResults;
+﻿using AutoMapper;
+using FluentAssertions;
+using FluentResults;
 using Moq;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.TasksCQ.CommandHandlers;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
-using TaskManagerAPI.Repositories.TaskRepository;
-using Xunit;
-using FluentAssertions;
-using TaskManagerAPI.Models.Errors;
-using TaskManagerAPI.Resources.Errors;
 using TaskManagerAPI.CQRS.Test.Contants;
+using TaskManagerAPI.Models.BE.Tasks;
+using TaskManagerAPI.Models.Errors;
+using TaskManagerAPI.Repositories.TaskRepository;
+using TaskManagerAPI.Resources.Errors;
+using Xunit;
 
 namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 {
-    public class DeleteTaskCommandHandlerTest
+    public class UpdateTaskCommandHandlerTest
     {
-        // TODO: Rename attribute _currentUserService to _currentUserServiceMock
         private readonly Mock<ITasksByAccountRepository> _tasksRepoByAccountMock = new Mock<ITasksByAccountRepository>();
-        private readonly Mock<ICurrentUserService> _currentUserService = new Mock<ICurrentUserService>();
-        private DeleteTaskCommandHandler _handler;
+        private readonly Mock<ICurrentUserService> _currentUserServiceMock = new Mock<ICurrentUserService>();
+        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private UpdateTaskCommandHandler _handler;
 
-        private readonly DeleteTaskCommand _request = new DeleteTaskCommand
+        private readonly UpdateTaskCommand _request = new UpdateTaskCommand
         {
-            Id = 1
+            Id = 1,
+            Task = new Models.BE.Tasks.TaskForUpdated()
         };
 
-        public DeleteTaskCommandHandlerTest()
+        public UpdateTaskCommandHandlerTest()
         {
-            _currentUserService.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsAccountsCQTest.Id));
-            _handler = new DeleteTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserService.Object);
+            _currentUserServiceMock.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsAccountsCQTest.Id));
+            _handler = new UpdateTaskCommandHandler(_tasksRepoByAccountMock.Object, _mapperMock.Object, _currentUserServiceMock.Object);
         }
 
         [Fact]
-        public async Task Handle_DeleteExistingTask_HappyFlow()
+        public async Task Handle_UpdateExistingTask_HappyFlow()
         {
             // Arrange
             _tasksRepoByAccountMock.Setup(x => x.TaskExists(ConstantsAccountsCQTest.Id, _request.Id)).Returns(true);
-            _tasksRepoByAccountMock.Setup(X => X.DeleteTask(ConstantsAccountsCQTest.Id, _request.Id));
+            TaskDomain taskInDBMock = new TaskDomain();
+            _tasksRepoByAccountMock.Setup(X => X.GetTask(ConstantsAccountsCQTest.Id, _request.Id)).Returns(taskInDBMock);
+            _mapperMock.Setup(x => x.Map(_request.Task, taskInDBMock));
 
             Result succesSaveModifications = Results.Ok();
             _tasksRepoByAccountMock.Setup(x => x.SaveModifications()).Returns(succesSaveModifications);

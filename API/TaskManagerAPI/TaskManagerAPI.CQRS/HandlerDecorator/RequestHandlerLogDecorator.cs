@@ -10,7 +10,7 @@ using TaskManagerAPI.Models.Errors;
 
 namespace TaskManagerAPI.CQRS.HandlerDecorator
 {
-    public class RequestHandlerLogDecorator<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult> where TResult : FluentResults.ResultBase
+    public class RequestHandlerLogDecorator<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult> where TResult : ResultBase
     {
         private readonly IRequestHandler<TRequest, TResult> _decorated;
         private readonly ILogger<RequestHandlerLogDecorator<TRequest, TResult>> _logger;
@@ -31,7 +31,7 @@ namespace TaskManagerAPI.CQRS.HandlerDecorator
             if ((response as ResultBase).IsFailed)
             {
                 // TODO: The responsibility of log the errors should be at the top level of the application, at the Exception middleware
-                this._logger.LogError($"Handler; {handlerName} ; {stopwatch.ElapsedMilliseconds}");
+                this._logger.LogError($"Handler; {handlerName} ; {stopwatch.    ElapsedMilliseconds}");
                 var listError = (response as ResultBase).Errors;
                 this._logger.LogError($"Handler; {handlerName} ; Errors: {string.Join(";", listError.Select(er => er.ToString()))}");
                 throw new CQException(listError.Select(error => error as CustomError));
