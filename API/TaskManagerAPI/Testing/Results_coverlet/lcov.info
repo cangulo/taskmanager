@@ -1,0 +1,1320 @@
+﻿TN:
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.BL\AuthProcess\TokenCreator.cs
+FN:21,System.String TaskManagerAPI.BL.AuthProcess.TokenCreator::CreateToken(TaskManagerAPI.Models.BE.Account)
+FN:15,System.Void TaskManagerAPI.BL.AuthProcess.TokenCreator::.ctor(Microsoft.Extensions.Options.IOptions`1<TaskManagerAPI.Resources.AppSettings.AppSettings>)
+FNDA:0,System.String TaskManagerAPI.BL.AuthProcess.TokenCreator::CreateToken(TaskManagerAPI.Models.BE.Account)
+FNDA:0,System.Void TaskManagerAPI.BL.AuthProcess.TokenCreator::.ctor(Microsoft.Extensions.Options.IOptions`1<TaskManagerAPI.Resources.AppSettings.AppSettings>)
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+LH:0
+LF:19
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.BL\AuthProcess\TokenVerificator.cs
+FN:15,System.Boolean TaskManagerAPI.BL.AuthProcess.TokenVerificator::TokenIsValid(System.Int32,System.String)
+FN:9,System.Void TaskManagerAPI.BL.AuthProcess.TokenVerificator::.ctor(TaskManagerAPI.EF.Context.ITaskManagerDbContext)
+FNDA:0,System.Boolean TaskManagerAPI.BL.AuthProcess.TokenVerificator::TokenIsValid(System.Int32,System.String)
+FNDA:0,System.Void TaskManagerAPI.BL.AuthProcess.TokenVerificator::.ctor(TaskManagerAPI.EF.Context.ITaskManagerDbContext)
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:16,0
+DA:17,0
+DA:18,0
+LH:0
+LF:7
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.BL\CurrentUserService\CurrentUserService.cs
+FN:19,FluentResults.Result`1<System.Int32> TaskManagerAPI.BL.CurrentUserService.CurrentUserService::GetIdCurrentUser()
+FN:13,System.Void TaskManagerAPI.BL.CurrentUserService.CurrentUserService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)
+FNDA:0,FluentResults.Result`1<System.Int32> TaskManagerAPI.BL.CurrentUserService.CurrentUserService::GetIdCurrentUser()
+FNDA:0,System.Void TaskManagerAPI.BL.CurrentUserService.CurrentUserService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)
+FNF:2
+FNH:0
+BRDA:21,21,0,-
+BRDA:21,21,1,-
+BRDA:22,22,2,-
+BRDA:22,22,3,-
+BRDA:22,22,4,-
+BRDA:22,22,5,-
+BRF:6
+BRH:0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:26,0
+DA:27,0
+DA:28,0
+LH:0
+LF:12
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.BL\UserVerifications\UserStatusVerification.cs
+FN:19,FluentResults.Result TaskManagerAPI.BL.UserStatusVerification.UserStatusVerification::UserIsActive(System.Int32)
+FN:13,System.Void TaskManagerAPI.BL.UserStatusVerification.UserStatusVerification::.ctor(TaskManagerAPI.EF.Context.ITaskManagerDbContext)
+FNDA:0,FluentResults.Result TaskManagerAPI.BL.UserStatusVerification.UserStatusVerification::UserIsActive(System.Int32)
+FNDA:0,System.Void TaskManagerAPI.BL.UserStatusVerification.UserStatusVerification::.ctor(TaskManagerAPI.EF.Context.ITaskManagerDbContext)
+FNF:2
+FNH:0
+BRDA:21,21,6,-
+BRDA:21,21,7,-
+BRDA:24,24,8,-
+BRDA:24,24,9,-
+BRDA:28,28,10,-
+BRDA:28,28,11,-
+BRDA:33,33,12,-
+BRDA:33,33,13,-
+BRF:8
+BRH:0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:49,0
+LH:0
+LF:26
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\Authorization\Commands\LoginCommand.cs
+FN:8,System.String TaskManagerAPI.CQRS.Authorization.Commands.LoginCommand::get_Email()
+FN:9,System.String TaskManagerAPI.CQRS.Authorization.Commands.LoginCommand::get_Password()
+FNDA:0,System.String TaskManagerAPI.CQRS.Authorization.Commands.LoginCommand::get_Email()
+FNDA:25,System.String TaskManagerAPI.CQRS.Authorization.Commands.LoginCommand::get_Password()
+FNF:2
+FNH:1
+BRF:0
+BRH:0
+DA:9,25
+DA:10,25
+LH:2
+LF:2
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\Authorization\Commands\SignUpCommand.cs
+FN:7,System.String TaskManagerAPI.CQRS.Authorization.Commands.SignUpCommand::get_FullName()
+FN:8,System.String TaskManagerAPI.CQRS.Authorization.Commands.SignUpCommand::get_Email()
+FN:9,System.String TaskManagerAPI.CQRS.Authorization.Commands.SignUpCommand::get_Password()
+FNDA:0,System.String TaskManagerAPI.CQRS.Authorization.Commands.SignUpCommand::get_FullName()
+FNDA:6,System.String TaskManagerAPI.CQRS.Authorization.Commands.SignUpCommand::get_Email()
+FNDA:15,System.String TaskManagerAPI.CQRS.Authorization.Commands.SignUpCommand::get_Password()
+FNF:3
+FNH:2
+BRF:0
+BRH:0
+DA:8,6
+DA:9,15
+DA:10,6
+LH:3
+LF:3
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\Authorization\Handlers\LoginCommandHandler.cs
+FN:30,System.Threading.Tasks.Task`1<FluentResults.Result`1<TaskManagerAPI.Models.FE.PortalAccount>> TaskManagerAPI.CQRS.Authorization.Handlers.LoginCommandHandler::Handle(TaskManagerAPI.CQRS.Authorization.Commands.LoginCommand,System.Threading.CancellationToken)
+FN:22,System.Void TaskManagerAPI.CQRS.Authorization.Handlers.LoginCommandHandler::.ctor(TaskManagerAPI.Repositories.AccountRepository.IAccountRepository,TaskManagerAPI.BL.AuthProcess.ITokenCreator,TaskManagerAPI.BL.UserStatusVerification.IUserStatusVerification)
+FNDA:0,System.Threading.Tasks.Task`1<FluentResults.Result`1<TaskManagerAPI.Models.FE.PortalAccount>> TaskManagerAPI.CQRS.Authorization.Handlers.LoginCommandHandler::Handle(TaskManagerAPI.CQRS.Authorization.Commands.LoginCommand,System.Threading.CancellationToken)
+FNDA:0,System.Void TaskManagerAPI.CQRS.Authorization.Handlers.LoginCommandHandler::.ctor(TaskManagerAPI.Repositories.AccountRepository.IAccountRepository,TaskManagerAPI.BL.AuthProcess.ITokenCreator,TaskManagerAPI.BL.UserStatusVerification.IUserStatusVerification)
+FNF:2
+FNH:0
+BRDA:32,32,14,3
+BRDA:32,32,15,1
+BRDA:38,38,16,2
+BRDA:38,38,17,1
+BRDA:45,45,18,1
+BRDA:45,45,19,1
+BRF:6
+BRH:6
+DA:23,4
+DA:24,4
+DA:25,4
+DA:26,4
+DA:27,4
+DA:28,4
+DA:31,4
+DA:32,4
+DA:33,3
+DA:34,3
+DA:36,3
+DA:38,3
+DA:39,2
+DA:40,2
+DA:41,2
+DA:42,2
+DA:44,2
+DA:45,2
+DA:46,1
+DA:47,1
+DA:48,1
+DA:49,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:55,1
+DA:56,1
+DA:60,1
+DA:61,1
+DA:64,1
+DA:65,1
+DA:66,4
+LH:32
+LF:32
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\Authorization\Handlers\LogOffCommandHandler.cs
+FN:25,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.Authorization.Handlers.LogOffCommandHandler::Handle(TaskManagerAPI.CQRS.Authorization.Commands.LogOffCommand,System.Threading.CancellationToken)
+FN:18,System.Void TaskManagerAPI.CQRS.Authorization.Handlers.LogOffCommandHandler::.ctor(TaskManagerAPI.Repositories.AccountRepository.IAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNDA:0,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.Authorization.Handlers.LogOffCommandHandler::Handle(TaskManagerAPI.CQRS.Authorization.Commands.LogOffCommand,System.Threading.CancellationToken)
+FNDA:0,System.Void TaskManagerAPI.CQRS.Authorization.Handlers.LogOffCommandHandler::.ctor(TaskManagerAPI.Repositories.AccountRepository.IAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNF:2
+FNH:0
+BRDA:28,28,20,2
+BRDA:28,28,21,1
+BRDA:31,31,22,1
+BRDA:31,31,23,1
+BRF:4
+BRH:4
+DA:19,3
+DA:20,3
+DA:21,3
+DA:22,3
+DA:23,3
+DA:26,3
+DA:27,3
+DA:28,3
+DA:29,2
+DA:30,2
+DA:31,2
+DA:32,1
+DA:33,1
+DA:34,1
+DA:35,1
+DA:38,1
+DA:39,1
+DA:40,1
+DA:44,1
+DA:45,1
+DA:47,3
+LH:21
+LF:21
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\Authorization\Handlers\SignupCommandHandler.cs
+FN:22,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.Authorization.Handlers.SignupCommandHandler::Handle(TaskManagerAPI.CQRS.Authorization.Commands.SignUpCommand,System.Threading.CancellationToken)
+FN:16,System.Void TaskManagerAPI.CQRS.Authorization.Handlers.SignupCommandHandler::.ctor(TaskManagerAPI.Repositories.AccountRepository.IAccountRepository)
+FNDA:0,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.Authorization.Handlers.SignupCommandHandler::Handle(TaskManagerAPI.CQRS.Authorization.Commands.SignUpCommand,System.Threading.CancellationToken)
+FNDA:0,System.Void TaskManagerAPI.CQRS.Authorization.Handlers.SignupCommandHandler::.ctor(TaskManagerAPI.Repositories.AccountRepository.IAccountRepository)
+FNF:2
+FNH:0
+BRDA:24,24,24,2
+BRDA:24,24,25,1
+BRDA:35,35,26,1
+BRDA:35,35,27,1
+BRF:4
+BRH:4
+DA:17,3
+DA:18,3
+DA:19,3
+DA:20,3
+DA:23,3
+DA:24,3
+DA:25,2
+DA:26,2
+DA:27,2
+DA:28,2
+DA:29,2
+DA:30,2
+DA:31,2
+DA:32,2
+DA:34,2
+DA:35,2
+DA:36,1
+DA:37,1
+DA:40,1
+DA:41,1
+DA:45,1
+DA:46,1
+DA:47,1
+DA:49,3
+LH:24
+LF:24
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\Exceptions\CQException.cs
+FN:18,System.String TaskManagerAPI.CQRS.Exceptions.CQException::ToString()
+FN:30,System.Collections.Generic.IEnumerable`1<TaskManagerAPI.Models.Errors.CustomError> TaskManagerAPI.CQRS.Exceptions.CQException::Errors()
+FN:12,System.Void TaskManagerAPI.CQRS.Exceptions.CQException::.ctor(System.Collections.Generic.IEnumerable`1<TaskManagerAPI.Models.Errors.CustomError>)
+FNDA:0,System.String TaskManagerAPI.CQRS.Exceptions.CQException::ToString()
+FNDA:0,System.Collections.Generic.IEnumerable`1<TaskManagerAPI.Models.Errors.CustomError> TaskManagerAPI.CQRS.Exceptions.CQException::Errors()
+FNDA:0,System.Void TaskManagerAPI.CQRS.Exceptions.CQException::.ctor(System.Collections.Generic.IEnumerable`1<TaskManagerAPI.Models.Errors.CustomError>)
+FNF:3
+FNH:0
+BRDA:20,20,28,-
+BRDA:20,20,29,-
+BRDA:22,22,30,-
+BRDA:22,22,31,-
+BRDA:13,13,32,-
+BRDA:13,13,33,-
+BRF:6
+BRH:0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:25,0
+DA:26,0
+DA:28,0
+DA:31,0
+DA:32,0
+DA:33,0
+LH:0
+LF:14
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\HandlerDecorator\RequestHandlerLogDecorator.cs
+FN:17,System.Void TaskManagerAPI.CQRS.HandlerDecorator.RequestHandlerLogDecorator`2::.ctor(MediatR.IRequestHandler`2<TRequest,TResult>,Microsoft.Extensions.Logging.ILogger`1<TaskManagerAPI.CQRS.HandlerDecorator.RequestHandlerLogDecorator`2<TRequest,TResult>>)
+FN:35,System.String TaskManagerAPI.CQRS.HandlerDecorator.RequestHandlerLogDecorator`2/<>c::<Handle>b__3_0(FluentResults.Error)
+FN:36,TaskManagerAPI.Models.Errors.CustomError TaskManagerAPI.CQRS.HandlerDecorator.RequestHandlerLogDecorator`2/<>c::<Handle>b__3_1(FluentResults.Error)
+FNDA:0,System.Void TaskManagerAPI.CQRS.HandlerDecorator.RequestHandlerLogDecorator`2::.ctor(MediatR.IRequestHandler`2<TRequest,TResult>,Microsoft.Extensions.Logging.ILogger`1<TaskManagerAPI.CQRS.HandlerDecorator.RequestHandlerLogDecorator`2<TRequest,TResult>>)
+FNDA:0,System.String TaskManagerAPI.CQRS.HandlerDecorator.RequestHandlerLogDecorator`2/<>c::<Handle>b__3_0(FluentResults.Error)
+FNDA:0,TaskManagerAPI.Models.Errors.CustomError TaskManagerAPI.CQRS.HandlerDecorator.RequestHandlerLogDecorator`2/<>c::<Handle>b__3_1(FluentResults.Error)
+FNF:3
+FNH:0
+BRDA:36,36,34,-
+BRDA:36,36,35,-
+BRDA:37,37,36,-
+BRDA:37,37,37,-
+BRF:4
+BRH:0
+DA:18,2
+DA:19,2
+DA:20,2
+DA:21,2
+DA:22,2
+DA:36,0
+DA:37,0
+LH:5
+LF:7
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\BaseClasses\BaseCommandQuery.cs
+FN:32,System.Int32 TaskManagerAPI.CQRS.TasksCQ.BaseClasses.BaseCommandQuery::GetCurrentUserId()
+FN:11,System.Void TaskManagerAPI.CQRS.TasksCQ.BaseClasses.BaseCommandQuery::.ctor(TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNDA:0,System.Int32 TaskManagerAPI.CQRS.TasksCQ.BaseClasses.BaseCommandQuery::GetCurrentUserId()
+FNDA:0,System.Void TaskManagerAPI.CQRS.TasksCQ.BaseClasses.BaseCommandQuery::.ctor(TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNF:2
+FNH:0
+BRDA:14,14,38,1
+BRDA:14,14,39,11
+BRDA:21,21,40,10
+BRDA:21,21,41,1
+BRF:4
+BRH:4
+DA:12,12
+DA:13,12
+DA:14,12
+DA:15,1
+DA:16,1
+DA:19,11
+DA:20,11
+DA:21,11
+DA:22,10
+DA:23,10
+DA:24,10
+DA:26,1
+DA:27,1
+DA:29,10
+DA:30,10
+DA:33,13
+DA:34,13
+DA:35,13
+LH:18
+LF:18
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\CommandHandlers\CreateTaskCommandHandler.cs
+FN:21,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.CreateTaskCommandHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Commands.CreateTaskCommand,System.Threading.CancellationToken)
+FN:15,System.Void TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.CreateTaskCommandHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNDA:0,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.CreateTaskCommandHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Commands.CreateTaskCommand,System.Threading.CancellationToken)
+FNDA:0,System.Void TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.CreateTaskCommandHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNF:2
+FNH:0
+BRDA:24,24,42,1
+BRDA:24,24,43,1
+BRF:2
+BRH:2
+DA:16,2
+DA:17,2
+DA:18,2
+DA:19,2
+DA:22,2
+DA:23,2
+DA:24,2
+DA:25,1
+DA:26,1
+DA:29,1
+DA:30,1
+DA:32,2
+LH:12
+LF:12
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\CommandHandlers\DeleteTaskCommandHandler.cs
+FN:23,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.DeleteTaskCommandHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Commands.DeleteTaskCommand,System.Threading.CancellationToken)
+FN:17,System.Void TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.DeleteTaskCommandHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNDA:0,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.DeleteTaskCommandHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Commands.DeleteTaskCommand,System.Threading.CancellationToken)
+FNDA:0,System.Void TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.DeleteTaskCommandHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNF:2
+FNH:0
+BRDA:25,25,44,1
+BRDA:25,25,45,1
+BRF:2
+BRH:2
+DA:18,2
+DA:19,2
+DA:20,2
+DA:21,2
+DA:24,2
+DA:25,2
+DA:26,1
+DA:27,1
+DA:28,1
+DA:31,1
+DA:32,1
+DA:33,1
+DA:35,2
+LH:13
+LF:13
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\CommandHandlers\UpdateTaskCommandHandler.cs
+FN:27,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.UpdateTaskCommandHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Commands.UpdateTaskCommand,System.Threading.CancellationToken)
+FN:20,System.Void TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.UpdateTaskCommandHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,AutoMapper.IMapper,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNDA:0,System.Threading.Tasks.Task`1<FluentResults.Result> TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.UpdateTaskCommandHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Commands.UpdateTaskCommand,System.Threading.CancellationToken)
+FNDA:0,System.Void TaskManagerAPI.CQRS.TasksCQ.CommandHandlers.UpdateTaskCommandHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,AutoMapper.IMapper,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNF:2
+FNH:0
+BRDA:29,29,46,1
+BRDA:29,29,47,1
+BRF:2
+BRH:2
+DA:21,2
+DA:22,2
+DA:23,2
+DA:24,2
+DA:25,2
+DA:28,2
+DA:29,2
+DA:30,1
+DA:31,1
+DA:32,1
+DA:33,1
+DA:36,1
+DA:37,1
+DA:38,1
+DA:40,2
+LH:15
+LF:15
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\Commands\CreateTaskCommand.cs
+FN:8,TaskManagerAPI.Models.BE.Tasks.TaskDomain TaskManagerAPI.CQRS.TasksCQ.Commands.CreateTaskCommand::get_Task()
+FNDA:0,TaskManagerAPI.Models.BE.Tasks.TaskDomain TaskManagerAPI.CQRS.TasksCQ.Commands.CreateTaskCommand::get_Task()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:9,8
+LH:1
+LF:1
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\Commands\DeleteTaskCommand.cs
+FN:7,System.Int32 TaskManagerAPI.CQRS.TasksCQ.Commands.DeleteTaskCommand::get_Id()
+FNDA:0,System.Int32 TaskManagerAPI.CQRS.TasksCQ.Commands.DeleteTaskCommand::get_Id()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:8,11
+LH:1
+LF:1
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\Commands\UpdateTaskCommand.cs
+FN:8,System.Int32 TaskManagerAPI.CQRS.TasksCQ.Commands.UpdateTaskCommand::get_Id()
+FN:9,TaskManagerAPI.Models.BE.Tasks.TaskForUpdated TaskManagerAPI.CQRS.TasksCQ.Commands.UpdateTaskCommand::get_Task()
+FNDA:0,System.Int32 TaskManagerAPI.CQRS.TasksCQ.Commands.UpdateTaskCommand::get_Id()
+FNDA:11,TaskManagerAPI.Models.BE.Tasks.TaskForUpdated TaskManagerAPI.CQRS.TasksCQ.Commands.UpdateTaskCommand::get_Task()
+FNF:2
+FNH:1
+BRF:0
+BRH:0
+DA:9,11
+DA:10,5
+LH:2
+LF:2
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\Queries\TaskQuery.cs
+FN:8,System.Int32 TaskManagerAPI.CQRS.TasksCQ.Queries.TaskQuery::get_Id()
+FNDA:0,System.Int32 TaskManagerAPI.CQRS.TasksCQ.Queries.TaskQuery::get_Id()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:9,5
+LH:1
+LF:1
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\QueryHandlers\TaskCollectionQueryHandler.cs
+FN:23,System.Threading.Tasks.Task`1<FluentResults.Result`1<System.Collections.Generic.IReadOnlyCollection`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain>>> TaskManagerAPI.CQRS.TasksCQ.QueryHandlers.TaskCollectionQueryHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Queries.TaskCollectionQuery,System.Threading.CancellationToken)
+FN:17,System.Void TaskManagerAPI.CQRS.TasksCQ.QueryHandlers.TaskCollectionQueryHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNDA:0,System.Threading.Tasks.Task`1<FluentResults.Result`1<System.Collections.Generic.IReadOnlyCollection`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain>>> TaskManagerAPI.CQRS.TasksCQ.QueryHandlers.TaskCollectionQueryHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Queries.TaskCollectionQuery,System.Threading.CancellationToken)
+FNDA:0,System.Void TaskManagerAPI.CQRS.TasksCQ.QueryHandlers.TaskCollectionQueryHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:18,1
+DA:19,1
+DA:20,1
+DA:21,1
+DA:24,1
+DA:25,1
+DA:26,1
+DA:27,1
+DA:28,1
+LH:9
+LF:9
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.CQRS\TasksCQ\QueryHandlers\TaskQueryHandler.cs
+FN:24,System.Threading.Tasks.Task`1<FluentResults.Result`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain>> TaskManagerAPI.CQRS.TasksCQ.QueryHandlers.TaskQueryHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Queries.TaskQuery,System.Threading.CancellationToken)
+FN:18,System.Void TaskManagerAPI.CQRS.TasksCQ.QueryHandlers.TaskQueryHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNDA:0,System.Threading.Tasks.Task`1<FluentResults.Result`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain>> TaskManagerAPI.CQRS.TasksCQ.QueryHandlers.TaskQueryHandler::Handle(TaskManagerAPI.CQRS.TasksCQ.Queries.TaskQuery,System.Threading.CancellationToken)
+FNDA:0,System.Void TaskManagerAPI.CQRS.TasksCQ.QueryHandlers.TaskQueryHandler::.ctor(TaskManagerAPI.Repositories.TaskRepository.ITasksByAccountRepository,TaskManagerAPI.BL.CurrentUserService.ICurrentUserService)
+FNF:2
+FNH:0
+BRDA:26,26,48,1
+BRDA:26,26,49,1
+BRF:2
+BRH:2
+DA:19,2
+DA:20,2
+DA:21,2
+DA:22,2
+DA:25,2
+DA:26,2
+DA:27,1
+DA:28,1
+DA:29,1
+DA:30,1
+DA:33,1
+DA:34,1
+DA:35,1
+DA:37,2
+LH:14
+LF:14
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.EF\Configurations\AccountEFConfiguration.cs
+FN:10,System.Void TaskManagerAPI.EF.Configurations.AccountEFConfiguration::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<TaskManagerAPI.Models.BE.Account>)
+FNDA:0,System.Void TaskManagerAPI.EF.Configurations.AccountEFConfiguration::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<TaskManagerAPI.Models.BE.Account>)
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:23,0
+DA:25,0
+LH:0
+LF:13
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.EF\Configurations\TaskEFConfiguration.cs
+FN:11,System.Void TaskManagerAPI.EF.Configurations.TaskEFConfiguration::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain>)
+FNDA:0,System.Void TaskManagerAPI.EF.Configurations.TaskEFConfiguration::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain>)
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+LH:0
+LF:13
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.EF\Context\TaskManagerDbContext.cs
+FN:10,Microsoft.EntityFrameworkCore.DbSet`1<TaskManagerAPI.Models.BE.Account> TaskManagerAPI.EF.Context.TaskManagerDbContext::get_Accounts()
+FN:11,Microsoft.EntityFrameworkCore.DbSet`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain> TaskManagerAPI.EF.Context.TaskManagerDbContext::get_Tasks()
+FN:20,System.Void TaskManagerAPI.EF.Context.TaskManagerDbContext::OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+FN:26,System.Void TaskManagerAPI.EF.Context.TaskManagerDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+FN:33,System.Int32 TaskManagerAPI.EF.Context.TaskManagerDbContext::SaveChanges()
+FN:14,System.Void TaskManagerAPI.EF.Context.TaskManagerDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<TaskManagerAPI.EF.Context.TaskManagerDbContext>,Microsoft.Extensions.Logging.ILogger`1<TaskManagerAPI.EF.Context.TaskManagerDbContext>)
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<TaskManagerAPI.Models.BE.Account> TaskManagerAPI.EF.Context.TaskManagerDbContext::get_Accounts()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain> TaskManagerAPI.EF.Context.TaskManagerDbContext::get_Tasks()
+FNDA:0,System.Void TaskManagerAPI.EF.Context.TaskManagerDbContext::OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)
+FNDA:0,System.Void TaskManagerAPI.EF.Context.TaskManagerDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Int32 TaskManagerAPI.EF.Context.TaskManagerDbContext::SaveChanges()
+FNDA:0,System.Void TaskManagerAPI.EF.Context.TaskManagerDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<TaskManagerAPI.EF.Context.TaskManagerDbContext>,Microsoft.Extensions.Logging.ILogger`1<TaskManagerAPI.EF.Context.TaskManagerDbContext>)
+FNF:6
+FNH:0
+BRF:0
+BRH:0
+DA:11,0
+DA:12,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+LH:0
+LF:19
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.EF\DbInitializer\DbInitializer.cs
+FN:22,System.Void TaskManagerAPI.EF.DbInitializer.DbInitializer::StartDbContext()
+FN:14,System.Void TaskManagerAPI.EF.DbInitializer.DbInitializer::.ctor(TaskManagerAPI.EF.Context.TaskManagerDbContext,TaskManagerAPI.EF.MigrationManager.IDBMigrationsManager,Microsoft.Extensions.Logging.ILogger`1<TaskManagerAPI.EF.DbInitializer.DbInitializer>)
+FNDA:0,System.Void TaskManagerAPI.EF.DbInitializer.DbInitializer::StartDbContext()
+FNDA:0,System.Void TaskManagerAPI.EF.DbInitializer.DbInitializer::.ctor(TaskManagerAPI.EF.Context.TaskManagerDbContext,TaskManagerAPI.EF.MigrationManager.IDBMigrationsManager,Microsoft.Extensions.Logging.ILogger`1<TaskManagerAPI.EF.DbInitializer.DbInitializer>)
+FNF:2
+FNH:0
+BRDA:25,25,50,-
+BRDA:25,25,51,-
+BRDA:31,31,52,-
+BRDA:31,31,53,-
+BRF:4
+BRH:0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+LH:0
+LF:23
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.EF\DbInitializer\DummyDataHelper.cs
+FN:30,System.Void TaskManagerAPI.EF.DbInitializer.DummyDataHelper::AddDummyAccount(TaskManagerAPI.EF.Context.TaskManagerDbContext)
+FN:35,System.Void TaskManagerAPI.EF.DbInitializer.DummyDataHelper::AddTaskAccount(TaskManagerAPI.EF.Context.TaskManagerDbContext)
+FN:10,System.Void TaskManagerAPI.EF.DbInitializer.DummyDataHelper::.cctor()
+FNDA:0,System.Void TaskManagerAPI.EF.DbInitializer.DummyDataHelper::AddDummyAccount(TaskManagerAPI.EF.Context.TaskManagerDbContext)
+FNDA:0,System.Void TaskManagerAPI.EF.DbInitializer.DummyDataHelper::AddTaskAccount(TaskManagerAPI.EF.Context.TaskManagerDbContext)
+FNDA:0,System.Void TaskManagerAPI.EF.DbInitializer.DummyDataHelper::.cctor()
+FNF:3
+FNH:0
+BRF:0
+BRH:0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+LH:0
+LF:24
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.EF\MigrationManager\DBMigrationsManager.cs
+FN:31,System.Void TaskManagerAPI.EF.MigrationManager.DBMigrationsManager::MigrateDB()
+FN:24,System.Void TaskManagerAPI.EF.MigrationManager.DBMigrationsManager::.ctor(TaskManagerAPI.EF.Context.TaskManagerDbContext,Microsoft.Extensions.Logging.ILogger`1<TaskManagerAPI.EF.MigrationManager.DBMigrationsManager>)
+FNDA:0,System.Void TaskManagerAPI.EF.MigrationManager.DBMigrationsManager::MigrateDB()
+FNDA:0,System.Void TaskManagerAPI.EF.MigrationManager.DBMigrationsManager::.ctor(TaskManagerAPI.EF.Context.TaskManagerDbContext,Microsoft.Extensions.Logging.ILogger`1<TaskManagerAPI.EF.MigrationManager.DBMigrationsManager>)
+FNF:2
+FNH:0
+BRDA:36,36,54,-
+BRDA:36,36,55,-
+BRDA:40,40,56,-
+BRDA:40,40,57,-
+BRF:4
+BRH:0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:32,0
+DA:33,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+LH:0
+LF:27
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\BE\Account.cs
+FN:8,System.Int32 TaskManagerAPI.Models.BE.Account::get_Id()
+FN:9,System.String TaskManagerAPI.Models.BE.Account::get_Email()
+FN:10,System.String TaskManagerAPI.Models.BE.Account::get_Username()
+FN:11,System.String TaskManagerAPI.Models.BE.Account::get_Password()
+FN:12,System.Int32 TaskManagerAPI.Models.BE.Account::get_FailedLoginAttempts()
+FN:13,System.String TaskManagerAPI.Models.BE.Account::get_PhoneNumber()
+FN:14,System.DateTime TaskManagerAPI.Models.BE.Account::get_LastLogintime()
+FN:15,System.String TaskManagerAPI.Models.BE.Account::get_Token()
+FN:16,TaskManagerAPI.Models.BE.UserStatus TaskManagerAPI.Models.BE.Account::get_Status()
+FN:17,System.Collections.Generic.ICollection`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain> TaskManagerAPI.Models.BE.Account::get_Tasks()
+FNDA:0,System.Int32 TaskManagerAPI.Models.BE.Account::get_Id()
+FNDA:11,System.String TaskManagerAPI.Models.BE.Account::get_Email()
+FNDA:6,System.String TaskManagerAPI.Models.BE.Account::get_Username()
+FNDA:8,System.String TaskManagerAPI.Models.BE.Account::get_Password()
+FNDA:6,System.Int32 TaskManagerAPI.Models.BE.Account::get_FailedLoginAttempts()
+FNDA:0,System.String TaskManagerAPI.Models.BE.Account::get_PhoneNumber()
+FNDA:0,System.DateTime TaskManagerAPI.Models.BE.Account::get_LastLogintime()
+FNDA:6,System.String TaskManagerAPI.Models.BE.Account::get_Token()
+FNDA:6,TaskManagerAPI.Models.BE.UserStatus TaskManagerAPI.Models.BE.Account::get_Status()
+FNDA:0,System.Collections.Generic.ICollection`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain> TaskManagerAPI.Models.BE.Account::get_Tasks()
+FNF:10
+FNH:6
+BRF:0
+BRH:0
+DA:9,11
+DA:10,6
+DA:11,8
+DA:12,6
+DA:13,0
+DA:14,0
+DA:15,6
+DA:16,6
+DA:17,0
+DA:18,0
+LH:6
+LF:10
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\BE\Tasks\TaskDomain.cs
+FN:6,System.Int32 TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_Id()
+FN:7,System.String TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_Title()
+FN:8,System.String TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_Description()
+FN:9,System.DateTime TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_DateToBeFinished()
+FN:10,System.DateTime TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_DateToBeNotified()
+FN:11,TaskManagerAPI.Models.BE.Account TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_Account()
+FN:12,System.Int32 TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_AccountId()
+FNDA:0,System.Int32 TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_Id()
+FNDA:0,System.String TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_Title()
+FNDA:0,System.String TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_Description()
+FNDA:0,System.DateTime TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_DateToBeFinished()
+FNDA:0,System.DateTime TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_DateToBeNotified()
+FNDA:0,TaskManagerAPI.Models.BE.Account TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_Account()
+FNDA:0,System.Int32 TaskManagerAPI.Models.BE.Tasks.TaskDomain::get_AccountId()
+FNF:7
+FNH:0
+BRF:0
+BRH:0
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,12
+LH:1
+LF:7
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\BE\Tasks\TaskForUpdated.cs
+FN:6,System.String TaskManagerAPI.Models.BE.Tasks.TaskForUpdated::get_Title()
+FN:7,System.String TaskManagerAPI.Models.BE.Tasks.TaskForUpdated::get_Description()
+FN:8,System.DateTime TaskManagerAPI.Models.BE.Tasks.TaskForUpdated::get_DateToBeFinished()
+FN:9,System.DateTime TaskManagerAPI.Models.BE.Tasks.TaskForUpdated::get_DateToBeNotified()
+FNDA:0,System.String TaskManagerAPI.Models.BE.Tasks.TaskForUpdated::get_Title()
+FNDA:0,System.String TaskManagerAPI.Models.BE.Tasks.TaskForUpdated::get_Description()
+FNDA:0,System.DateTime TaskManagerAPI.Models.BE.Tasks.TaskForUpdated::get_DateToBeFinished()
+FNDA:0,System.DateTime TaskManagerAPI.Models.BE.Tasks.TaskForUpdated::get_DateToBeNotified()
+FNF:4
+FNH:0
+BRF:0
+BRH:0
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+LH:0
+LF:4
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\Errors\CustomError.cs
+FN:17,System.String TaskManagerAPI.Models.Errors.CustomError::ToString()
+FN:10,System.Void TaskManagerAPI.Models.Errors.CustomError::.ctor(System.String,System.String,System.Int32)
+FNDA:0,System.String TaskManagerAPI.Models.Errors.CustomError::ToString()
+FNDA:0,System.Void TaskManagerAPI.Models.Errors.CustomError::.ctor(System.String,System.String,System.Int32)
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:11,9
+DA:12,9
+DA:13,9
+DA:14,9
+DA:15,9
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+LH:5
+LF:9
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\Errors\ErrorToHttpStatusCodeHelper.cs
+FN:14,System.Int32 TaskManagerAPI.Models.Errors.ErrorToHttpStatusCodeHelper::ToHttpStatusCode(System.String)
+FN:54,System.Int32 TaskManagerAPI.Models.Errors.ErrorToHttpStatusCodeHelper::ToHttpStatusCode(System.Collections.Generic.IEnumerable`1<System.String>)
+FNDA:0,System.Int32 TaskManagerAPI.Models.Errors.ErrorToHttpStatusCodeHelper::ToHttpStatusCode(System.String)
+FNDA:0,System.Int32 TaskManagerAPI.Models.Errors.ErrorToHttpStatusCodeHelper::ToHttpStatusCode(System.Collections.Generic.IEnumerable`1<System.String>)
+FNF:2
+FNH:0
+BRDA:16,16,58,-
+BRDA:16,16,59,-
+BRDA:16,16,60,-
+BRDA:16,16,61,-
+BRDA:18,18,62,-
+BRDA:18,18,63,-
+BRDA:20,20,64,-
+BRDA:20,20,65,-
+BRDA:20,20,66,-
+BRDA:20,20,67,-
+BRDA:26,26,68,-
+BRDA:26,26,69,-
+BRDA:28,28,70,-
+BRDA:28,28,71,-
+BRDA:31,31,72,-
+BRDA:31,31,73,-
+BRDA:31,31,74,-
+BRDA:31,31,75,-
+BRDA:31,31,76,-
+BRDA:31,31,77,-
+BRDA:57,57,78,-
+BRDA:57,57,79,-
+BRDA:57,57,80,-
+BRDA:57,57,81,-
+BRDA:57,57,82,-
+BRDA:57,57,83,-
+BRDA:59,59,84,-
+BRDA:59,59,85,-
+BRF:28
+BRH:0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:23,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:31,0
+DA:34,0
+DA:36,0
+DA:38,0
+DA:41,0
+DA:42,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:62,0
+DA:63,0
+DA:65,0
+LH:0
+LF:28
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\FE\Models\APIRequests\LoginRequest.cs
+FN:8,System.String TaskManagerAPI.Models.FE.APIRequests.LoginRequest::get_Email()
+FN:11,System.String TaskManagerAPI.Models.FE.APIRequests.LoginRequest::get_Password()
+FNDA:0,System.String TaskManagerAPI.Models.FE.APIRequests.LoginRequest::get_Email()
+FNDA:0,System.String TaskManagerAPI.Models.FE.APIRequests.LoginRequest::get_Password()
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:9,0
+DA:12,0
+LH:0
+LF:2
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\FE\Models\APIRequests\SignUpRequest.cs
+FN:8,System.String TaskManagerAPI.Models.FE.APIRequests.SignUpRequest::get_FullName()
+FN:11,System.String TaskManagerAPI.Models.FE.APIRequests.SignUpRequest::get_Email()
+FN:14,System.String TaskManagerAPI.Models.FE.APIRequests.SignUpRequest::get_Password()
+FNDA:0,System.String TaskManagerAPI.Models.FE.APIRequests.SignUpRequest::get_FullName()
+FNDA:0,System.String TaskManagerAPI.Models.FE.APIRequests.SignUpRequest::get_Email()
+FNDA:0,System.String TaskManagerAPI.Models.FE.APIRequests.SignUpRequest::get_Password()
+FNF:3
+FNH:0
+BRF:0
+BRH:0
+DA:9,0
+DA:12,0
+DA:15,0
+LH:0
+LF:3
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\FE\Models\PortalAccount.cs
+FN:4,System.String TaskManagerAPI.Models.FE.PortalAccount::get_Username()
+FN:5,System.String TaskManagerAPI.Models.FE.PortalAccount::get_Token()
+FNDA:0,System.String TaskManagerAPI.Models.FE.PortalAccount::get_Username()
+FNDA:4,System.String TaskManagerAPI.Models.FE.PortalAccount::get_Token()
+FNF:2
+FNH:1
+BRF:0
+BRH:0
+DA:5,4
+DA:6,4
+LH:2
+LF:2
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\FE\Models\TasksDtos\TaskForFullUpdatedDto.cs
+FN:6,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskForFullUpdatedDto::get_Title()
+FN:7,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskForFullUpdatedDto::get_Description()
+FN:8,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskForFullUpdatedDto::get_DateToBeFinished()
+FN:9,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskForFullUpdatedDto::get_DateToBeNotified()
+FNDA:0,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskForFullUpdatedDto::get_Title()
+FNDA:0,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskForFullUpdatedDto::get_Description()
+FNDA:0,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskForFullUpdatedDto::get_DateToBeFinished()
+FNDA:0,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskForFullUpdatedDto::get_DateToBeNotified()
+FNF:4
+FNH:0
+BRF:0
+BRH:0
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+LH:0
+LF:4
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\FE\Models\TasksDtos\TaskToBeCreatedDto.cs
+FN:6,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskToBeCreatedDto::get_Title()
+FN:7,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskToBeCreatedDto::get_Description()
+FN:8,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskToBeCreatedDto::get_DateToBeFinished()
+FN:9,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskToBeCreatedDto::get_DateToBeNotified()
+FNDA:0,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskToBeCreatedDto::get_Title()
+FNDA:0,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskToBeCreatedDto::get_Description()
+FNDA:0,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskToBeCreatedDto::get_DateToBeFinished()
+FNDA:0,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskToBeCreatedDto::get_DateToBeNotified()
+FNF:4
+FNH:0
+BRF:0
+BRH:0
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+LH:0
+LF:4
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\FE\Models\TasksDtos\TaskToGetDto.cs
+FN:6,System.Int32 TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_Id()
+FN:7,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_Title()
+FN:8,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_Description()
+FN:9,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_DateToBeFinished()
+FN:10,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_DateToBeNotified()
+FNDA:0,System.Int32 TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_Id()
+FNDA:0,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_Title()
+FNDA:0,System.String TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_Description()
+FNDA:0,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_DateToBeFinished()
+FNDA:0,System.DateTime TaskManagerAPI.Models.FE.TasksDtos.TaskToGetDto::get_DateToBeNotified()
+FNF:5
+FNH:0
+BRF:0
+BRH:0
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+LH:0
+LF:5
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\FE\Validators\APIRequests\LoginRequestValidator.cs
+FN:8,System.Void TaskManagerAPI.Models.FE.Validators.APIRequests.LoginRequestValidator::.ctor()
+FNDA:0,System.Void TaskManagerAPI.Models.FE.Validators.APIRequests.LoginRequestValidator::.ctor()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+LH:0
+LF:5
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\FE\Validators\APIRequests\SignUpRequestValidator.cs
+FN:8,System.Void TaskManagerAPI.Models.FE.Validators.APIRequests.SignUpRequestValidator::.ctor()
+FNDA:0,System.Void TaskManagerAPI.Models.FE.Validators.APIRequests.SignUpRequestValidator::.ctor()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+LH:0
+LF:8
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\JsonConverters\Trim.cs
+FN:8,System.Boolean TaskManagerAPI.Models.JsonConverters.Trim::CanConvert(System.Type)
+FN:13,System.Object TaskManagerAPI.Models.JsonConverters.Trim::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+FN:22,System.Void TaskManagerAPI.Models.JsonConverters.Trim::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+FNDA:0,System.Boolean TaskManagerAPI.Models.JsonConverters.Trim::CanConvert(System.Type)
+FNDA:0,System.Object TaskManagerAPI.Models.JsonConverters.Trim::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+FNDA:0,System.Void TaskManagerAPI.Models.JsonConverters.Trim::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+FNF:3
+FNH:0
+BRDA:15,15,86,-
+BRDA:15,15,87,-
+BRF:2
+BRH:0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:19,0
+DA:20,0
+DA:23,0
+DA:24,0
+LH:0
+LF:11
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\JsonConverters\TrimAndLowerCase.cs
+FN:8,System.Boolean TaskManagerAPI.Models.JsonConverters.TrimAndLowerCase::CanConvert(System.Type)
+FN:13,System.Object TaskManagerAPI.Models.JsonConverters.TrimAndLowerCase::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+FN:22,System.Void TaskManagerAPI.Models.JsonConverters.TrimAndLowerCase::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+FNDA:0,System.Boolean TaskManagerAPI.Models.JsonConverters.TrimAndLowerCase::CanConvert(System.Type)
+FNDA:0,System.Object TaskManagerAPI.Models.JsonConverters.TrimAndLowerCase::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
+FNDA:0,System.Void TaskManagerAPI.Models.JsonConverters.TrimAndLowerCase::WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)
+FNF:3
+FNH:0
+BRDA:15,15,88,-
+BRDA:15,15,89,-
+BRF:2
+BRH:0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:19,0
+DA:20,0
+DA:23,0
+DA:24,0
+LH:0
+LF:11
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Models\Mappers\DomainProfile.cs
+FN:8,System.Void TaskManagerAPI.Models.Mappers.DomainProfile::.ctor()
+FNDA:0,System.Void TaskManagerAPI.Models.Mappers.DomainProfile::.ctor()
+FNF:1
+FNH:0
+BRF:0
+BRH:0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+LH:0
+LF:8
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Repositories\AccountRepository\AccountRepository.cs
+FN:19,System.Boolean TaskManagerAPI.Repositories.AccountRepository.AccountRepository::ExistsAccount(System.Int32)
+FN:24,TaskManagerAPI.Models.BE.Account TaskManagerAPI.Repositories.AccountRepository.AccountRepository::GetAccount(System.Int32)
+FN:29,System.Boolean TaskManagerAPI.Repositories.AccountRepository.AccountRepository::ExistsAccount(System.String,System.String)
+FN:34,System.Boolean TaskManagerAPI.Repositories.AccountRepository.AccountRepository::ExistsAccount(System.String)
+FN:39,TaskManagerAPI.Models.BE.Account TaskManagerAPI.Repositories.AccountRepository.AccountRepository::GetAccount(System.String,System.String)
+FN:44,System.Void TaskManagerAPI.Repositories.AccountRepository.AccountRepository::CreateAccount(TaskManagerAPI.Models.BE.Account)
+FN:49,FluentResults.Result TaskManagerAPI.Repositories.AccountRepository.AccountRepository::SaveModifications()
+FN:13,System.Void TaskManagerAPI.Repositories.AccountRepository.AccountRepository::.ctor(TaskManagerAPI.EF.Context.ITaskManagerDbContext)
+FNDA:0,System.Boolean TaskManagerAPI.Repositories.AccountRepository.AccountRepository::ExistsAccount(System.Int32)
+FNDA:0,TaskManagerAPI.Models.BE.Account TaskManagerAPI.Repositories.AccountRepository.AccountRepository::GetAccount(System.Int32)
+FNDA:0,System.Boolean TaskManagerAPI.Repositories.AccountRepository.AccountRepository::ExistsAccount(System.String,System.String)
+FNDA:0,System.Boolean TaskManagerAPI.Repositories.AccountRepository.AccountRepository::ExistsAccount(System.String)
+FNDA:0,TaskManagerAPI.Models.BE.Account TaskManagerAPI.Repositories.AccountRepository.AccountRepository::GetAccount(System.String,System.String)
+FNDA:0,System.Void TaskManagerAPI.Repositories.AccountRepository.AccountRepository::CreateAccount(TaskManagerAPI.Models.BE.Account)
+FNDA:0,FluentResults.Result TaskManagerAPI.Repositories.AccountRepository.AccountRepository::SaveModifications()
+FNDA:0,System.Void TaskManagerAPI.Repositories.AccountRepository.AccountRepository::.ctor(TaskManagerAPI.EF.Context.ITaskManagerDbContext)
+FNF:8
+FNH:0
+BRDA:51,51,90,-
+BRDA:51,51,91,-
+BRF:2
+BRH:0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:61,0
+LH:0
+LF:31
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Repositories\Exceptions\RepositoryException.cs
+FN:18,System.String TaskManagerAPI.Repositories.Exceptions.RepositoryException::ToString()
+FN:30,System.Collections.Generic.IEnumerable`1<TaskManagerAPI.Models.Errors.CustomError> TaskManagerAPI.Repositories.Exceptions.RepositoryException::Errors()
+FN:12,System.Void TaskManagerAPI.Repositories.Exceptions.RepositoryException::.ctor(System.Collections.Generic.List`1<TaskManagerAPI.Models.Errors.CustomError>)
+FNDA:0,System.String TaskManagerAPI.Repositories.Exceptions.RepositoryException::ToString()
+FNDA:0,System.Collections.Generic.IEnumerable`1<TaskManagerAPI.Models.Errors.CustomError> TaskManagerAPI.Repositories.Exceptions.RepositoryException::Errors()
+FNDA:0,System.Void TaskManagerAPI.Repositories.Exceptions.RepositoryException::.ctor(System.Collections.Generic.List`1<TaskManagerAPI.Models.Errors.CustomError>)
+FNF:3
+FNH:0
+BRDA:20,20,92,-
+BRDA:20,20,93,-
+BRDA:22,22,94,-
+BRDA:22,22,95,-
+BRDA:13,13,96,-
+BRDA:13,13,97,-
+BRF:6
+BRH:0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:25,0
+DA:26,0
+DA:28,0
+DA:31,0
+DA:32,0
+DA:33,0
+LH:0
+LF:14
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Repositories\TaskRepository\TasksByAccountRepository.cs
+FN:22,TaskManagerAPI.Models.BE.Tasks.TaskDomain TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::GetTask(System.Int32,System.Int32)
+FN:27,System.Boolean TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::TaskExists(System.Int32,System.Int32)
+FN:32,System.Collections.Generic.IReadOnlyCollection`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain> TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::GetTasks(System.Int32)
+FN:37,System.Void TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::DeleteTask(System.Int32,System.Int32)
+FN:43,FluentResults.Result TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::CreateTask(System.Int32,TaskManagerAPI.Models.BE.Tasks.TaskDomain)
+FN:61,FluentResults.Result TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::SaveModifications()
+FN:16,System.Void TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::.ctor(TaskManagerAPI.EF.Context.ITaskManagerDbContext)
+FNDA:0,TaskManagerAPI.Models.BE.Tasks.TaskDomain TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::GetTask(System.Int32,System.Int32)
+FNDA:0,System.Boolean TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::TaskExists(System.Int32,System.Int32)
+FNDA:0,System.Collections.Generic.IReadOnlyCollection`1<TaskManagerAPI.Models.BE.Tasks.TaskDomain> TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::GetTasks(System.Int32)
+FNDA:0,System.Void TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::DeleteTask(System.Int32,System.Int32)
+FNDA:0,FluentResults.Result TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::CreateTask(System.Int32,TaskManagerAPI.Models.BE.Tasks.TaskDomain)
+FNDA:0,FluentResults.Result TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::SaveModifications()
+FNDA:0,System.Void TaskManagerAPI.Repositories.TaskRepository.TasksByAccountRepository::.ctor(TaskManagerAPI.EF.Context.ITaskManagerDbContext)
+FNF:7
+FNH:0
+BRDA:46,46,98,-
+BRDA:46,46,99,-
+BRDA:63,63,100,-
+BRDA:63,63,101,-
+BRF:4
+BRH:0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:59,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:73,0
+LH:0
+LF:39
+end_of_record
+SF:C:\Users\carlo\source\repos\cangulo\taskmanager\API\TaskManagerAPI\TaskManagerAPI.Resources\AppSettings\AppSettings.cs
+FN:7,System.String TaskManagerAPI.Resources.AppSettings.AppSettings::get_Secret()
+FN:8,System.Boolean TaskManagerAPI.Resources.AppSettings.AppSettings::get_UseInMemoryDB()
+FNDA:0,System.String TaskManagerAPI.Resources.AppSettings.AppSettings::get_Secret()
+FNDA:0,System.Boolean TaskManagerAPI.Resources.AppSettings.AppSettings::get_UseInMemoryDB()
+FNF:2
+FNH:0
+BRF:0
+BRH:0
+DA:8,0
+DA:9,0
+LH:0
+LF:2
+end_of_record
