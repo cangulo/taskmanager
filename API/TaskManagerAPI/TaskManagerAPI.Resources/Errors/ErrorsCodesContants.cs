@@ -1,6 +1,7 @@
 ﻿namespace TaskManagerAPI.Resources.Errors
 {
     /// <summary>
+    /// TODO: Reestructure using enums type
     /// Error Codes List with specific format by layer, Instead of having much errors as constants in this class
     /// Separate classes for each regions should be created
     /// </summary>

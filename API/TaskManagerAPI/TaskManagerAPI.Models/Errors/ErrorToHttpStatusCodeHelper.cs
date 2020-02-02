@@ -19,10 +19,10 @@ namespace TaskManagerAPI.Models.Errors
                 {
                     switch (layer)
                     {
-                        case 0:
+                        case (int)ErrorLayer.API:
                             return 500;
 
-                        case 1:
+                        case (int)ErrorLayer.BL:
                             if (int.TryParse(errorCode[1].ToString(), out int typeOfError))
                             {
                                 switch (typeOfError)
@@ -31,11 +31,11 @@ namespace TaskManagerAPI.Models.Errors
                                         switch (errorCode)
                                         {
                                             case ErrorsCodesContants.INVALID_EMAIL_OR_PASSWORD:
-                                                return 401; // Unauthorized
+                                                return 401;
                                             case ErrorsCodesContants.TASK_ID_NOT_FOUND:
-                                                return 404; // Not Found
+                                                return 404;
                                             default:
-                                                return 400; // Bad Request
+                                                return 400;
                                         }
                                 }
                             }
