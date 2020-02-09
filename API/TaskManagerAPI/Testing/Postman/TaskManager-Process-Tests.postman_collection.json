@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "29009b92-90be-4578-a9fd-bcbcdedaa245",
+		"_postman_id": "2a465b7f-a41a-4259-834f-ce05264bf5d1",
 		"name": "TaskManager-Process-Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,11 +18,6 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Username logged\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.username).to.eql(\"John Doe\");",
 									"});",
 									"",
 									"var response = JSON.parse(responseBody);",
@@ -46,7 +41,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"{{username}}\",\n\t\"password\":\"{{password}}\"\n}"
+							"raw": "{\n\t\"email\":\"{{login_email}}\",\n\t\"password\":\"{{password}}\"\n}"
 						},
 						"url": {
 							"raw": "{{basicurl}}/auth/login",
@@ -227,12 +222,6 @@
 									"        \"dateToBeNotified\": \"2019-09-25T11:15:00\"",
 									"    }",
 									"    pm.expect(jsonData).to.eql(expectedResult);",
-									"});",
-									"",
-									"pm.test(\"Expected Header Location with the id of the task created\", function () {",
-									"    const baseUrl = pm.environment.get(\"basicurl\");",
-									"    locationUrlExpected = baseUrl+'/tasks/2';",
-									"    pm.response.to.have.header('Location',locationUrlExpected);",
 									"});"
 								],
 								"type": "text/javascript"
