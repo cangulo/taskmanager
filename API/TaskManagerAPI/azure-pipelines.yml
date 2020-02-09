@@ -11,8 +11,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  workingDirectory: ./API/TaskManagerAPI
-  solutionFile: TaskManagerAPI.sln
+  workingDirectory: ''./API/TaskManagerAPI'
+  solutionFile: 'TaskManagerAPI.sln'
 
 steps:
   - task: DotNetCoreCLI@2
