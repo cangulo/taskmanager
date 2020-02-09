@@ -11,7 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  workingDirectory: ''./API/TaskManagerAPI'
+  workingDirectory: './API/TaskManagerAPI'
   solutionFile: 'TaskManagerAPI.sln'
 
 steps:
