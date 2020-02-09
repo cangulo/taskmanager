@@ -13,9 +13,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-  - bash: 
-    targetType: filePath
-    filePath: ./BuildScripts/Build.sh
+  - bash: ./BuildScripts/Build.sh
     workingDirectory: ./API/TaskManagerAPI
     failOnStderr: true
     displayName: 'dotnet build $(buildConfiguration)'
