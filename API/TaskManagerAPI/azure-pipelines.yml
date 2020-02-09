@@ -15,12 +15,12 @@ variables:
   solutionFile: 'TaskManagerAPI.sln'
 
 steps:
-  # - task: DotNetCoreCLI@2
-  #   displayName: Restoring NuGet Packages
-  #   inputs:
-  #     command: restore
-  #     arguments: '$(solutionFile)'
-  #     workingDirectory: '$(workingDirectory)'
+  - task: DotNetCoreCLI@2
+    displayName: Restoring Projects TaskManagerAPI.sln
+    inputs:
+      command: restore
+      arguments: $(solutionFile)
+      workingDirectory: $(workingDirectory)
   - task: DotNetCoreCLI@2
     displayName: Build Projects TaskManagerAPI.sln
     inputs:
