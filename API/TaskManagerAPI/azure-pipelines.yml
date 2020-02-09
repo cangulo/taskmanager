@@ -13,5 +13,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: ls;pwd;
+- script: 
+    cd ./API/TaskManagerAPI
+    ./BuildScripts/Build.sh
   displayName: 'dotnet build $(buildConfiguration)'
