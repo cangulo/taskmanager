@@ -13,7 +13,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-  - bash: ./BuildScripts/Build.sh
+  - bash: 
+      chmod +x ./BuildScripts/Build.sh
+      ./BuildScripts/Build.sh
     workingDirectory: ./API/TaskManagerAPI
     failOnStderr: true
     displayName: 'dotnet build $(buildConfiguration)'
