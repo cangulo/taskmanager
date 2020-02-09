@@ -1,4 +1,8 @@
 #!/bin/bash
 #   Build Solution in Azure
 
-echo 'test';
+# $ReleaseConfig
+# $LaunchProfile
+
+# dotnet run --project ./TaskManagerAPI/TaskManagerAPI.csproj -c Debug --launch-profile TaskManagerAPI
+echo "Bash EXecuted"

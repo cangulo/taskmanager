@@ -11,11 +11,25 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  workingDirectory: ./API/TaskManagerAPI
+  solutionFile: TaskManagerAPI.sln
 
 steps:
+  - task: DotNetCoreCLI@2
+    displayName: Restoring NuGet Packages
+    inputs:
+      command: restore
+      arguments: $(solutionFile)
+      workingDirectory: $(workingDirectory)
+  - task: DotNetCoreCLI@2
+    displayName: Build Projects TaskManagerAPI.sln
+    inputs:
+      command: build
+      arguments: $(solutionFile)
+      workingDirectory: $(workingDirectory)
   - bash: 
       chmod +x ./BuildScripts/Build.sh;
-      ./BuildScripts/Build.sh
-    workingDirectory: ./API/TaskManagerAPI
+      ./BuildScripts/Build.sh $(buildConfiguration);
+    workingDirectory: $(workingDirectory)
     failOnStderr: true
     displayName: 'dotnet build $(buildConfiguration)'
