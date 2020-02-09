@@ -19,8 +19,8 @@ steps:
     displayName: Restoring NuGet Packages
     inputs:
       command: restore
-      arguments: $(solutionFile)
-      workingDirectory: $(workingDirectory)
+      arguments: '$(solutionFile)'
+      workingDirectory: '$(workingDirectory)'
   - task: DotNetCoreCLI@2
     displayName: Build Projects TaskManagerAPI.sln
     inputs:
