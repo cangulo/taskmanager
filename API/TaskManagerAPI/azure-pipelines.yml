@@ -14,7 +14,7 @@ variables:
 
 steps:
   - bash: 
-      chmod +x ./BuildScripts/Build.sh
+      chmod +x ./BuildScripts/Build.sh;
       ./BuildScripts/Build.sh
     workingDirectory: ./API/TaskManagerAPI
     failOnStderr: true
