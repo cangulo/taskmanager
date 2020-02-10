@@ -15,15 +15,20 @@ variables:
   solutionFile: 'TaskManagerAPI.sln'
 
 steps:
-  - task: DotNetCoreCLI@2
-    displayName: Build Projects TaskManagerAPI.sln
-    inputs:
-      command: build
-      arguments: $(solutionFile)
-      workingDirectory: $(workingDirectory)
+  # - task: DotNetCoreCLI@2
+  #   displayName: Build Projects TaskManagerAPI.sln
+  #   inputs:
+  #     command: build
+  #     arguments: $(solutionFile)
+  #     workingDirectory: $(workingDirectory)
+  - bash:
+      testProjects=$(ls ./Testing/*.Test/*.csproj);
+      for i in $testProjects; do dotnet test $i;done;
+    displayName: Testing Projects
+    workingDirectory: $(workingDirectory)
   - bash: 
       chmod +x ./BuildScripts/Build.sh;
       ./BuildScripts/Build.sh $(buildConfiguration);
+    displayName: 'dotnet build $(buildConfiguration)'
     workingDirectory: $(workingDirectory)
     failOnStderr: true
-    displayName: 'dotnet build $(buildConfiguration)'
