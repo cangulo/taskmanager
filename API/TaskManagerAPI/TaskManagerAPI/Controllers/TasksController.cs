@@ -17,6 +17,7 @@ namespace TaskManagerAPI.Controllers
 {
     [Route("api/tasks")]
     [AuthenticationFilter]
+    [ApiController]
     public class TasksController : Controller
     {
         private readonly IErrorResponseCreator _errorResponseCreator;
