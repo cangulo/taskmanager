@@ -11,9 +11,9 @@ namespace TaskManagerAPI.Pipeline
     {
         private readonly RequestDelegate _next;
         private readonly IExceptionHandlerFactory _exceptionHandlerFactory;
-        private readonly ILogger _logger;
+        private readonly ILogger<ExceptionHandlerMiddleware> _logger;
 
-        public ExceptionHandlerMiddleware(IExceptionHandlerFactory exceptionHandlerFactory, ILogger logger, RequestDelegate next)
+        public ExceptionHandlerMiddleware(IExceptionHandlerFactory exceptionHandlerFactory, ILogger<ExceptionHandlerMiddleware> logger, RequestDelegate next)
         {
             _next = next ?? throw new ArgumentNullException(nameof(next));
             _logger = logger;
