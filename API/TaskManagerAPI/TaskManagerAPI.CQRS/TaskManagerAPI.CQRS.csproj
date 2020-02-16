@@ -15,4 +15,8 @@
     <ProjectReference Include="..\TaskManagerAPI.Repositories\TaskManagerAPI.Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TasksCQ\QueryValidators\" />
+  </ItemGroup>
+
 </Project>

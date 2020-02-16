@@ -11,6 +11,7 @@ using FluentAssertions;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Resources.Errors;
 using TaskManagerAPI.CQRS.Test.Contants;
+using TaskManagerAPI.CQRS.TasksCQ.CommandValidators;
 
 namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 {
@@ -19,6 +20,7 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
         // TODO: Rename attribute _currentUserService to _currentUserServiceMock
         private readonly Mock<ITasksByAccountRepository> _tasksRepoByAccountMock = new Mock<ITasksByAccountRepository>();
         private readonly Mock<ICurrentUserService> _currentUserService = new Mock<ICurrentUserService>();
+        private readonly DeleteTaskCommandValidator _validator = new DeleteTaskCommandValidator();
         private DeleteTaskCommandHandler _handler;
 
         private readonly DeleteTaskCommand _request = new DeleteTaskCommand
@@ -29,7 +31,7 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
         public DeleteTaskCommandHandlerTest()
         {
             _currentUserService.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsAccountsCQTest.Id));
-            _handler = new DeleteTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserService.Object);
+            _handler = new DeleteTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserService.Object, _validator);
         }
 
         [Fact]
@@ -59,6 +61,26 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 
             // Act
             Result result = await _handler.Handle(_request, CancellationToken.None);
+
+            // Assert
+            result.IsSuccess.Should().BeFalse();
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].Message.Should().Be(ErrorsMessagesConstants.TASK_ID_NOT_FOUND);
+            result.Errors[0].Metadata[ErrorKeyPropsConstants.ERROR_CODE].Should().Be(ErrorsCodesContants.TASK_ID_NOT_FOUND);
+            result.Errors[0].Metadata[ErrorKeyPropsConstants.ERROR_HTTP_CODE].Should().Be(404);
+        }
+
+        [Fact]
+        public async Task Handle_InvalidTask_ReturningRepoError()
+        {
+            // Arrange
+            DeleteTaskCommand _invalidRequest = new DeleteTaskCommand
+            {
+                Id = -1
+            };
+
+            // Act
+            Result result = await _handler.Handle(_invalidRequest, CancellationToken.None);
 
             // Assert
             result.IsSuccess.Should().BeFalse();

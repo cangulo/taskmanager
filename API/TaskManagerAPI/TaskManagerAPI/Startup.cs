@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
 using TaskManagerAPI.CQRS.Authorization.Commands;
+using TaskManagerAPI.CQRS.TasksCQ.CommandValidators;
 using TaskManagerAPI.EF.DbInitializer;
 using TaskManagerAPI.Extensions;
 using TaskManagerAPI.Extensions.AutofacModules;
@@ -66,7 +68,12 @@ namespace TaskManagerAPI
             services
                 .AddControllers()
                 .AddNewtonsoftJson()
-                .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+                .AddFluentValidation(fvc => fvc
+                    .RegisterValidatorsFromAssemblies(
+                        new Assembly[]{
+                            typeof(LoginRequestValidator).Assembly,
+                            typeof(DeleteTaskCommandValidator).Assembly
+                        }));
 
             #endregion Basic MVC HTTP
         }
