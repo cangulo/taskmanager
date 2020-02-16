@@ -17,9 +17,8 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 {
     public class DeleteTaskCommandHandlerTest
     {
-        // TODO: Rename attribute _currentUserService to _currentUserServiceMock
         private readonly Mock<ITasksByAccountRepository> _tasksRepoByAccountMock = new Mock<ITasksByAccountRepository>();
-        private readonly Mock<ICurrentUserService> _currentUserService = new Mock<ICurrentUserService>();
+        private readonly Mock<ICurrentUserService> _currentUserServiceMock = new Mock<ICurrentUserService>();
         private readonly DeleteTaskCommandValidator _validator = new DeleteTaskCommandValidator();
         private DeleteTaskCommandHandler _handler;
 
@@ -30,8 +29,8 @@ namespace TaskManagerAPI.CQRS.Test.TaskCQ.CommandHandlers
 
         public DeleteTaskCommandHandlerTest()
         {
-            _currentUserService.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsAccountsCQTest.Id));
-            _handler = new DeleteTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserService.Object, _validator);
+            _currentUserServiceMock.Setup(X => X.GetIdCurrentUser()).Returns(Results.Ok<int>(ConstantsAccountsCQTest.Id));
+            _handler = new DeleteTaskCommandHandler(_tasksRepoByAccountMock.Object, _currentUserServiceMock.Object, _validator);
         }
 
         [Fact]
