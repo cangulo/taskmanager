@@ -12,6 +12,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   workingDirectory: './API/TaskManagerAPI'
+  workingDirectoryNewman: './API/TaskManagerAPI/Testing/Postman'
   solutionFile: 'TaskManagerAPI.sln'
 
 steps:
@@ -26,6 +27,15 @@ steps:
       for i in $testProjects; do dotnet test $i;done;
     displayName: 'Testing Projects'
     workingDirectory: $(workingDirectory)
+  - task: Npm@1
+    inputs:
+      command: npm install newman
+      workingDir: $(workingDirectoryNewman)
+  - bash: 
+        newman ;
+    displayName: 'Execute Postman Tests'
+    workingDirectory: $(workingDirectoryNewman)
+    failOnStderr: true
   - bash: 
       chmod +x ./BuildScripts/Build.sh;
       ./BuildScripts/Build.sh $(buildConfiguration);
