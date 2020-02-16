@@ -7,7 +7,8 @@ newman run ./Testing/Postman/TaskManager-Process-Tests.postman_collection.json -
 # Execute The project locally
 dotnet run --project ./TaskManagerAPI/TaskManagerAPI.csproj -c Debug --launch-profile TaskManagerAPI
 
-dotnet run --project ./TaskManagerAPI/TaskManagerAPI.csproj -c Debug --launch-profile TaskManagerAPI & sleep 10; newman run ./Testing/Postman/TaskManager-Process-Tests.postman_collection.json -e ./Testing/Postman/TaskManager.postman_environment.json --insecure && fg
+# Execute The .NET Core Project
+dotnet run --project ./TaskManagerAPI/TaskManagerAPI.csproj -c Debug --launch-profile TaskManagerAPI
 
 
 newman run ./Testing/Postman/TaskManager-Process-Tests.postman_collection.json -e "./Testing/Postman/TaskManager Task Example 1.postman_environment.json" --env-var AuthorId=1 --insecure
