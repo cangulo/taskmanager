@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.IO;
@@ -24,11 +25,12 @@ namespace TaskManagerAPI.Test.Middleware
             exHandler.Setup(x => x.GetHttpStatusCode()).Returns(expectedStatusCode);
 
             var exHandlerFactory = new Mock<IExceptionHandlerFactory>();
+            var iLogger = new Mock<ILogger>();  //TODO: Test an exception have been logged
 
             Exception ex = new Exception();
             exHandlerFactory.Setup(x => x.GetExceptionHandler(ex)).Returns(exHandler.Object);
 
-            var middleware = new ExceptionHandlerMiddleware(exHandlerFactory.Object, (innerHttpContext) =>
+            var middleware = new ExceptionHandlerMiddleware(exHandlerFactory.Object, iLogger.Object, (innerHttpContext) =>
             {
                 throw ex;
             });
