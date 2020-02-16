@@ -25,7 +25,7 @@ namespace TaskManagerAPI.Test.Middleware
             exHandler.Setup(x => x.GetHttpStatusCode()).Returns(expectedStatusCode);
 
             var exHandlerFactory = new Mock<IExceptionHandlerFactory>();
-            var iLogger = new Mock<ILogger>();  //TODO: Test an exception have been logged
+            var iLogger = new Mock<ILogger<ExceptionHandlerMiddleware>>();  //TODO: Test an exception have been logged
 
             Exception ex = new Exception();
             exHandlerFactory.Setup(x => x.GetExceptionHandler(ex)).Returns(exHandler.Object);
