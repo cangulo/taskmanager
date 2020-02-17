@@ -3,6 +3,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
+using TaskManagerAPI.CQRS.CustomDomainValidator;
 using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
 using TaskManagerAPI.CQRS.TasksCQ.CommandValidators;
@@ -22,13 +23,15 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
             _tasksRepoByAccount = tasksRepoByAccount;
             _validator = validator;
         }
-        
+
         public Task<Result> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
         {
-            if (!this._validator.Validate(request).IsValid)
+            var validationResult = this._validator.Validate(request);
+            if (!validationResult.IsValid)
             {
-                return Task.FromResult(Results.Fail(
-                    new CustomError(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND, 404)));
+                //validationResult.Errors
+                CustomError customError = ((validationResult).Errors[0] as CustomValidationFailure).CustomError;
+                return Task.FromResult(Results.Fail(customError));
             }
             if (this._tasksRepoByAccount.TaskExists(this.GetCurrentUserId(), request.Id))
             {

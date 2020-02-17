@@ -8,7 +8,11 @@ namespace TaskManagerAPI.Extensions.AutofacModules
     {
         protected override void Load(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterGenericDecorator(typeof(RequestHandlerLogDecorator<,>), typeof(IRequestHandler<,>));
+            //containerBuilder
+            //    .RegisterGeneric(typeof(CustomDomainValidator<>))
+            //    .As(typeof(ICustomDomainValidator<>)).InstancePerLifetimeScope();
+            containerBuilder
+                .RegisterGenericDecorator(typeof(RequestHandlerLogDecorator<,>), typeof(IRequestHandler<,>));
         }
     }
 }
