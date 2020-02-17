@@ -1,6 +1,5 @@
 ﻿using FluentResults;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
@@ -8,7 +7,6 @@ using TaskManagerAPI.CQRS.CustomDomainValidator;
 using TaskManagerAPI.CQRS.DomainValidatorModel;
 using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
-using TaskManagerAPI.CQRS.TasksCQ.CommandValidators;
 using TaskManagerAPI.Models.Errors;
 using TaskManagerAPI.Repositories.TaskRepository;
 using TaskManagerAPI.Resources.Errors;
