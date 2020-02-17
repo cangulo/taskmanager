@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using FluentValidation.Results;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.CustomDomainValidator;

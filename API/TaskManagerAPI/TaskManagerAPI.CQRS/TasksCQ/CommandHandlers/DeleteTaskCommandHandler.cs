@@ -31,19 +31,21 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
             var validationResult = this._validator.Validate(request);
             if (!validationResult.IsValid)
             {
-                CustomError customError = ((validationResult).Errors[0] as CustomValidationFailure).CustomError;
-                return Task.FromResult(Results.Fail(customError));
-            }
-            if (this._tasksRepoByAccount.TaskExists(this.GetCurrentUserId(), request.Id))
-            {
-                _tasksRepoByAccount.DeleteTask(this.GetCurrentUserId(), request.Id);
-                return Task.FromResult(_tasksRepoByAccount.SaveModifications());
-            }
-            else
-            {
-                return Task.FromResult(Results.Fail(
+                var validationFailure = (validationResult).Errors[0];
+                if (validationFailure is CustomValidationFailure)
+                {
+                    CustomError customError = (validationFailure as CustomValidationFailure).CustomError;
+                    return Task.FromResult(Results.Fail(customError));
+                }
+                else
+                {
+                    return Task.FromResult(Results.Fail(
                     new CustomError(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND, 404)));
+                }
             }
+
+            _tasksRepoByAccount.DeleteTask(this.GetCurrentUserId(), request.Id);
+            return Task.FromResult(_tasksRepoByAccount.SaveModifications());
         }
     }
 }

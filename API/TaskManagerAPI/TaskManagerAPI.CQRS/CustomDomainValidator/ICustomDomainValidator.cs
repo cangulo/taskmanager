@@ -1,5 +1,4 @@
 ﻿using FluentValidation.Results;
-using TaskManagerAPI.CQRS.CustomDomainValidator;
 
 namespace TaskManagerAPI.CQRS.DomainValidatorModel
 {
