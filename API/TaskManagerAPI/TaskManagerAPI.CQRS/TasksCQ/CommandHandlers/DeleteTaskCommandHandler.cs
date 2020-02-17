@@ -31,7 +31,6 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
             var validationResult = this._validator.Validate(request);
             if (!validationResult.IsValid)
             {
-                //validationResult.Errors
                 CustomError customError = ((validationResult).Errors[0] as CustomValidationFailure).CustomError;
                 return Task.FromResult(Results.Fail(customError));
             }

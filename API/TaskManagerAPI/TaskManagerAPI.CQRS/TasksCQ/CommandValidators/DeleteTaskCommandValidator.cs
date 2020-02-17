@@ -10,7 +10,7 @@ using TaskManagerAPI.Resources.Errors;
 
 namespace TaskManagerAPI.CQRS.TasksCQ.CommandValidators
 {
-    public class DeleteTaskCommandValidator : AbstractValidator<DeleteTaskCommand>, ICustomDomainValidator<DeleteTaskCommand>
+    public class DeleteTaskCommandValidator : BaseCustomDomainValidator<DeleteTaskCommand>
     {
         public DeleteTaskCommandValidator(ITasksByAccountRepository tasksRepoByAccount, ICurrentUserService currentUserService)
         {
@@ -34,31 +34,6 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandValidators
                         context.AddFailure(customFailure);
                     }
                 });
-        }
-    }
-
-    public class DeleteTaskCommandCustomValidator : ICustomDomainValidator<DeleteTaskCommand>
-    {
-        public DeleteTaskCommandCustomValidator(/*ITasksByAccountRepository tasksRepoByAccount, ICurrentUserService currentUserService*/)
-        {
-            //var currentUserIdResult = currentUserService.GetIdCurrentUser();
-            //if (currentUserIdResult.IsSuccess)
-            //{
-            //    if (!tasksRepoByAccount.TaskExists(currentUserIdResult.Value, id))
-            //    {
-            //        CustomError customError = new CustomError(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND, 404);
-            //        CustomValidationFailure customFailure = new CustomValidationFailure(customError, "task id");
-            //    }
-            //}
-            //else
-            //{
-            //    CustomValidationFailure customFailure = new CustomValidationFailure(currentUserIdResult.Errors[0] as CustomError, "current user");
-            //}
-        }
-
-        public ValidationResult Validate(DeleteTaskCommand instance)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
