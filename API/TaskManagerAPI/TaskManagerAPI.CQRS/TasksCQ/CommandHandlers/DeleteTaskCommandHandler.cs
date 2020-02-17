@@ -1,9 +1,11 @@
 ﻿using FluentResults;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using TaskManagerAPI.BL.CurrentUserService;
 using TaskManagerAPI.CQRS.CustomDomainValidator;
+using TaskManagerAPI.CQRS.DomainValidatorModel;
 using TaskManagerAPI.CQRS.TasksCQ.BaseClasses;
 using TaskManagerAPI.CQRS.TasksCQ.Commands;
 using TaskManagerAPI.CQRS.TasksCQ.CommandValidators;
@@ -16,9 +18,9 @@ namespace TaskManagerAPI.CQRS.TasksCQ.CommandHandlers
     public class DeleteTaskCommandHandler : BaseCommandQuery, IRequestHandler<DeleteTaskCommand, Result>
     {
         private readonly ITasksByAccountRepository _tasksRepoByAccount;
-        private readonly DeleteTaskCommandValidator _validator;
+        private readonly ICustomDomainValidator<DeleteTaskCommand> _validator;
 
-        public DeleteTaskCommandHandler(ITasksByAccountRepository tasksRepoByAccount, ICurrentUserService currentUserService, DeleteTaskCommandValidator validator) : base(currentUserService)
+        public DeleteTaskCommandHandler(ITasksByAccountRepository tasksRepoByAccount, ICurrentUserService currentUserService, ICustomDomainValidator<DeleteTaskCommand> validator) : base(currentUserService)
         {
             _tasksRepoByAccount = tasksRepoByAccount;
             _validator = validator;

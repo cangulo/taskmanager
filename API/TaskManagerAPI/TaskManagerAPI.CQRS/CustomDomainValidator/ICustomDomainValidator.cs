@@ -1,17 +1,17 @@
-﻿//using FluentValidation;
-//using TaskManagerAPI.CQRS.CustomDomainValidator;
+﻿using FluentValidation;
+using FluentValidation.Results;
 
-//namespace TaskManagerAPI.CQRS.DomainValidatorModel
-//{
-//    public interface ICustomDomainValidator<TRequest>
-//    {
-//        abstract CustomValidationResult Validate(TRequest request);
-//    }
-//    public abstract class BaseCustomDomainValidator<TRequest> 
-//    {
-//        CustomValidationResult ICustomDomainValidator<TRequest>.Validate(TRequest request)
-//        {
-//            return this.Validate(request) as CustomValidationResult;
-//        }
-//    }
-//}
+namespace TaskManagerAPI.CQRS.DomainValidatorModel
+{
+    public interface ICustomDomainValidator<in TRequest>
+    {
+        ValidationResult Validate(TRequest instance);
+    }
+    //public abstract class BaseCustomDomainValidator<TRequest>
+    //{
+    //    CustomValidationResult ICustomDomainValidator<TRequest>.Validate(TRequest request)
+    //    {
+    //        return this.Validate(request) as CustomValidationResult;
+    //    }
+    //}
+}
