@@ -15,24 +15,21 @@ namespace TaskManagerAPI.Extensions.AutofacModules
     {
         protected override void Load(ContainerBuilder containerBuilder)
         {
-            // TODO: Make Generic
-            containerBuilder
-                .RegisterType<DeleteTaskCommandValidator>()
-                .As<ICustomDomainValidator<DeleteTaskCommand>>();
-
-            // TODO: Make Generic
-            //containerBuilder
-            //    .RegisterDecorator(typeof(RequestHandlerValidatorDecorator<DeleteTaskCommand, Result>), typeof(IRequestHandler<DeleteTaskCommand, Result>));
-
             List<Type> classes = typeof(DeleteTaskCommandValidator).Assembly.GetTypes().ToList();
             List<Type> validators = classes.Where(x => x.Name.EndsWith("Validator")).ToList();
             foreach (var validator in validators)
             {
                 Console.WriteLine(validator.Namespace);
 
-
                 Type requestType = validator.BaseType.GenericTypeArguments[0];
                 Type responseType = requestType.GetInterfaces()[0].GenericTypeArguments[0];
+
+
+                Type interfaceCustomValidatorType = typeof(ICustomDomainValidator<>);
+                Type validatorInterfaceTyped = interfaceCustomValidatorType.MakeGenericType(new Type[] { requestType });
+
+                containerBuilder.RegisterType(validator).As(validatorInterfaceTyped);
+
 
                 Type validatorDecoratorGeneric = typeof(RequestHandlerValidatorDecorator<,>);
                 Type[] decoratorArgs = new Type[] { requestType, responseType };
@@ -46,12 +43,6 @@ namespace TaskManagerAPI.Extensions.AutofacModules
                     .RegisterDecorator(validatorDecoratorSpecific, requestHandlerSpecific);
 
             }
-
-            //containerBuilder
-            //    .RegisterGenericDecorator(typeof(RequestHandlerValidatorDecorator<,>), typeof(IRequestHandler<,>), (context) =>
-            //    {
-            //        return registerDecorator;
-            //    });
 
             containerBuilder
                 .RegisterGenericDecorator(typeof(RequestHandlerLogDecorator<,>), typeof(IRequestHandler<,>));
