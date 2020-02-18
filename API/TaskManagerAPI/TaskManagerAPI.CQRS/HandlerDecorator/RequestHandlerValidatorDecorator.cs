@@ -37,7 +37,9 @@ namespace TaskManagerAPI.CQRS.HandlerDecorator
                 }
                 else
                 {
-                    // Create Generic Validator Errors for default Rules as greater than 0
+                    // 1. Create Generic Validator Errors for default Rules as greater than 0
+                    // 2. Thrown a CQ Exception and encapsulate the errors there
+                    // 3. Create a new CustomError for the validation of the request
                     return Results.Fail<TResult>(
                         new CustomError(ErrorsCodesContants.TASK_ID_NOT_FOUND, ErrorsMessagesConstants.TASK_ID_NOT_FOUND, 404)).Value;
                 }
