@@ -18,7 +18,11 @@ namespace TaskManagerAPI.Extensions.AutofacModules
             var validators = typeof(DeleteTaskCommandValidator)
                 .Assembly
                 .GetTypes()
-                .Where(x => x.Name.EndsWith("Validator"))
+                .Where(x =>
+                    x.IsClass &&
+                    x.BaseType.IsAbstract &&
+                    x.BaseType.IsGenericType &&
+                    x.BaseType.GetGenericTypeDefinition() == typeof(BaseCustomDomainValidator<>))
                 .ToArray();
 
             containerBuilder
@@ -36,8 +40,8 @@ namespace TaskManagerAPI.Extensions.AutofacModules
                     typeof(IRequestHandler<,>),
                     (context) =>
                     {
-                        string requestTypeName = context.ServiceType.GetGenericArguments()[0].Name;
-                        return validators.Any(x => x.Name == requestTypeName + "Validator");
+                        var requestType = context.ServiceType.GetGenericArguments()[0];
+                        return validators.Any(x => x.BaseType.GetGenericArguments()[0] == requestType);
                     });
 
             containerBuilder
