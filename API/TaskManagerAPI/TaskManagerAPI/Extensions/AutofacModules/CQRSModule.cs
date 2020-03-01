@@ -29,7 +29,7 @@ namespace TaskManagerAPI.Extensions.AutofacModules
                 .RegisterTypes(validators)
                 .As((validator) =>
                     {
-                        Type requestType = validator.BaseType.GenericTypeArguments[0];
+                        var requestType = validator.BaseType.GenericTypeArguments[0];
                         return typeof(ICustomDomainValidator<>).MakeGenericType(new Type[] { requestType });
                     }
                 );
