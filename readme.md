@@ -8,11 +8,12 @@ This is the main page for all the FE and BE projects related to a task manager a
 | ------------ | ---- | ------------------------------------------- | ----------- |
 | [API](./API) | BE   | Back-end projects in different technologies | In progress |
 
-## Brances
+## Branches
 
-| Name              | Description                      | Status      |
-| ----------------- | -------------------------------- | ----------- |
-| [CQH](./tree/CQH) | Project developed following CQRS | In progress |
+| Name                                                                            | Description                      | Status      |
+| ------------------------------------------------------------------------------- | -------------------------------- | ----------- |
+| [Service Layer Model](https://github.com/cangulo/taskmanager/tree/servicelayer) | Project developed following CQRS | In progress |
+| [CQH](https://github.com/cangulo/taskmanager/tree/CQH)                          | Project developed following CQRS | In progress |
 
 
 ## Author Info
