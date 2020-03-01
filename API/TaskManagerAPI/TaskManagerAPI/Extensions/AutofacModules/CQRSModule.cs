@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using MediatR;
+using System;
+using System.Linq;
 using TaskManagerAPI.CQRS.DomainValidatorModel;
 using TaskManagerAPI.CQRS.HandlerDecorator;
 using TaskManagerAPI.CQRS.TasksCQ.CommandHandlers;
@@ -12,20 +14,28 @@ namespace TaskManagerAPI.Extensions.AutofacModules
     {
         protected override void Load(ContainerBuilder containerBuilder)
         {
-            //var dataAccess = typeof(CQRSModule).Assembly;
+            var dataAccess = typeof(DeleteTaskCommandValidator).Assembly;
 
-            //containerBuilder.RegisterAssemblyTypes(dataAccess)
-            //    .AsClosedTypesOf(typeof(ICustomDomainValidator<>))
-            //    .AsImplementedInterfaces();
+            var validators = dataAccess
+                .GetTypes()
+                .Where(x =>
+                    {
+                        return
+                        x.IsClass &&
+                        x.BaseType.IsAbstract &&
+                        x.BaseType.IsGenericType &&
+                        x.BaseType.GetGenericTypeDefinition() == typeof(BaseCustomDomainValidator<>);
+                    })
+                .ToArray();
 
-            // TODO: Make Generic
             containerBuilder
-                .RegisterType<DeleteTaskCommandValidator>()
-                .As<ICustomDomainValidator<DeleteTaskCommand>>();
+                .RegisterTypes(validators)
+                .As((validator) =>
+                {
+                    var requestType = validator.BaseType.GenericTypeArguments[0];
+                    return typeof(ICustomDomainValidator<>).MakeGenericType(new Type[] { requestType });
+                });
 
-            //containerBuilder
-            //    .RegisterGeneric(typeof(CustomDomainValidator<>))
-            //    .As(typeof(ICustomDomainValidator<>)).InstancePerLifetimeScope();
             containerBuilder
                 .RegisterGenericDecorator(typeof(RequestHandlerLogDecorator<,>), typeof(IRequestHandler<,>));
         }
