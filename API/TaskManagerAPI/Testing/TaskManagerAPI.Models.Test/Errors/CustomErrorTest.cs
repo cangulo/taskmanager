@@ -9,7 +9,6 @@ namespace TaskManagerAPI.Models.Test.Errors
         private string _errorCodeTest = "errorCodeTest";
         private string _errorMessageTest = "errorMessageTest";
         private int _errorHttpCode404Test = 404;
-        private int _errorHttpCode500Test = 500;
 
         [Fact]
         public void CreateCustomError_ValidMetadaProvidingHttpCode_ExpectedAllMetadata()

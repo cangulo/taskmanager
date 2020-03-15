@@ -31,7 +31,7 @@ namespace TaskManagerAPI.CQRS.HandlerDecorator
             if ((response as ResultBase).IsFailed)
             {
                 // TODO: The responsibility of log the errors should be at the top level of the application, at the Exception middleware
-                this._logger.LogError($"Handler; {handlerName} ; {stopwatch.ElapsedMilliseconds}");
+                this._logger.LogError($"Handler; {handlerName} ; {stopwatch.ElapsedMilliseconds}ms");
                 var listError = (response as ResultBase).Errors;
                 this._logger.LogError($"Handler; {handlerName} ; Errors: {string.Join(";", listError.Select(er => er.ToString()))}");
                 throw new CQException(listError.Select(error => error as CustomError));

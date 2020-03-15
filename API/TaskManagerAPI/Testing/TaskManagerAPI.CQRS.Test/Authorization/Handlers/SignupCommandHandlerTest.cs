@@ -60,28 +60,29 @@ namespace TaskManagerAPI.CQRS.Test.Authorization.Handlers
                             x.Username == newAccount.Username)), Times.Once);
         }
 
-        [Fact]
-        public async Task Handle_UserAlreadyExists_SpecificError()
-        {
-            // Arrange
-            SignUpCommand request = new SignUpCommand
-            {
-                FullName = ConstantsAccountsCQTest.Username,
-                Email = ConstantsAccountsCQTest.Email,
-                Password = ConstantsAccountsCQTest.Password
-            };
-            _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email)).Returns(true);
+        //[Fact]
+        // TODO: Migrated this code to SignUpCommandValidatorTest
+        //public async Task Handle_UserAlreadyExists_SpecificError()
+        //{
+        //    // Arrange
+        //    SignUpCommand request = new SignUpCommand
+        //    {
+        //        FullName = ConstantsAccountsCQTest.Username,
+        //        Email = ConstantsAccountsCQTest.Email,
+        //        Password = ConstantsAccountsCQTest.Password
+        //    };
+        //    _accountRepositoryMock.Setup(x => x.ExistsAccount(request.Email)).Returns(true);
 
-            // Act
-            Result result = await _handler.Handle(request, CancellationToken.None);
+        //    // Act
+        //    Result result = await _handler.Handle(request, CancellationToken.None);
 
-            // Assert
-            result.IsSuccess.Should().BeFalse();
-            result.Errors.Count.Should().Be(1);
-            result.Errors[0].Message.Should().Be(ErrorsMessagesConstants.EMAIL_ALREADY_USED);
-            result.Errors[0].Metadata[ErrorKeyPropsConstants.ERROR_CODE].Should().Be(ErrorsCodesContants.EMAIL_ALREADY_USED);
-            result.Errors[0].Metadata[ErrorKeyPropsConstants.ERROR_HTTP_CODE].Should().Be(400);
-        }
+        //    // Assert
+        //    result.IsSuccess.Should().BeFalse();
+        //    result.Errors.Count.Should().Be(1);
+        //    result.Errors[0].Message.Should().Be(ErrorsMessagesConstants.EMAIL_ALREADY_USED);
+        //    result.Errors[0].Metadata[ErrorKeyPropsConstants.ERROR_CODE].Should().Be(ErrorsCodesContants.EMAIL_ALREADY_USED);
+        //    result.Errors[0].Metadata[ErrorKeyPropsConstants.ERROR_HTTP_CODE].Should().Be(400);
+        //}
 
         [Fact]
         public async Task Handle_ErrorCreatingNewAccount_ReturnRepoError()

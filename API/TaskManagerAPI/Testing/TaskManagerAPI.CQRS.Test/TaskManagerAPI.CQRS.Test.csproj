@@ -28,6 +28,7 @@
     <ProjectReference Include="..\..\TaskManagerAPI.BL\TaskManagerAPI.BL.csproj" />
     <ProjectReference Include="..\..\TaskManagerAPI.CQRS\TaskManagerAPI.CQRS.csproj" />
     <ProjectReference Include="..\..\TaskManagerAPI.Repositories\TaskManagerAPI.Repositories.csproj" />
+    <ProjectReference Include="..\TaskManagerAPI.Test.Common\TaskManagerAPI.Test.Common.csproj" />
   </ItemGroup>
 
 </Project>

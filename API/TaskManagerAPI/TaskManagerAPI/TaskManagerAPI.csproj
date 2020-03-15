@@ -26,6 +26,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.10.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="ReportGenerator" Version="4.4.6" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc5" />
   </ItemGroup>
 
